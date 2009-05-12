@@ -1,4 +1,4 @@
-= Help =
+= How do use our app=
 
 Choose “Andrico” in menu of you Android device.
 

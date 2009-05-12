@@ -18,26 +18,29 @@ public final class R {
         public static final int ic_add_profile=0x7f020004;
         public static final int ic_andrico=0x7f020005;
         public static final int ic_exit=0x7f020006;
-        public static final int ic_synch=0x7f020007;
-        public static final int icon=0x7f020008;
-        public static final int logo=0x7f020009;
-        public static final int logo_land=0x7f02000a;
+        public static final int ic_settings=0x7f020007;
+        public static final int ic_synch=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int logo=0x7f02000a;
+        public static final int logo_land=0x7f02000b;
     }
     public static final class id {
         public static final int BackToMenu=0x7f05000d;
-        public static final int ChooseProfile=0x7f050011;
+        public static final int ChooseProfile=0x7f050012;
         public static final int ConfigureLayout=0x7f05000e;
-        public static final int CreateProfile=0x7f050012;
+        public static final int CreateProfile=0x7f050013;
         public static final int Exit=0x7f05000b;
         public static final int LayoutForButtons=0x7f050007;
         public static final int LayoutForLogo=0x7f050005;
-        public static final int LogIn=0x7f05000f;
+        public static final int LogIn=0x7f050014;
         public static final int Logo=0x7f050006;
         public static final int MainLayout=0x7f050000;
         public static final int Settings=0x7f05000a;
+        public static final int StartSynch=0x7f05000f;
         public static final int Synch=0x7f05000c;
         public static final int Synchronize=0x7f050009;
-        public static final int TextProfile=0x7f050010;
+        public static final int TextProfile=0x7f050011;
+        public static final int ToMenu=0x7f050010;
         public static final int ViewContacts=0x7f050008;
         public static final int auth_token=0x7f050003;
         public static final int auth_token_label=0x7f050002;

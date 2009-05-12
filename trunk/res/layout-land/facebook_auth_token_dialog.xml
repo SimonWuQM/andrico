@@ -13,10 +13,8 @@
 
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
 	android:orientation="vertical"
-	android:gravity="fill_vertical">
+	android:gravity="fill_vertical" android:layout_marginLeft="30px" android:minHeight="200px" android:layout_width="wrap_content" android:layout_height="wrap_content">
 
 	<TextView
 		android:id="@+id/auth_token_label"
@@ -24,20 +22,9 @@
 		android:layout_width="wrap_content"
 		android:layout_marginLeft="5dip"
 		android:layout_marginRight="5dip"
-		android:text="Please enter your Authorization Token."
 		android:gravity="fill_vertical"
-		android:textAppearance="?android:attr/textAppearanceMedium" />
+		android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/token_headline" android:layout_marginTop="15px"/>
 
-	<TextView
-		android:id="@+id/auth_token_label"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_marginLeft="5dip"
-		android:layout_marginRight="5dip"
-		android:text="The authorization token should be displayed through this translucent dialog."
-		android:gravity="fill_vertical"
-		android:textAppearance="?android:attr/textAppearanceSmall" />
-		
 	<EditText
 		android:id="@+id/auth_token"
 		android:layout_height="wrap_content"
@@ -46,10 +33,19 @@
 		android:capitalize="none"
 		android:gravity="right"
 		android:lines="1"
-		android:layout_marginLeft="300dip"
-		android:maxLength="10"
 		android:singleLine="true"
-		android:textAppearance="?android:attr/textAppearanceMedium"/>
+		android:textAppearance="?android:attr/textAppearanceMedium" android:layout_marginLeft="80dip"/>
+
+	<TextView
+		android:id="@+id/auth_token_label"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip"
+		android:gravity="fill_vertical"
+		android:textAppearance="?android:attr/textAppearanceSmall" android:text="@string/token_text" android:layout_marginTop="15px"/>
+		
+	
 
 
 	<TextView

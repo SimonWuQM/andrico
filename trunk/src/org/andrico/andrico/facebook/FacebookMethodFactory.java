@@ -1,7 +1,7 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
+
 package org.andrico.andrico.facebook;
 
 
@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import org.andrico.andrico.facebook.FacebookBase.Session;
 
+/**
+ * @author jlapenna
+ */
 public class FacebookMethodFactory {
     private String LOG = "FacebookMethodFactory";
 

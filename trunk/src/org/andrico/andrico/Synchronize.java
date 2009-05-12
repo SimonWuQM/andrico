@@ -1,9 +1,6 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
-
 package org.andrico.andrico;
+
+import java.text.ParseException;
 
 import com.google.gdata.data.Feed;
 /*import com.googlecode.statusinator2.Preferences;
@@ -17,6 +14,7 @@ import org.andrico.andrico.facebook.LoginActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,10 +24,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Synchronize extends Activity 
 {
@@ -54,7 +54,11 @@ public class Synchronize extends Activity
     {
     	// TODO Auto-generated method stub
     	super.onCreate(savedInstanceState);
+    	
+    	Window  w = getWindow(); 
+        w.requestFeature(Window.FEATURE_LEFT_ICON);   
         setContentView(R.layout.synchronize);
+        w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
         final Intent intent = getIntent();
         CONFIG_ORDER=intent.getIntExtra("ConfigOrder", 0);
         /*if(intent.getAction().equals(Intent.ACTION_INSERT)) {
@@ -195,7 +199,47 @@ public class Synchronize extends Activity
 		});
     }
     
- 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(LOG, "onActivityResult");
+        switch (requestCode) {
+            case FACEBOOK_LOGIN_REQUEST_CODE:
+                if (mFacebook.handleLoginActivityResult(this, resultCode, data)) 
+                {
+                    //setPrefsFromFacebookSession();
+                    // Heh. RPC to the server to make sure the login worked.
+                    //verifyFacebookLoggedIn();
+                	Intent i = new Intent(Synchronize.this, StartSynchronization.class);
+					String[] s = {"",""};
+					i.putExtra("ConfigOrder", CONFIG_ORDER);
+					i.putExtra("PostTitleAndContent", s);
+					try
+					{
+					startActivity(i);
+					}
+					catch (ActivityNotFoundException e)
+					{
+						 Log.e(TAG,"Failed to start activity");
+					}
+		            finish();
+                } 
+                else 
+                {
+                    Toast.makeText(mContext, "Failure logging in.", Toast.LENGTH_SHORT).show();
+                    //unsetUiFacebookLoggedIn();
+
+                    // Wipe the user session.
+                    mFacebook.unsetSession();
+                    //setPrefsFromFacebookSession();
+                }
+                break;
+
+            
+						
+            default:
+                break;
+        }
+    }
     
     
     

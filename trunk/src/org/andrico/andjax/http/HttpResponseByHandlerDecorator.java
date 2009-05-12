@@ -1,7 +1,5 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************
+/**
+ * Copyright 2007 Joe LaPenna
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +22,8 @@ import android.os.Handler;
 
 /**
  * Decorate an HttpResponseRunnable with a modifier on the UI.
+ * 
+ * @author jlapenna
  */
 public class HttpResponseByHandlerDecorator extends HttpResponseRunnable {
     private final Handler mHandler;

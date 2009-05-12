@@ -1,7 +1,6 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
 
 package org.andrico.andrico.facebook;
 
@@ -11,6 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * @author jlapenna
+ */
 public class ExtendedPreferenceActivity extends AuthorizationActivity {
     private static final String LOG = "ExtendedPreferenceActivity";
 

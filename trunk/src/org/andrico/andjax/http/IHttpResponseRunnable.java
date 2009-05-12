@@ -1,7 +1,6 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************
+/**
+ * Copyright 2007 Joe LaPenna
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +18,9 @@ package org.andrico.andjax.http;
 
 import org.apache.http.HttpResponse;
 
-
+/**
+ * @author jlapenna
+ */
 public interface IHttpResponseRunnable extends Runnable {
     /**
      * Called when an http request fails for any reason.

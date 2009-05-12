@@ -1,7 +1,7 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
+
 package org.andrico.andrico.facebook;
 
 import android.util.Log;

@@ -16,4 +16,7 @@
 	<string name="back">BACK TO MENU</string>
 	<string name="preference_activity_name">PREFERENCES</string>
 <string name="start_synchronization">START SYNCH</string>
+<string name="token_headline">ENTER YOUR TOKEN</string>
+<string name="token_text">&lt;-- HERE IT IS</string>
+<string name="login_label">Getting Authorizaion Token</string>
 </resources>

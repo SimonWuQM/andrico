@@ -1,7 +1,6 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
 
 package org.andrico.andrico.facebook;
 
@@ -48,20 +47,11 @@ abstract class AuthorizationActivity extends Activity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             Log.d(LOG, "onPageStarted: " + url);
+            if ((url.indexOf("http://www.facebook.com/login.php") > -1 ))
+            {
+            	mWebView.scrollTo(190, 230);
+            }
             AuthorizationActivity.this.onPageFinished(url);
-           
-            if (url.indexOf("http://www.facebook.com/login.php") > -1)
-            {
-            	mWebView.scrollTo(190, 230);
-            }
-            
-            
-            /*
-            if (url.indexOf("http://www.facebook.com/code_gen.php?v=1.0&api_key=afff0131de7f8a7745e0e2ead131d8a4") > -1)
-            {
-            	mWebView.scrollTo(190, 230);
-            }
-            */
         }
     }
     

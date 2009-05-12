@@ -1,7 +1,7 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
+
 package org.andrico.andrico.facebook;
 
 
@@ -23,6 +23,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
+/**
+ * @author jlapenna
+ */
 class FacebookBase {
     private static final String LOG = "FacebookBase";
 

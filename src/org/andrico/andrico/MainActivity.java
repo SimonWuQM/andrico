@@ -1,8 +1,3 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
-
 package org.andrico.andrico;
 
 import java.io.IOException;
@@ -56,9 +51,10 @@ public class MainActivity extends Activity
 	    public void onCreate(Bundle savedInstanceState)
 		{
 	        super.onCreate(savedInstanceState);
-	        requestWindowFeature(Window.FEATURE_RIGHT_ICON);
-	        setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON,R.drawable.ic_andrico);
+	        Window  w = getWindow(); 
+	        w.requestFeature(Window.FEATURE_LEFT_ICON);   
 	        setContentView(R.layout.main);
+	        w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
 	        
 	        Intent i = this.getIntent();
 	        if(i.hasExtra("ConfigOrder"))

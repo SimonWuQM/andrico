@@ -15,7 +15,7 @@
 				android:layout_width="wrap_content" 
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
-		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/back_land" android:minHeight="240px" android:layout_marginLeft="10px" android:layout_marginRight="10px">
+		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/back_land" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:minHeight="245px">
 			<TextView android:id="@+id/TextProfile" 
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content" 

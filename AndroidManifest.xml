@@ -11,14 +11,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity android:name=".Synchronize"
         		  android:label="@string/synchronize">
         </activity>
         
+        <activity android:name=".StartSynchronization"
+        		  android:label="@string/synchronize">
+        </activity>
+        
+        
         <activity
 			android:name=".facebook.LoginActivity"
-			android:label="Facebook Login"
-			android:screenOrientation="landscape"
+			android:label="@string/login_label"
+			
 			android:configChanges="keyboardHidden|orientation">
 		</activity>
 

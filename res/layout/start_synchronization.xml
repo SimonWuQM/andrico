@@ -17,10 +17,9 @@
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
 			<LinearLayout android:orientation="vertical" android:id="@+id/LayoutForButtons" android:gravity="center" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:layout_marginTop="40px" android:layout_width="fill_parent" android:background="@drawable/back_small" android:minHeight="150px">
-			<Button android:id="@+id/LogIn" 
-				android:layout_height="wrap_content" 
+			<Button android:layout_height="wrap_content" 
 				android:text="@string/start_synchronization" 
-				android:layout_width="fill_parent" android:enabled="true" android:height="55px" android:layout_marginRight="10px" android:layout_marginLeft="10px" android:layout_marginTop="5px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@drawable/ic_synch">
+				android:layout_width="fill_parent" android:enabled="true" android:height="55px" android:layout_marginRight="10px" android:layout_marginLeft="10px" android:layout_marginTop="5px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@drawable/ic_synch" android:id="@+id/Synch">
 			</Button>
 			
 			<Button android:id="@+id/BackToMenu" 

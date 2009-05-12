@@ -1,7 +1,7 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
+
 package org.andrico.andrico.facebook;
 
 
@@ -26,7 +26,9 @@ import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+/**
+ * @author jlapenna
+ */
 public class LoginActivity extends AuthorizationActivity {
     public static final String LOG = "LoginActivity";
     
@@ -87,6 +89,9 @@ public class LoginActivity extends AuthorizationActivity {
                             Toast.makeText(LoginActivity.this, "Acquired Facebook Session.",
                                     Toast.LENGTH_SHORT).show();
                             setResult(RESULT_OK, result);
+                            
+                            
+                            
                         } catch (JSONException e) {
                             Log.e(LOG, "Cannot Parse JSON result", e);
                             try {
@@ -138,8 +143,7 @@ public class LoginActivity extends AuthorizationActivity {
                 // AlertDialog
                 LayoutInflater factory = LayoutInflater.from(this);
                 final View authDialog = factory.inflate(R.layout.facebook_auth_token_dialog, null);
-                return new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Set Authorization Token").setView(authDialog).setPositiveButton(
+                return new AlertDialog.Builder(this).setView(authDialog).setPositiveButton(
                                 android.R.string.ok, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         EditText authTokenEditText = (EditText)authDialog

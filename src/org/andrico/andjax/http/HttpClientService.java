@@ -1,7 +1,5 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************
+/**
+ * Copyright 2007 Joe LaPenna
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +49,7 @@ import java.util.concurrent.Executors;
  * Make asynchronous http requests with Future actions. We support two threads because historically, thats all browsers
  * are allowed to pull from per domain. Since we're only touching one domain, this matches that expectation
  * 
- *
+ * @author jlapenna@gmail.com (Joe LaPenna)
  * 
  */
 public class HttpClientService {

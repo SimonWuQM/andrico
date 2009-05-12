@@ -1,7 +1,6 @@
-/************************************
- * Andrico Team Copyright 2009      *
- * http://code.google.com/p/andrico *
- ************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
 
 package org.andrico.andjax.http;
 
@@ -19,7 +18,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 
-
+/**
+ * @author jlapenna
+ */
 public class ByteArrayBody extends AbstractBody implements BinaryBody, ContentBody 
 {
     private static final String LOG = "ByteArrayBody";

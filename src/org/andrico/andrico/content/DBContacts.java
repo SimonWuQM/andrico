@@ -66,7 +66,7 @@ public class DBContacts {
         
         public Contact[] getContacts(Context app) 
         {
-                final String SQL = "SELECT id, name from CONTACTS";
+                final String SQL = "SELECT id, name, second_name, info from CONTACTS";
                 Cursor cur = null;
                 Contact[] conts = null;
                 if(isDatabaseReady(app)) 
@@ -88,6 +88,8 @@ public class DBContacts {
                         	Contact contact = new Contact();
                             contact.setId(cur.getInt(0));
                             contact.setName(cur.getString(1));
+                            contact.setSecondName(cur.getString(2));
+                            contact.setInfo(cur.getString(3));
                             conts[i] = contact;
                             cur.moveToNext();
                         }

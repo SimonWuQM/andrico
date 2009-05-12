@@ -68,17 +68,14 @@ public class MainActivity extends Activity
 	        
 	        this.findViewById(R.id.ViewContacts).setOnClickListener(new OnClickListener()
 	        {
-				public void onClick(View v)
-				{
-	        		
-					/*Intent i = new Intent(MainActivity.this,CreateProfile.class);
-	                i.setAction(Intent.ACTION_INSERT);
-	                i.putExtra("ConfigOrder", CONFIG_ORDER);
-	                Uri cURI = null;
-	                cURI = Uri.parse("content://com/sadko/androblogger/blogconfig");
-	                i.setData(cURI);
-	                startActivityForResult(i,BLOGCONFIG_REQUEST);
-	                finish();*/
+	        	public void onClick(View v)
+				{        		
+					Intent i = new Intent(MainActivity.this, ContactList.class);
+					String[] s = {"",""};
+					i.putExtra("ConfigOrder", CONFIG_ORDER);
+					i.putExtra("PostTitleAndContent", s);
+					startActivity(i);
+		            finish();
 	       		}
 			}); 
 	        

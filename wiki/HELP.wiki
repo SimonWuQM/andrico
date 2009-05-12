@@ -1,4 +1,4 @@
-= How do use our application=
+= How to use our application=
 
 Choose “Andrico” in menu of you Android device.
 

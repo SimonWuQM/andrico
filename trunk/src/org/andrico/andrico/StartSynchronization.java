@@ -58,7 +58,7 @@ public class StartSynchronization extends Activity
     
 
     
-        /*this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
+        this.findViewById(R.id.ToMenu).setOnClickListener(new OnClickListener()
         {
         	public void onClick(View v)
         	{
@@ -69,12 +69,12 @@ public class StartSynchronization extends Activity
         	}
         });
         
-        this.findViewById(R.id.Synch).setOnClickListener(new OnClickListener()
+        this.findViewById(R.id.StartSynch).setOnClickListener(new OnClickListener()
         {
         	public void onClick(View v)
         	{
         	
         	}
-        });*/
+        });
     }
 }

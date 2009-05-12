@@ -143,16 +143,22 @@ public class LoginActivity extends AuthorizationActivity {
                 // AlertDialog
                 LayoutInflater factory = LayoutInflater.from(this);
                 final View authDialog = factory.inflate(R.layout.facebook_auth_token_dialog, null);
-                return new AlertDialog.Builder(this).setView(authDialog).setPositiveButton(
-                                android.R.string.ok, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        EditText authTokenEditText = (EditText)authDialog
-                                                .findViewById(R.id.auth_token);
+                return new AlertDialog.Builder(this).setView(authDialog)
+                				.setPositiveButton(android.R.string.ok, 
+                					new DialogInterface.OnClickListener() 
+                				{
+                                    public void onClick(DialogInterface dialog, int whichButton)
+                                    {
+                                    	EditText authTokenEditText = (EditText)authDialog
+                                    	.findViewById(R.id.auth_token);
                                         getSession(authTokenEditText.getText().toString());
                                     }
-                                }).setNegativeButton(android.R.string.cancel,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                })
+                                .setNegativeButton(android.R.string.cancel, 
+                                	new DialogInterface.OnClickListener() 
+                                {
+                                    public void onClick(DialogInterface dialog, int whichButton) 
+                                    {
                                         Toast.makeText(LoginActivity.this,
                                                 "Could not acquire session.", Toast.LENGTH_SHORT)
                                                 .show();

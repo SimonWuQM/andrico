@@ -17,16 +17,14 @@
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/ConfigureLayout" android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginTop="50px" android:background="@drawable/back_small_land" android:layout_marginRight="10px" android:layout_marginLeft="10px" android:minHeight="140px">
-			<Button android:id="@+id/LogIn" 
-				android:layout_height="wrap_content" 
+			<Button android:layout_height="wrap_content" 
 				android:text="@string/start_synchronization" 
-				android:layout_width="fill_parent" android:enabled="true" android:height="55px" android:layout_marginTop="15px" android:layout_marginLeft="7px" android:layout_marginRight="7px" android:textStyle="bold" android:textSize="20px" android:drawableLeft="@drawable/ic_synch">
+				android:layout_width="fill_parent" android:enabled="true" android:height="55px" android:layout_marginTop="15px" android:layout_marginLeft="7px" android:layout_marginRight="7px" android:textStyle="bold" android:textSize="20px" android:drawableLeft="@drawable/ic_synch" android:id="@+id/StartSynch">
 			</Button>
 			
-			<Button android:id="@+id/BackToMenu" 
-				android:layout_height="wrap_content" 
+			<Button android:layout_height="wrap_content" 
 				android:text="@string/back" 
-				android:layout_width="fill_parent" android:height="55px" android:layout_marginTop="5px" android:layout_marginRight="7px" android:layout_marginLeft="7px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@android:drawable/ic_menu_revert">
+				android:layout_width="fill_parent" android:height="55px" android:layout_marginTop="5px" android:layout_marginRight="7px" android:layout_marginLeft="7px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@android:drawable/ic_menu_revert" android:id="@+id/ToMenu">
 			</Button>
 		</LinearLayout>
 </LinearLayout>

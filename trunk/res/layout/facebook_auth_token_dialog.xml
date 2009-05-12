@@ -23,7 +23,7 @@
 		android:layout_marginLeft="5dip"
 		android:layout_marginRight="5dip"
 		android:gravity="fill_vertical"
-		android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/token_headline" android:layout_marginTop="15px" android:textSize="15px"/>
+		android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/token_headline" android:layout_marginTop="15px"/>
 
 	<EditText
 		android:id="@+id/auth_token"
@@ -34,7 +34,7 @@
 		android:gravity="right"
 		android:lines="1"
 		android:singleLine="true"
-		android:textAppearance="?android:attr/textAppearanceMedium" android:layout_marginLeft="50dip"/>
+		android:textAppearance="?android:attr/textAppearanceMedium" android:layout_marginLeft="80dip"/>
 
 	<TextView
 		android:id="@+id/auth_token_label"

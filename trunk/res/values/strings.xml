@@ -19,4 +19,5 @@
 <string name="token_headline">ENTER YOUR TOKEN</string>
 <string name="token_text">&lt;-- HERE IT IS</string>
 <string name="login_label">Getting Authorizaion Token</string>
+<string name="contacts">Contacts</string>
 </resources>

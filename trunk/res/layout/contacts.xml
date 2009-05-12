@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="#30567D">
- 
-	<LinearLayout android:id="@+id/MainLayout" 
-		android:orientation="vertical"
-		android:layout_height="fill_parent" 
-		android:layout_width="fill_parent">
- 
-     	<ListView android:id="@id/android:list"
-               android:layout_width="fill_parent" 
-               android:layout_height="fill_parent"
-               android:layout_weight="1"
-               android:drawSelectorOnTop="false"/>
+
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:orientation="vertical"
+    	android:id="@id/android:list"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"
+        android:drawSelectorOnTop="false" 
+        android:minHeight="80px"
+        android:background="#30567D" android:choiceMode="singleChoice">
+</ListView>
  		
- 		<TextView id="@id/android:empty"
-               android:text="NO CONTACTS AVALIABLE" android:textStyle="bold" android:layout_width="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:layout_height="wrap_content" android:textSize="20px"/>
+ 	
  
- 	</LinearLayout>
- </ScrollView>

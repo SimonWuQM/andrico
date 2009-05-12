@@ -20,6 +20,9 @@
         		  android:label="@string/synchronize">
         </activity>
         
+        <activity android:name=".ContactList"
+        		  android:label="@string/contacts">
+        </activity>
         
         <activity
 			android:name=".facebook.LoginActivity"

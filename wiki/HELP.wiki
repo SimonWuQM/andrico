@@ -1,0 +1,17 @@
+= Help =
+
+Choose “Andrico” in menu of you Android device.
+
+
+= Main menu of Andrico =
+
+ # Click *“VIEW CONTACTS”* to see you contact list and choose the contact you want.
+ # To synchronize you contact with Facebook press *“SYNCHRONISE CONTACTS”*.
+ # You can choose you own settings, if you press on *“SETTINGS”* button.
+ # Press *“EXIT”* to return to the menu of you device.
+
+= Synchronization =
+ 
+ # If you use this application for the first time you need to create a new profile. To do it click *“CREATE NEW PROFILE”* on the screen of your device.
+Enter your e-mail and password in relevant field using keyboard to enter Facebook and   then press *“ENTER”*. Then you need to generate a one-time code that you can give to Andrico. This code will allow Facebook to save you login info for Andrico. You will not have to log in to Facebook again to use Andrico. You can recall you permission for this application on you web-page of privacy adjustments at any time. Click *“CREATE”* to generate this code. Enter the code in special field and press *“OK”* to continue or *“CANCEL”* to return.
+ # If you use the program earlier you can choose one of the existent profiles or create a new one.

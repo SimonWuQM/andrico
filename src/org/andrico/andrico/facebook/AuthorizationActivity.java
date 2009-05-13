@@ -1,6 +1,9 @@
-/**
- * Copyright 2008 Joe LaPenna
- */
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
 
 package org.andrico.andrico.facebook;
 

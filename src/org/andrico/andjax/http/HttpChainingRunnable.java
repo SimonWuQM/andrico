@@ -1,6 +1,9 @@
-/*
- * Copyright 2008 Joe LaPenna
- */
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
 
 package org.andrico.andjax.http;
 
@@ -16,7 +19,7 @@ import java.util.concurrent.Callable;
  * currently only supports successful requests. Failed requests will be lost in
  * the aether. There is a TODO to handle this.
  * 
- * @author jlapenna
+ * 
  */
 class HttpChainingRunnable implements Runnable {
     private static final String LOG = "HttpChainingRunnable";

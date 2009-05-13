@@ -1,6 +1,9 @@
-/**
- * Copyright 2007 Joe LaPenna
- *
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,8 +34,6 @@ import java.io.IOException;
 /**
  * Used to encapsulate actions after an http request completes. TODO(jlapenna):
  * Should we make this a callable?
- * 
- * @author jlapenna@gmail.com (Joe LaPenna)
  */
 public class HttpResponseRunnable implements Runnable, IHttpResponseRunnable {
     private static final String TAG = "HttpResponseRunnable";

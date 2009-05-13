@@ -1,6 +1,9 @@
-/*
- * Copyright (C) 2009  
- *
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -57,7 +60,6 @@ import android.content.SharedPreferences;
  * to reset .. F.reset();
  * to test the ability to use this application .. F.isAppUser();
  *
- * @author Sylvain Maucourt (smaucourt@gmail.com)
  * 
  */
 public class FacebookClient {

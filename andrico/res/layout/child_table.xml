@@ -12,9 +12,8 @@
 						android:layout_height="fill_parent" 
 						android:text="@string/no_number" 
 						android:textSize="18px" 
-						android:height="15px" 
 						android:textStyle="bold" 
-						android:drawableLeft="@android:drawable/ic_menu_call">
+						android:drawableLeft="@android:drawable/ic_menu_call" android:height="55px">
 				</Button>
 				<Button android:id="@+id/phone2" 
 						android:width="300px" 
@@ -22,9 +21,8 @@
 						android:layout_height="fill_parent" 
 						android:text="@string/no_number" 
 						android:textSize="18px" 
-						android:height="15px" 
 						android:textStyle="bold" 
-						android:drawableLeft="@android:drawable/ic_menu_call">
+						android:drawableLeft="@android:drawable/ic_menu_call" android:height="55px">
 				</Button>
 				<Button android:id="@+id/adress" 
 						android:width="300px" 
@@ -32,9 +30,8 @@
 						android:layout_height="fill_parent" 
 						android:text="@string/no_adress" 
 						android:textSize="18px" 
-						android:height="15px" 
 						android:textStyle="bold" 
-						android:drawableLeft="@android:drawable/ic_menu_mapmode">
+						android:drawableLeft="@android:drawable/ic_menu_mapmode" android:height="55px">
 				</Button>	
 </LinearLayout>
 

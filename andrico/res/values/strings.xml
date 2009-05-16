@@ -10,7 +10,7 @@
     <string name="exit">EXIT</string>
     <string name="new_profile">CREATE NEW PROFILE</string>
     <string name="log_in">LOG IN</string>
-	<string name="service_blogger_description">   Be aware that by granting this permission an application will be allowed to access your Blog</string>
+	
 	<string name="create_profile">CREATE NEW PROFILE</string>
 	<string name="choose_profile">CHOOSE PROFILE</string>
 	<string name="back">BACK TO MENU</string>
@@ -20,4 +20,6 @@
 <string name="token_text">&lt;-- HERE IT IS</string>
 <string name="login_label">Getting Authorizaion Token</string>
 <string name="contacts">Contacts</string>
+<string name="no_number">no phone number</string>
+<string name="no_adress">no adress avaliable</string>
 </resources>

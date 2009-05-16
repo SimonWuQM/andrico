@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
     	android:orientation="vertical"
     	android:id="@id/android:list"
         android:layout_width="fill_parent" 
@@ -8,7 +8,9 @@
         android:drawSelectorOnTop="false" 
         android:minHeight="80px"
         android:background="#30567D" android:choiceMode="singleChoice">
-</ListView>
+			
+			
+</ExpandableListView>
  		
  	
  

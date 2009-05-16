@@ -38,7 +38,6 @@ public class StartSynchronization extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
-    	// TODO Auto-generated method stub
     	super.onCreate(savedInstanceState);
     	
     	Window  w = getWindow(); 
@@ -47,24 +46,10 @@ public class StartSynchronization extends Activity
         w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
         final Intent intent = getIntent();
         CONFIG_ORDER=intent.getIntExtra("ConfigOrder", 0);
-        /*if(intent.getAction().equals(Intent.ACTION_INSERT)) {
-            mState = STATE_INSERT;
-            /*myBlogConfig = new BlogConfig();
-            myBlogConfig.setPostmethod(BlogConfigBLOGGER.getInterfaceNumberByType(BlogConfigBLOGGER.BlogInterfaceType.BLOGGER));
-            myBlogConfig.setPostConfig("");
-            if(mState == STATE_INSERT) {
-                createConfigDependentFields(myBlogConfig);
-            }
-        }*/
-        
-        
         
         super.onCreate(savedInstanceState);
         Log.d(LOG, "onCreate");
-    
-    
-
-    
+        
         this.findViewById(R.id.ToMenu).setOnClickListener(new OnClickListener()
         {
         	public void onClick(View v)

@@ -6,23 +6,16 @@
  ****************************************/
 package org.andrico.andrico;
 
-import java.util.HashMap;
+
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.andrico.andrico.content.Contact;
 import org.andrico.andrico.content.DBContact;
-
 import com.google.gdata.data.Feed;
-
-import android.app.Activity;
 import android.app.ExpandableListActivity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -41,13 +34,8 @@ import android.widget.SimpleExpandableListAdapter;
 public class ContactList extends ExpandableListActivity
 {
 	private LinkedList<Contact> contacts = null;
-	private static final int BLOGCONFIG_REQUEST = 4;
 	final static String TAG = "ContactList";
 	private static int CONFIG_ORDER = 0;
-	private ProgressDialog viewProgress = null;
-	private final String MSG_KEY="value";
-	public static Feed resultFeed = null;
-	int viewStatus = 0;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{

@@ -1,9 +1,6 @@
-/****************************************
- * 		                       			*
- *     Copyright 2009 Andrico Team 		*
- *   http://code.google.com/p/andrico/	*
- *										*
- ****************************************/
+/**
+ * Copyright 2008 Joe LaPenna
+ */
 
 package org.andrico.andjax.http;
 

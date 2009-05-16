@@ -40,8 +40,6 @@ import android.widget.Toast;
 public class Synchronize extends Activity 
 {
 	private EditText textProfile, textUsername, textPassword;
-	/*BlogInterface bi;
-	BlogConfig myBlogConfig = null;*/
 	private final String TAG = "CreateProfile";
 	private int mState = 0;
 	private static final int STATE_INSERT = 0;
@@ -67,22 +65,6 @@ public class Synchronize extends Activity
         w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
         final Intent intent = getIntent();
         CONFIG_ORDER=intent.getIntExtra("ConfigOrder", 0);
-        /*if(intent.getAction().equals(Intent.ACTION_INSERT)) {
-            mState = STATE_INSERT;
-            /*myBlogConfig = new BlogConfig();
-            myBlogConfig.setPostmethod(BlogConfigBLOGGER.getInterfaceNumberByType(BlogConfigBLOGGER.BlogInterfaceType.BLOGGER));
-            myBlogConfig.setPostConfig("");
-            if(mState == STATE_INSERT) {
-                createConfigDependentFields(myBlogConfig);
-            }
-        }*/
-        
-        /*int w = this.getWindow().getWindowManager().getDefaultDisplay().getWidth()-12;
-        ((Button)this.findViewById(R.id.BackToMenu)).setWidth(w/3);
-        ((Button)this.findViewById(R.id.Save)).setWidth(w/3);
-        ((Button)this.findViewById(R.id.FETCH_BUTTON_ID)).setWidth(w/3);
-        */
-        
         
         super.onCreate(savedInstanceState);
         Log.d(LOG, "onCreate");

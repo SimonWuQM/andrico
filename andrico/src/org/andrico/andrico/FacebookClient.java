@@ -1,9 +1,5 @@
-/****************************************
- * 		                       			*
- *     Copyright 2009 Andrico Team 		*
- *   http://code.google.com/p/andrico/	*
- *										*
- ****************************************
+/*@author Sylvain Maucourt (smaucourt@gmail.com)
+ * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either

@@ -19,6 +19,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         private static final String TAG = "MobiLoggerDBHelper";
+        private static final String CREATE_CONTACT_TABLE = 
+			"CREATE TABLE IF NOT EXISTS CONTACTS ("+
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"name TEXT," +
+			"second_name TEXT,"+
+			"phone_private TEXT,"+
+			"phone_work TEXT,"+
+			"phone_contact TEXT,"+
+			");";
+        
         
         boolean dbIsOpen;
         

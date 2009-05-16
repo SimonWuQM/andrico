@@ -1,3 +1,10 @@
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
+
 package org.andrico.andrico.content;
 
 import java.text.ParseException;
@@ -43,13 +50,11 @@ public class DBContact
         public Contact[] getContacts(Context app) 
         {
                 final String request = "SELECT * from CONTACTS ORDER BY name";
-                //id, name, second_name, phone_private, phone_home, adress
                 Contact[] cont = null;
                 Cursor cur = null;
                 if(isDatabaseReady(app)) 
                 {
                 	cur = db.rawQuery(request, null);
-                	//cur = db.query("CONTACTS", null, "id = 1", null, null, null, "name");
                 } 
                 else 
                 {
@@ -103,7 +108,7 @@ public class DBContact
         
         public Contact getContactById(Context app,int id) {
                 final String request = 
-                        "SELECT name, second_name, phone_private, phone_home, adress FROM CONTACTS where id = ?"; 
+                        "SELECT name, second_name, phone_private, phone_work, adress FROM CONTACTS where id = ?"; 
                 Cursor cur = null;
                 Contact c = null;
                 if(isDatabaseReady(app)) 

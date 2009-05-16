@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:orientation="vertical"
+	android:layout_height="wrap_content" 
+	android:layout_width="fill_parent"
+	android:background="#30567D">
+		
+				<Button android:id="@+id/phone1" 
+						android:width="300px" 
+						android:layout_width="fill_parent" 
+						android:layout_height="fill_parent" 
+						android:text="@string/no_number" 
+						android:textSize="18px" 
+						android:height="15px" 
+						android:textStyle="bold" 
+						android:drawableLeft="@android:drawable/ic_menu_call">
+				</Button>
+				<Button android:id="@+id/phone2" 
+						android:width="300px" 
+						android:layout_width="fill_parent" 
+						android:layout_height="fill_parent" 
+						android:text="@string/no_number" 
+						android:textSize="18px" 
+						android:height="15px" 
+						android:textStyle="bold" 
+						android:drawableLeft="@android:drawable/ic_menu_call">
+				</Button>
+				<Button android:id="@+id/adress" 
+						android:width="300px" 
+						android:layout_width="fill_parent" 
+						android:layout_height="fill_parent" 
+						android:text="@string/no_adress" 
+						android:textSize="18px" 
+						android:height="15px" 
+						android:textStyle="bold" 
+						android:drawableLeft="@android:drawable/ic_menu_mapmode">
+				</Button>	
+</LinearLayout>
+
+

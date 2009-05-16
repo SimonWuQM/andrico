@@ -8,12 +8,17 @@ package org.andrico.andrico;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.andrico.andrico.content.Contact;
-import org.andrico.andrico.content.DBContacts;
+import org.andrico.andrico.content.DBContact;
 
 import com.google.gdata.data.Feed;
 
+import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,13 +26,20 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
+import 	android.widget.ExpandableListView;
+import android.widget.ExpandableListAdapter;
+import android.widget.SimpleExpandableListAdapter;
 
 
-public class ContactList extends ListActivity {
+
+public class ContactList extends ExpandableListActivity
+{
 	private LinkedList<Contact> contacts = null;
 	private static final int BLOGCONFIG_REQUEST = 4;
 	final static String TAG = "ContactList";
@@ -44,52 +56,59 @@ public class ContactList extends ListActivity {
 	    w.requestFeature(Window.FEATURE_LEFT_ICON);   
 	    setContentView(R.layout.contacts);
 	    w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
-	        
- 
-         // Query for all people contacts using the Contacts.People convenience class.
-         // Put a managed wrapper around the retrieved cursor so we don't have to worry about
-         // requerying or closing it as the activity changes state. 
-         
 	    
-	    DBContacts db = new DBContacts();
-     	 
-        Contact contact = new Contact();
-        contact.setName("Bob");
-        contact.setSecondName("Hooks");
-        contact.setInfo("neighbour");
+	    DBContact db = new DBContact();
+     	
+     	/*Contact contact = new Contact();
+        contact.setName("Erik");
+        contact.setSecondName("Brooks");
+        contact.setPhone_private("7696980");
+        //contact.setPhone_work("9698798");
+        contact.setAdress("London");
          
         db.insert(ContactList.this, contact);
+        */
+	    contacts = db.getContactList(ContactList.this);
          
-         
-        contacts = db.getContactNames(ContactList.this);
-         
-        String [] cont = null;
-         
+	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
+        LinkedList<LinkedList<Map<String, String>>> infos = new LinkedList<LinkedList<Map<String, String>>>();
+        
         if(contacts!=null)
-        {
-     		//HashMap<Integer, Integer> configItemOrder = new HashMap<Integer,Integer>(contacts.size());
-         	
-        	cont = new String[contacts.size()]; 
-        	
+        {	
         	for(int j = 0; j < contacts.size(); j++) 
          	{
-                 /*try 
-                 {
-                	 configItemOrder.put(new Integer(j), new Integer(contacts.get(j).getId()));
-                 } 
-                 catch (NullPointerException ne) 
-                 {
-                 	Log.d(TAG,"Config items contains a null entry at "+j+"! Default to first config.");
-                 	configItemOrder.put(new Integer(j), new Integer(0));*/
-        		cont[j] = contacts.get(j).getName() + " " + contacts.get(j).getSecondName();
-                //}
+        		TreeMap<String, String> cont = new TreeMap<String, String> ();
+                TreeMap<String, String> info = new TreeMap<String, String> ();
+                
+        		cont.put("contact", contacts.get(j).getName() + " " + contacts.get(j).getSecondName());
+                info.put( "phone1", contacts.get(j).getPhone_private());
+                info.put( "phone2", contacts.get(j).getPhone_work());
+                info.put( "adress", contacts.get(j).getAdress());
+                conts.add(cont);
+                LinkedList<Map<String, String>> infolist = new LinkedList<Map<String, String>>();
+                infolist.add(info);
+                infos.add(infolist);
             }
          	
-         	setListAdapter(new ArrayAdapter<String>(ContactList.this, android.R.layout.simple_list_item_1, cont));
-         }	
+         	//setListAdapter(new ArrayAdapter<String>(ContactList.this, android.R.layout.simple_list_item_1, cont));
+         
+        	SimpleExpandableListAdapter listAdapter = new SimpleExpandableListAdapter(
+        												this,
+        												conts,
+        												R.layout.group_row,
+        												new String[] {"contact"},
+        												new int[] { R.id.NameOfGroup },
+        												infos,
+        												R.layout.child_table,
+        												new String[] {"phone1", "phone2", "adress"},
+        												new int[] {R.id.phone1, R.id.phone2, R.id.adress});
+        	setListAdapter(listAdapter);
+        }	
+        
      }
 	
-	
+	//public boolean onChildClick (, View v, int groupPosition, int childPosition, long id)
+	//{};
 	
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
@@ -103,6 +122,7 @@ public class ContactList extends ListActivity {
             return true;
     	}
 		return false; 
-	}
+	};
+	
  }
  

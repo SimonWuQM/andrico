@@ -137,62 +137,6 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				/*textProfile = (EditText)findViewById(R.id.ProfileName);
-		        textUsername = (EditText)findViewById(R.id.Username);
-		        textPassword = (EditText)findViewById(R.id.Password);
-                if(textPassword == null || textPassword.getText() == null) {
-                        Log.d(TAG,"password editor view is null when trying to read!");
-                        return;
-                }
-                if (textUsername == null || textUsername.getText() == null) {
-                        Log.d(TAG,"username editor view is null when trying to read!");
-                        return;
-                }
-                if (textProfile == null || textProfile.getText() == null) {
-                        Log.d(TAG,"blogname editor view is null when trying to read!");
-                        return;
-                }
-                String blognameStr = textProfile.getText().toString();
-                String usernameStr = textUsername.getText().toString();
-                String passwordStr = textPassword.getText().toString();
-                
-                if(blognameStr.length() < 1) {
-                        Alert.showAlert(CreateProfile.this,"Empty name of profile","You need to have a name for this profile.");
-                        return;
-                }       
-                if(usernameStr.length() < 1) {
-                        Alert.showAlert(CreateProfile.this,"Empty username","You need to have a username for this blog.");
-                        return;
-                } 
-                if(passwordStr.length() < 1) {
-                        Alert.showAlert(CreateProfile.this,"Empty password","You need to have a password for this blog.");
-                        return;
-                } 
-                myBlogConfig.setBlogname(textProfile.getText().toString());
-                myBlogConfig.setUsername(textUsername.getText().toString());
-                myBlogConfig.setPassword(textPassword.getText().toString());
-                /*if(bi != null) {
-                        CharSequence cs = bi.getConfigEditorData();
-                        myBlogConfig.setPostConfig(cs);
-                } else {
-                        Alert.showAlert(CreateProfile.this,"nag", "nag");
-                }*/
-                //remember that the post method (i.e. which type of blog this is)
-                //is already set by the OnItemSelected callback.
-          /*      DBClient conn = new DBClient();
-                if(conn != null) {
-                        if(mState == STATE_INSERT) {
-                                conn.insert(CreateProfile.this,myBlogConfig);
-                                Log.d(TAG,"Blog Config saved to database.");
-                                Alert.showAlert(CreateProfile.this,"Success","Your profile has been successfully saved.");
-                        }/*else if(mState == STATE_EDIT) {
-                                conn.update(this,myBlogConfig);
-                                Log.d(TAG,"Blog Config with id="+myBlogConfig.getId()+"updated in database.");
-                        }*/
-                /*} else {
-                        Alert.showAlert(CreateProfile.this,"ERROR","Unable to save configuration. Check your device memory.");
-                        Log.e(TAG, "ERROR saving blog config to DB due to DBUtil error.");
-                }*/
         	}
 		});
         

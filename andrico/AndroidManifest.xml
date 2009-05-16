@@ -38,6 +38,5 @@
 
 			
     </application>
-    <uses-permission android:name="android.permission.service.blogger"/>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest> 

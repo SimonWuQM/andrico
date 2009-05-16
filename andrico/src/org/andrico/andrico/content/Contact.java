@@ -9,8 +9,19 @@ package org.andrico.andrico.content;
 public class Contact{
     private String name;
     private String secondName;
-    private String info;
+    private String phone1;
+    private String phone2;
+    private String adress;
     private int id;
+    
+    public Contact()
+    {
+    	name = "";
+    	secondName = "";
+    	phone1 = "no number avaliable";
+    	phone2 = "no number avaliable";
+    	adress = "no adress avaliable";	
+    }
     
     public int getId() 
     {
@@ -42,19 +53,39 @@ public class Contact{
             this.secondName = secondName;
     }
     
-    public String getInfo() 
+    public String getPhone_private() 
     {
-            return info;
+            return phone1;
     }
     
-    public void setInfo(String info) 
+    public String getPhone_work() 
     {
-            this.info = info;
+            return phone2;
+    }
+    
+    public String getAdress() 
+    {
+            return adress;
+    }
+    
+    public void setPhone_private(String info) 
+    {
+            this.phone1 = info;
+    }
+    
+    public void setPhone_work(String info) 
+    {
+            this.phone2 = info;
+    }
+    
+    public void setAdress(String info) 
+    {
+            this.adress = info;
     }
     
     public String toString() 
     {
-            return "name: " + name + " second name: " + secondName + " info: " + info + " id: " + id;
+            return "name: " + name + " second name: " + secondName + " phone1: " + phone1 + " phone2: " + phone2 + " adress: " + adress + " id: " + id;
     }
     
     

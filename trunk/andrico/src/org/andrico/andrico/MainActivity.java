@@ -1,3 +1,10 @@
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
+
 package org.andrico.andrico;
 
 import java.io.IOException;
@@ -42,9 +49,6 @@ public class MainActivity extends Activity
 	private final String MSG_KEY="value";
 	public static Feed resultFeed = null;
 	int viewStatus = 0;
-	/*private BlogConfig config = null;
-	private LinkedList<BlogConfig> configs = null;*/
-	
 	
 	
 		@Override

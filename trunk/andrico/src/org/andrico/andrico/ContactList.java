@@ -80,9 +80,10 @@ public class ContactList extends ExpandableListActivity
                 TreeMap<String, String> info = new TreeMap<String, String> ();
                 
         		cont.put("contact", contacts.get(j).getName() + " " + contacts.get(j).getSecondName());
-                info.put( "phone1", contacts.get(j).getPhone_private());
-                info.put( "phone2", contacts.get(j).getPhone_work());
+                info.put( "date", contacts.get(j).getDateOfBirth());
                 info.put( "adress", contacts.get(j).getAdress());
+                info.put( "page", contacts.get(j).getPage());
+                
                 conts.add(cont);
                 LinkedList<Map<String, String>> infolist = new LinkedList<Map<String, String>>();
                 infolist.add(info);
@@ -96,8 +97,8 @@ public class ContactList extends ExpandableListActivity
         												new int[] { R.id.NameOfGroup },
         												infos,
         												R.layout.child_table,
-        												new String[] {"phone1", "phone2", "adress"},
-        												new int[] {R.id.phone1, R.id.phone2, R.id.adress});
+        												new String[] {"date", "adress", "page"},
+        												new int[] {R.id.date, R.id.adress, R.id.page});
          	listAdapter = listAdapterContacts;
         	
         }  

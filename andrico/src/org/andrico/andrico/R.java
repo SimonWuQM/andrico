@@ -25,32 +25,34 @@ public final class R {
         public static final int logo_land=0x7f02000b;
     }
     public static final class id {
-        public static final int BackToMenu=0x7f050012;
-        public static final int ChooseProfile=0x7f050017;
-        public static final int ConfigureLayout=0x7f050013;
-        public static final int CreateProfile=0x7f050018;
-        public static final int Exit=0x7f05000f;
-        public static final int LayoutForButtons=0x7f05000b;
-        public static final int LayoutForLogo=0x7f050009;
-        public static final int LogIn=0x7f050019;
-        public static final int Logo=0x7f05000a;
-        public static final int MainLayout=0x7f050007;
-        public static final int NameOfGroup=0x7f050008;
-        public static final int Notification=0x7f050010;
-        public static final int Settings=0x7f05000e;
-        public static final int StartSynch=0x7f050014;
-        public static final int Synch=0x7f050011;
-        public static final int Synchronize=0x7f05000d;
-        public static final int TextProfile=0x7f050016;
-        public static final int ToMenu=0x7f050015;
-        public static final int ViewContacts=0x7f05000c;
+        public static final int BackToMenu=0x7f050014;
+        public static final int ChooseProfile=0x7f050019;
+        public static final int ConfigureLayout=0x7f050015;
+        public static final int CreateProfile=0x7f05001a;
+        public static final int Exit=0x7f050011;
+        public static final int LayoutForButtons=0x7f05000d;
+        public static final int LayoutForLogo=0x7f05000b;
+        public static final int LogIn=0x7f05001b;
+        public static final int Logo=0x7f05000c;
+        public static final int MainLayout=0x7f050009;
+        public static final int NameOfGroup=0x7f05000a;
+        public static final int Notification=0x7f050012;
+        public static final int Settings=0x7f050010;
+        public static final int StartSynch=0x7f050016;
+        public static final int Synch=0x7f050013;
+        public static final int Synchronize=0x7f05000f;
+        public static final int TextProfile=0x7f050018;
+        public static final int ToMenu=0x7f050017;
+        public static final int ViewContacts=0x7f05000e;
         public static final int adress=0x7f050001;
-        public static final int auth_token=0x7f050005;
-        public static final int auth_token_label=0x7f050004;
-        public static final int auth_token_spacer=0x7f050006;
+        public static final int auth_token=0x7f050007;
+        public static final int auth_token_label=0x7f050006;
+        public static final int auth_token_spacer=0x7f050008;
         public static final int date=0x7f050000;
+        public static final int list_empty=0x7f050004;
+        public static final int notification=0x7f050003;
         public static final int page=0x7f050002;
-        public static final int web_view=0x7f050003;
+        public static final int web_view=0x7f050005;
     }
     public static final class layout {
         public static final int child_table=0x7f030000;
@@ -77,6 +79,7 @@ public final class R {
         public static final int new_profile=0x7f040007;
         public static final int no_adress=0x7f040013;
         public static final int no_number=0x7f040012;
+        public static final int notification=0x7f040014;
         public static final int preference_activity_name=0x7f04000c;
         public static final int settings=0x7f040003;
         public static final int start_synchronization=0x7f04000d;

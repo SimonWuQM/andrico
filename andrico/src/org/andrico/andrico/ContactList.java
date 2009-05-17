@@ -31,6 +31,7 @@ import 	android.widget.ExpandableListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.Toast;
+import android.widget.ExpandableListView.OnChildClickListener;
 
 
 
@@ -42,6 +43,7 @@ public class ContactList extends ExpandableListActivity
 	private SimpleExpandableListAdapter listAdapter = null;
 	private SimpleExpandableListAdapter listAdapterEmpty = null;
 	private SimpleExpandableListAdapter listAdapterContacts = null;
+	protected ExpandableListView list;
 	
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -56,7 +58,7 @@ public class ContactList extends ExpandableListActivity
 	    
 	    DBContact db = new DBContact();
      	
-     	Contact contact = new Contact();
+     	/*Contact contact = new Contact();
         contact.setName("Erik");
         contact.setSecondName("Brooks");
         contact.setDateOfBirth("15.07.67");
@@ -65,13 +67,14 @@ public class ContactList extends ExpandableListActivity
         contact.setFBid("12");
         
         db.insert(ContactList.this, contact);
-        
+        */
 	    contacts = db.getContactList(ContactList.this);
-
 
 	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
 	    LinkedList<LinkedList<Map<String, String>>> infos = new LinkedList<LinkedList<Map<String, String>>>();
 	    
+	  
+		
 	    
 	    if (contacts != null)
 		{
@@ -103,35 +106,48 @@ public class ContactList extends ExpandableListActivity
          	listAdapter = listAdapterContacts;
         	
         }  
-	    else
-	    {
-	    	TreeMap<String, String> cont = new TreeMap<String, String> ();
-            TreeMap<String, String> info = new TreeMap<String, String> ();
-            
-	    	cont.put("empty", "no contacts avaliable");
-            info.put( "notification", "please, synchronize your facebook account at first");
-            conts.add(cont);
-            LinkedList<Map<String, String>> infolist = new LinkedList<Map<String, String>>();
-            infolist.add(info);
-            infos.add(infolist);
-            
-	    	listAdapterEmpty = new SimpleExpandableListAdapter(
-	    			 										this,
-	    			 										conts,
-	    			 										R.layout.group_row,
-	    			 										new String[] {"empty"},
-	    			 										new int[] { R.id.NameOfGroup },
-	    			 										infos,
-	    			 										R.layout.notification,
-	    			 										new String[] {"notification"},
-	    			 										new int[] {R.id.Notification});
-	    	listAdapter = listAdapterEmpty;
-	    }	
 	    
-    	setListAdapter(listAdapter);
-        this.getExpandableListView().setOnChildClickListener(ContactList.this);
+	    
+	    this.list = (ExpandableListView) this.findViewById(android.R.id.list);
+    	this.list.setAdapter(listAdapter);
+        
+    
+    	
+    	this.registerForContextMenu(list);
+    	this.list.setOnChildClickListener(new OnChildClickListener()
+        {
+        	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) 
+        	{
+        		switch(childPosition)
+        		{
+        			case 2:
+        				Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
+        					
+        			case 3:
+        				Toast.makeText(ContactList.this,"url", Toast.LENGTH_SHORT).show();		
+        		}
+        			
+        		
+				
+				return false;
+        	}
+        });
+    	
+    	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()
+        {
+			public void onClick(View v)
+			{        		
+				Intent i = new Intent(ContactList.this, Synchronize.class);
+				String[] s = {"",""};
+				i.putExtra("ConfigOrder", CONFIG_ORDER);
+				i.putExtra("PostTitleAndContent", s);
+				startActivity(i);
+	            finish();
+       		}
+		});
         //this.getExpandableListView().setOnGroupClickListener(this);
-        this.getExpandableListView().setOnGroupExpandListener(ContactList.this);
+        
+    	//this.getExpandableListView().setOnGroupExpandListener(ContactList.this);
 	}
 	
 	public void onGroupExpand(int groupPosition)
@@ -140,25 +156,6 @@ public class ContactList extends ExpandableListActivity
 		
 		group = listAdapter.getGroup(groupPosition);
 		
-	}
-	
-	
-	public boolean onChildClick (ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
-	{
-		switch(childPosition) 
-		{
-			case 1:
-			case 2:
-				
-				Toast.makeText(ContactList.this,"Calling", Toast.LENGTH_SHORT).show();
-				return true;
-			
-			case 3:
-				Toast.makeText(ContactList.this, v.toString() , Toast.LENGTH_SHORT).show();	
-				return true;
-		}
-	
-		return false;
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 

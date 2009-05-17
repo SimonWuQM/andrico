@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			"second_name TEXT,"+
 			"phone_private TEXT,"+
 			"phone_work TEXT,"+
-			"phone_contact TEXT,"+
+			"phone_contact TEXT"+
 			");";
         
         

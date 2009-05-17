@@ -203,14 +203,15 @@ public class DBContact
             }
         }
       
-        public void update(Context app,final Contact c) {
-                int id = -1;
+        public void update(Context app,final Contact c) 
+        {
+                String id = "";
                 String request = null;
                 if(c != null) 
                 {
-                	id = c.getId();
+                	id = c.getFBid();
                 }
-                if(id != -1) 
+                if(id != "") 
                 {
                 	request = "UPDATE CONTACTS SET "+
                         "name = ?,"+
@@ -218,12 +219,11 @@ public class DBContact
                         "date_of_birth = ?,"+
                         "adress = ?,"+
                         "page = ?," +
-                        "fb_id = ? "+
-                        "WHERE id = ?";
+                        "WHERE fbid = ?";
                 } 
                 else 
                 {
-                	Log.e(TAG,"Failed to update CONTACTS since the id is not good!");
+                	Log.e(TAG,"Failed to update CONTACTS due to the fb id is not good!");
                 }
                 
                 if(isDatabaseReady(app)) {
@@ -233,7 +233,7 @@ public class DBContact
                         updateStmt.bindString(3,c.getDateOfBirth());
                         updateStmt.bindString(4,c.getAdress());
                         updateStmt.bindString(5,c.getPage());
-                        updateStmt.bindString(5,c.getFBid());
+                        updateStmt.bindString(6,c.getFBid());
                         updateStmt.execute();
                         db.close();
                         Log.d(TAG,"Executing: "+request);
@@ -264,6 +264,27 @@ public class DBContact
                 db.close();
             }
         }     
+        
+        public void synchronize(Context app, LinkedList <Contact> contacts)
+        {
+        	for (int j = 0; j < contacts.size(); j++)
+        	{
+        		Contact newContact = contacts.get(j);
+        		String fbid = newContact.getFBid();
+        		Contact contact = this.getContactByFBid(app, fbid);
+        		if (contact == null)
+        		{
+        			
+        		}
+        		else
+        		{
+        			if (contact != newContact)
+        			{
+        				this.update(app, newContact);
+        			}
+        		}
+        	}
+        }
         
         /*public void dropContacts(Context app)
         {

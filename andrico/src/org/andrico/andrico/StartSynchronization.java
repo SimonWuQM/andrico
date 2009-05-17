@@ -7,7 +7,7 @@
 
 package org.andrico.andrico;
 
-import org.andrico.andrico.facebook.Facebook;
+import org.andrico.andrico.facebook.FB;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,7 +28,7 @@ public class StartSynchronization extends Activity
     
     
     private Context mContext;
-    private Facebook mFacebook;
+    private FB mFacebook;
     private SharedPreferences mSettings;
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;

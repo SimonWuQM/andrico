@@ -215,11 +215,6 @@ public class Synchronizer {
         mFacebookUserInfo = facebookUserInfo;
     }
   
-    public void startSynchronization(Context mContext,FB mFacebook){
-    
-        mHandler = new AndricoHandler(mContext, mFacebook);
-        postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-    }
     
     private void postToBackgroundHandler(Runnable runnable) {
         postToBackgroundHandler(runnable, 0);
@@ -237,7 +232,6 @@ public class Synchronizer {
             return;
         }
       
-
         if (delayMillis > 0) {
             mBackgroundHandler.postDelayed(new Runnable() {
 
@@ -253,6 +247,11 @@ public class Synchronizer {
         }
     }
 
+    public void startSynchronization(Context mContext,FB mFacebook){
+        
+        mHandler = new AndricoHandler(mContext, mFacebook);
+        postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+    }
     
    
 

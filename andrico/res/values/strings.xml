@@ -22,4 +22,5 @@
 <string name="contacts">Contacts</string>
 <string name="no_number">no phone number</string>
 <string name="no_adress">no adress avaliable</string>
+<string name="notification">&quot;no contacts avaliable&quot;</string>
 </resources>

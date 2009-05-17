@@ -4,11 +4,9 @@
  *   http://code.google.com/p/andrico/	*
  *										*
  ****************************************/
+
 package org.andrico.andrico.facebook;
 
-import android.util.Log;
-
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
@@ -18,10 +16,9 @@ import java.util.Vector;
 /**
  * Represents a facebook method to remotely execute by way of REST.
  */
-public class FacebookMethod {
+public class FBMethod {
     // Non-static because we customize it.
-    private final static String LOG = "FacebookMethod";
-
+   
     /**
      * Create an md5sum of all a method's parameters per @link XXX
      * 
@@ -33,7 +30,6 @@ public class FacebookMethod {
      */
     protected static String signature(MessageDigest md5, HashMap<String, String> parameters,
             String secret) {
-        Log.d(LOG, "Using secret: " + secret);
         Vector<String> keys = new Vector<String>(parameters.keySet());
         Collections.sort(keys);
         StringBuffer concat = new StringBuffer();
@@ -63,7 +59,6 @@ public class FacebookMethod {
      */
     protected static String urlParameters(HashMap<String, String> parameters) {
         StringBuffer sb = new StringBuffer();
-        Log.d(LOG, "urlParameters: " + parameters);
         for (Object key : parameters.keySet()) {
             sb.append((String)key + "=" + java.net.URLEncoder.encode(parameters.get(key)) + "&");
         }
@@ -75,7 +70,7 @@ public class FacebookMethod {
         return sb.toString();
     }
 
-    private String LOG_SPECIFIC = "FacebookMethod";
+    private String LOG_SPECIFIC = "FBMethod";
 
     protected String mApiKey;
     protected HashMap<String, String> mParameters;
@@ -87,7 +82,7 @@ public class FacebookMethod {
     protected String mDataFilename;
     private MessageDigest mMd5;
 
-    FacebookMethod(String method, String apiKey, String secret, String session,
+    FBMethod(String method, String apiKey, String secret, String session,
             HashMap<String, String> parameters) {
         // Help keep track of messages when there are multiple at once.
         LOG_SPECIFIC += "." + method;
@@ -97,13 +92,8 @@ public class FacebookMethod {
         mSecret = secret;
         mSession = session;
 
-        Log.d(LOG_SPECIFIC, mMethod);
-        Log.d(LOG_SPECIFIC, mApiKey);
-        Log.d(LOG_SPECIFIC, mSecret);
-        if (mSession != null) {
-            Log.d(LOG_SPECIFIC, mSession);
-        } else {
-            Log.d(LOG_SPECIFIC, "null");
+        if (mSession != null) {           
+        } else {            
         }
 
         mParameters = getRequestParameters(method);
@@ -131,8 +121,7 @@ public class FacebookMethod {
         parameters.put("format", "JSON");
         parameters.put("v", "1.0");
         parameters.put("method", method);
-        if (mSession != null) {
-            Log.d(LOG_SPECIFIC, "Using session_key for getRequestParameters");
+        if (mSession != null) {          
             parameters.put("session_key", mSession);
         }
 
@@ -146,10 +135,8 @@ public class FacebookMethod {
      */
     public String getRequestUrl() {
         String stringParams = (mParameters.isEmpty()) ? "" : (urlParameters(mParameters) + "&");
-        Log.d(LOG_SPECIFIC, "stringParams: " + stringParams);
-        String requestUrl = Facebook.REST_URI + stringParams + "sig="
-                + FacebookMethod.signature(mMd5, mParameters, mSecret);
-        Log.d(LOG_SPECIFIC, "getRequestUrl: " + requestUrl);
+        String requestUrl = FB.REST_URI + stringParams + "sig="
+                + FBMethod.signature(mMd5, mParameters, mSecret);
         return requestUrl;
     }
 

@@ -7,16 +7,11 @@
 
 package org.andrico.andrico.facebook;
 
-
-import android.util.Log;
+import org.andrico.andrico.facebook.FBBase.Session;
 
 import java.util.HashMap;
 
-import org.andrico.andrico.facebook.FacebookBase.Session;
-
-
-public class FacebookMethodFactory {
-    private String LOG = "FacebookMethodFactory";
+public class FBMethodFactory {
 
     private String mApiKey;
     private String mApiSecret;
@@ -26,28 +21,27 @@ public class FacebookMethodFactory {
     /**
      * @param cookieDomain
      */
-    public FacebookMethodFactory(String cookieDomain, String apiKey, String secret) {
+    public FBMethodFactory(String cookieDomain, String apiKey, String secret) {
         mApiKey = apiKey;
         mApiSecret = secret;
     }
 
-    public FacebookMethod create(String method, HashMap<String, String> parameters) {
+    public FBMethod create(String method, HashMap<String, String> parameters) {
         return create(method, parameters, false);
     }
 
-    public FacebookMethod create(String method, HashMap<String, String> parameters, Boolean session) {
+    public FBMethod create(String method, HashMap<String, String> parameters, Boolean session) {
         if (session && mSession == null) {
             throw new RuntimeException(
                     "Unable to associate an established session with new facebook method.");
         }
         String secretParam = (session) ? mSession.getSecret() : mApiSecret;
         String sessionParam = (session) ? mSession.getSession() : null;
-        Log.d(LOG, "Using secret: " + secretParam);
-        Log.d(LOG, "Using session: " + sessionParam);
-        return new FacebookMethod(method, mApiKey, secretParam, sessionParam, parameters);
+       
+        return new FBMethod(method, mApiKey, secretParam, sessionParam, parameters);
     }
 
-    public FacebookMethod FacebookMethod(String method) {
+    public FBMethod FBMethod(String method) {
         return this.create(method, null);
     }
 

@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.andrico.andrico.content.Contact;
 import org.andrico.andrico.content.DBContact;
+import org.andrico.andrico.facebook.LoginActivity;
+
 import com.google.gdata.data.Feed;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
@@ -28,6 +30,7 @@ import android.widget.SimpleCursorAdapter;
 import 	android.widget.ExpandableListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.Toast;
 
 
 
@@ -36,14 +39,18 @@ public class ContactList extends ExpandableListActivity
 	private LinkedList<Contact> contacts = null;
 	final static String TAG = "ContactList";
 	private static int CONFIG_ORDER = 0;
+	private SimpleExpandableListAdapter listAdapter = null;
+	
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
-        super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 	    Window  w = getWindow(); 
 	    w.requestFeature(Window.FEATURE_LEFT_ICON);   
 	    setContentView(R.layout.contacts);
 	    w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
+	    
+	    
 	    
 	    DBContact db = new DBContact();
      	
@@ -57,13 +64,15 @@ public class ContactList extends ExpandableListActivity
         db.insert(ContactList.this, contact);
         */
 	    contacts = db.getContactList(ContactList.this);
-         
+
+
 	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
-        LinkedList<LinkedList<Map<String, String>>> infos = new LinkedList<LinkedList<Map<String, String>>>();
-        
-        if(contacts!=null)
-        {	
-        	for(int j = 0; j < contacts.size(); j++) 
+	    LinkedList<LinkedList<Map<String, String>>> infos = new LinkedList<LinkedList<Map<String, String>>>();
+	    
+	    
+	    if (contacts != null)
+		{
+	    	for(int j = 0; j < contacts.size(); j++) 
          	{
         		TreeMap<String, String> cont = new TreeMap<String, String> ();
                 TreeMap<String, String> info = new TreeMap<String, String> ();
@@ -77,10 +86,7 @@ public class ContactList extends ExpandableListActivity
                 infolist.add(info);
                 infos.add(infolist);
             }
-         	
-         	//setListAdapter(new ArrayAdapter<String>(ContactList.this, android.R.layout.simple_list_item_1, cont));
-         
-        	SimpleExpandableListAdapter listAdapter = new SimpleExpandableListAdapter(
+         	listAdapter = new SimpleExpandableListAdapter(
         												this,
         												conts,
         												R.layout.group_row,
@@ -90,14 +96,65 @@ public class ContactList extends ExpandableListActivity
         												R.layout.child_table,
         												new String[] {"phone1", "phone2", "adress"},
         												new int[] {R.id.phone1, R.id.phone2, R.id.adress});
-        	setListAdapter(listAdapter);
-        }	
-        
-     }
+        	
+        }  
+	    else
+	    {
+	    	TreeMap<String, String> cont = new TreeMap<String, String> ();
+            TreeMap<String, String> info = new TreeMap<String, String> ();
+            
+	    	cont.put("empty", "no contacts avaliable");
+            info.put( "notification", "please, synchronize your facebook account at first");
+            conts.add(cont);
+            LinkedList<Map<String, String>> infolist = new LinkedList<Map<String, String>>();
+            infolist.add(info);
+            infos.add(infolist);
+            
+	    	listAdapter = new SimpleExpandableListAdapter(
+	    			 										this,
+	    			 										conts,
+	    			 										R.layout.group_row,
+	    			 										new String[] {"empty"},
+	    			 										new int[] { R.id.NameOfGroup },
+	    			 										infos,
+	    			 										R.layout.notification,
+	    			 										new String[] {"notification"},
+	    			 										new int[] {R.id.Notification});
+	    }	
+	    
+    	setListAdapter(listAdapter);
+        this.getExpandableListView().setOnChildClickListener(ContactList.this);
+        //this.getExpandableListView().setOnGroupClickListener(this);
+        this.getExpandableListView().setOnGroupExpandListener(ContactList.this);
+	}
 	
-	//public boolean onChildClick (, View v, int groupPosition, int childPosition, long id)
-	//{};
+	public void onGroupExpand(int groupPosition)
+	{
+		Object group;
+		
+		group = listAdapter.getGroup(groupPosition);
+		
+	}
 	
+	
+	public boolean onChildClick (ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
+	{
+		
+		switch(childPosition) 
+		{
+			case 1:
+			case 2:
+				
+				Toast.makeText(ContactList.this,"Calling", Toast.LENGTH_SHORT).show();
+				return true;
+			
+			case 3:
+				Toast.makeText(ContactList.this, v.toString() , Toast.LENGTH_SHORT).show();	
+				return true;
+		}
+	
+		return false;
+	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
     { 
@@ -110,7 +167,7 @@ public class ContactList extends ExpandableListActivity
             return true;
     	}
 		return false; 
-	};
+	}
 	
  }
  

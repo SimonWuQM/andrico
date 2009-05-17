@@ -7,19 +7,19 @@
 package org.andrico.andrico.content;
 
 public class Contact{
+	private String fbId;//facebook id
     private String name;
     private String secondName;
-    private String phone1;
-    private String phone2;
+    private String dateOfBirth;
     private String adress;
-    private int id;
+    private String page;
+    private int id; //id in db
     
     public Contact()
     {
     	name = "";
     	secondName = "";
-    	phone1 = "no number avaliable";
-    	phone2 = "no number avaliable";
+    	dateOfBirth = "date of birth is not avaliable";
     	adress = "no adress avaliable";	
     }
     
@@ -53,29 +53,19 @@ public class Contact{
             this.secondName = secondName;
     }
     
-    public String getPhone_private() 
+    public String getDateOfBirth() 
     {
-            return phone1;
+            return dateOfBirth;
     }
     
-    public String getPhone_work() 
+    public void setDateOfBirth(String date) 
     {
-            return phone2;
+            this.dateOfBirth = date;
     }
-    
+            
     public String getAdress() 
     {
             return adress;
-    }
-    
-    public void setPhone_private(String info) 
-    {
-            this.phone1 = info;
-    }
-    
-    public void setPhone_work(String info) 
-    {
-            this.phone2 = info;
     }
     
     public void setAdress(String info) 
@@ -83,9 +73,29 @@ public class Contact{
             this.adress = info;
     }
     
+    public String getPage() 
+    {
+            return page;
+    }
+    
+    public void setPage(String info) 
+    {
+            this.page = info;
+    }
+    
+    public String getFBid() 
+    {
+            return fbId;
+    }
+    
+    public void setFBid(String info) 
+    {
+            this.fbId = info;
+    }
+    
     public String toString() 
     {
-            return "name: " + name + " second name: " + secondName + " phone1: " + phone1 + " phone2: " + phone2 + " adress: " + adress + " id: " + id;
+            return "facebook id: " + fbId +"name: " + name + " second name: " + secondName + " date of birth: " + dateOfBirth + " adress: " + adress + " id: " + id;
     }
     
     

@@ -29,7 +29,7 @@ public class DBContact
       
         
         private boolean isDatabaseReady(Context app) {
-                DBHelper helper = new DBHelper(app, "1DataBaseAndrico.db" , null, 1);
+                DBHelper helper = new DBHelper(app, "andricontacts.db" , null, 1);
                 Log.d(TAG,"isDataBaseReady Called, helper is "+helper);
                 db = helper.getWritableDatabase();
                 Log.d(TAG,"getWritableDatabase called, db is "+db);
@@ -72,10 +72,11 @@ public class DBContact
                         c.setId(cur.getInt(0));
                         c.setName(cur.getString(1));
                         c.setSecondName(cur.getString(2));
-                        c.setPhone_private(cur.getString(3));
-                        c.setPhone_work(cur.getString(4));
-                        c.setAdress(cur.getString(5));
-                                
+                        c.setDateOfBirth(cur.getString(3));
+                        c.setAdress(cur.getString(4));
+                        c.setPage(cur.getString(5));
+                        c.setFBid(cur.getString(6));
+                        
                         cont[i] = c;        
                         cur.moveToNext();
                     }
@@ -108,7 +109,7 @@ public class DBContact
         
         public Contact getContactById(Context app,int id) {
                 final String request = 
-                        "SELECT name, second_name, phone_private, phone_work, adress FROM CONTACTS where id = ?"; 
+                        "SELECT name, second_name, date_of_birth, adress, page, fb_id FROM CONTACTS where id = ?"; 
                 Cursor cur = null;
                 Contact c = null;
                 if(isDatabaseReady(app)) 
@@ -128,17 +129,50 @@ public class DBContact
                         c.setId(id);
                         c.setName(cur.getString(0));
                         c.setSecondName(cur.getString(1));
-                        c.setPhone_private(cur.getString(2));
-                        c.setPhone_work(cur.getString(3));
-                        c.setAdress(cur.getString(4));
+                        c.setDateOfBirth(cur.getString(2));
+                        c.setAdress(cur.getString(3));
+                        c.setPage(cur.getString(4));
+                        c.setFBid(cur.getString(5));
                         cur.close();
                 }
                 db.close();
                 return c;
         }
        
+        public Contact getContactByFBid(Context app,String id) {
+            final String request = 
+                    "SELECT id, name, second_name, date_of_birth, adress, page FROM CONTACTS where fb_id = ?"; 
+            Cursor cur = null;
+            Contact c = null;
+            if(isDatabaseReady(app)) 
+            {
+            	cur = db.rawQuery(request, new String[]{""+id});
+            } 
+            else 
+            {
+            	Log.e(TAG,"Database is not open when getting contact by id!");
+                return null;
+            }
+            
+            if((cur != null) && (cur.getCount() == 1)) 
+            {
+            	c = new Contact();
+                cur.moveToFirst();
+                c.setId(cur.getInt(0));
+                c.setName(cur.getString(1));
+                c.setSecondName(cur.getString(2));
+                c.setDateOfBirth(cur.getString(3));
+                c.setAdress(cur.getString(4));
+                c.setPage(cur.getString(5));
+                c.setFBid(id);
+                cur.close();
+            }
+            db.close();
+            return c;
+        }
+        
         public boolean insert(Context app, Contact cont) {
-        	String request = "INSERT INTO CONTACTS (name, second_name, phone_private, phone_work, adress)" +
+        	String request = "INSERT INTO CONTACTS (name, second_name, date_of_birth, adress, page, fb_id)" +
                 " VALUES " + "(?,?,?,?,?)";
                 
             if(isDatabaseReady(app)) 
@@ -148,9 +182,10 @@ public class DBContact
             		SQLiteStatement insertStmt = db.compileStatement(request);
                     insertStmt.bindString(1, cont.getName());
                     insertStmt.bindString(2, cont.getSecondName());
-                    insertStmt.bindString(3, cont.getPhone_private());
-                    insertStmt.bindString(4, cont.getPhone_work());
-                    insertStmt.bindString(5, cont.getAdress());
+                    insertStmt.bindString(3, cont.getDateOfBirth());
+                    insertStmt.bindString(4, cont.getAdress());
+                    insertStmt.bindString(5, cont.getPage());
+                    insertStmt.bindString(6, cont.getFBid());  
                     insertStmt.execute();
                 } 
             	catch (SQLException e) 
@@ -180,9 +215,10 @@ public class DBContact
                 	request = "UPDATE CONTACTS SET "+
                         "name = ?,"+
                         "second_name = ?,"+
-                        "phone_private = ?,"+
-                        "phone_work = ?,"+
-                        "adress = ? "+
+                        "date_of_birth = ?,"+
+                        "adress = ?,"+
+                        "page = ?," +
+                        "fb_id = ? "+
                         "WHERE id = ?";
                 } 
                 else 
@@ -194,9 +230,10 @@ public class DBContact
                         SQLiteStatement updateStmt = db.compileStatement(request);
                         updateStmt.bindString(1,c.getName());
                         updateStmt.bindString(2,c.getSecondName());
-                        updateStmt.bindString(3,c.getPhone_private());
-                        updateStmt.bindString(4,c.getPhone_work());
-                        updateStmt.bindString(5,c.getAdress());
+                        updateStmt.bindString(3,c.getDateOfBirth());
+                        updateStmt.bindString(4,c.getAdress());
+                        updateStmt.bindString(5,c.getPage());
+                        updateStmt.bindString(5,c.getFBid());
                         updateStmt.execute();
                         db.close();
                         Log.d(TAG,"Executing: "+request);
@@ -222,7 +259,7 @@ public class DBContact
         {
         	if(isDatabaseReady(app)) 
             {
-                Log.d(TAG,"Deleting the settings table contents.");
+                Log.d(TAG,"Deleting the contacts table contents.");
                 db.delete("CONTACTS",null,null);
                 db.close();
             }

@@ -44,12 +44,12 @@ public final class R {
         public static final int TextProfile=0x7f050016;
         public static final int ToMenu=0x7f050015;
         public static final int ViewContacts=0x7f05000c;
-        public static final int adress=0x7f050002;
+        public static final int adress=0x7f050001;
         public static final int auth_token=0x7f050005;
         public static final int auth_token_label=0x7f050004;
         public static final int auth_token_spacer=0x7f050006;
-        public static final int phone1=0x7f050000;
-        public static final int phone2=0x7f050001;
+        public static final int date=0x7f050000;
+        public static final int page=0x7f050002;
         public static final int web_view=0x7f050003;
     }
     public static final class layout {

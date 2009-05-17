@@ -24,9 +24,10 @@ public class DBHelper extends SQLiteOpenHelper {
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"name TEXT," +
 			"second_name TEXT,"+
-			"phone_private TEXT,"+
-			"phone_work TEXT,"+
-			"phone_contact TEXT"+
+			"date_of_birth TEXT,"+
+			"adress TEXT, "+
+			"page TEXT, "+
+			"fb_id TEXT" +
 			");";
         
         

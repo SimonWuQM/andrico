@@ -6,14 +6,15 @@
 	android:layout_height="wrap_content" 
 	android:layout_width="fill_parent"
 	android:background="#30567D">
-		<TextView android:id="@+id/Notification" 
-				android:layout_height="wrap_content" 
-				android:textColor="#FFFFFF" 
-				android:text="notification" 
-				android:textStyle="bold" 
-				android:layout_width="fill_parent" 
-				android:gravity="center_vertical|center_horizontal" android:minHeight="60px" android:textSize="15px">
-		</TextView>		
+		<Button android:id="@+id/Notification" 
+						android:width="300px" 
+						android:layout_width="fill_parent" 
+						android:layout_height="wrap_content" 
+						android:text="notification" 
+						android:textSize="22px" 
+						android:textStyle="bold"  
+						android:height="80px">
+		</Button>		
 </LinearLayout>
 
 

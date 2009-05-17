@@ -13,7 +13,7 @@ import org.andrico.andjax.http.IHttpResponseRunnable;
 /**
  * Extend this to enable a callback when a FacebookMethod completes.
  */
-abstract public class FacebookMethodCallback extends HttpResponseRunnable implements
+abstract public class FBMethodCallback extends HttpResponseRunnable implements
         IHttpResponseRunnable {
     private String mResponse;
 

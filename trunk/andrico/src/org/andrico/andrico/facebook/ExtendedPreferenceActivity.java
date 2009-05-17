@@ -40,7 +40,7 @@ public class ExtendedPreferenceActivity extends AuthorizationActivity {
         return extPermIntent;
     }
 
-    private Facebook mFacebook;
+    private FB mFacebook;
     private String mNextUrl;
     private String mNextCancelUrl;
 
@@ -53,7 +53,7 @@ public class ExtendedPreferenceActivity extends AuthorizationActivity {
 
         String apiKey = intent.getStringExtra(API_KEY_EXTRA);
         String apiSecret = intent.getStringExtra(API_SECRET_EXTRA);
-        mFacebook = new Facebook(apiKey, apiSecret);
+        mFacebook = new FB(apiKey, apiSecret);
 
         String session = intent.getStringExtra(SESSION_KEY_EXTRA);
         String secret = intent.getStringExtra(SECRET_EXTRA);

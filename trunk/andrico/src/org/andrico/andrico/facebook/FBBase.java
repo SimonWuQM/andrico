@@ -7,11 +7,11 @@
 
 package org.andrico.andrico.facebook;
 
-
 import org.andrico.andjax.http.ByteArrayBody;
 import org.andrico.andjax.http.HttpClientService;
 import org.andrico.andjax.http.IHttpResponseRunnable;
 import org.andrico.andjax.http.ByteArrayBody.WriteToProgressHandler;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.StringBody;
@@ -27,7 +27,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 
 
-class FacebookBase {
+class FBBase {
     private static final String LOG = "FacebookBase";
 
     public class Session {
@@ -65,15 +65,15 @@ class FacebookBase {
 
     private String mApiKey;
     private String mApiSecret;
-    private FacebookMethodFactory mFacebookMethodFactory;
+    private FBMethodFactory mFacebookMethodFactory;
     private HttpClientService mHttpClientService;
     private Session mSession;
 
-    public FacebookBase(String api, String secret) {
+    public FBBase(String api, String secret) {
         mApiKey = api;
         mApiSecret = secret;
         mHttpClientService = new HttpClientService(2, null);
-        mFacebookMethodFactory = new FacebookMethodFactory("facebook.com", api, secret);
+        mFacebookMethodFactory = new FBMethodFactory("facebook.com", api, secret);
     }
 
     /**
@@ -84,7 +84,7 @@ class FacebookBase {
      * @param method The method to run
      * @param c The callback to be run upon competion of the method.
      */
-    public void authenticate(FacebookMethod method, IHttpResponseRunnable c) {
+    public void authenticate(FBMethod method, IHttpResponseRunnable c) {
         try {
             mHttpClientService.submit(method.getRequestUrl(), c);
         } catch (URISyntaxException e) {
@@ -105,7 +105,7 @@ class FacebookBase {
         parameters.put("popup", "1");
         parameters.put("v", "1.0");
 
-        return FacebookMethod.urlParameters(parameters);
+        return FBMethod.urlParameters(parameters);
     }
 
     /**
@@ -128,7 +128,7 @@ class FacebookBase {
         }
 
         Uri url = Uri.withAppendedPath(WWW_URI, "authorize.php?"
-                + FacebookMethod.urlParameters(parameters));
+                + FBMethod.urlParameters(parameters));
         Log.e(LOG, "Generated setStatus authorization URL: " + url);
         return url;
     }
@@ -169,7 +169,7 @@ class FacebookBase {
         return LoginActivity.createActivityIntent(context, mApiKey, mApiSecret);
     }
 
-    public HttpResponse execute(FacebookMethod method, WriteToProgressHandler progressHandler) {
+    public HttpResponse execute(FBMethod method, WriteToProgressHandler progressHandler) {
         method.mParameters.put("call_id", Long.toString(System.nanoTime()));
         try {
             Log.d(LOG, "Executing: " + method.getRequestUrl());
@@ -189,11 +189,11 @@ class FacebookBase {
         return null;
     }
     
-    public HttpResponse execute(FacebookMethod method) {
+    public HttpResponse execute(FBMethod method) {
         return execute(method, null);
     }
 
-    public FacebookMethodFactory getMethodFactory() {
+    public FBMethodFactory getMethodFactory() {
         return mFacebookMethodFactory;
     }
 
@@ -251,7 +251,7 @@ class FacebookBase {
      * @param method The method to run
      * @param runnable The callback to be run upon completion of the method.
      */
-    public void submit(FacebookMethod method, IHttpResponseRunnable runnable, WriteToProgressHandler progressHandler) {
+    public void submit(FBMethod method, IHttpResponseRunnable runnable, WriteToProgressHandler progressHandler) {
         method.mParameters.put("call_id", Long.toString(System.nanoTime()));
         try {
             Log.d(LOG, "Executing: " + method.getRequestUrl());
@@ -271,7 +271,7 @@ class FacebookBase {
         }
     }
     
-    public void submit(FacebookMethod method, IHttpResponseRunnable runnable) {
+    public void submit(FBMethod method, IHttpResponseRunnable runnable) {
         submit(method, runnable, null);
     }
 
@@ -283,7 +283,7 @@ class FacebookBase {
         mFacebookMethodFactory.unsetSession();
     }
     
-    private MultipartEntity makeMultipartEntityFromParameters(FacebookMethod method, ByteArrayBody.WriteToProgressHandler runnable)
+    private MultipartEntity makeMultipartEntityFromParameters(FBMethod method, ByteArrayBody.WriteToProgressHandler runnable)
             throws UnsupportedEncodingException {
         MultipartEntity multipartEntity = new MultipartEntity();
         for (String key : method.mParameters.keySet()) {

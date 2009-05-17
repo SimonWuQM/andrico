@@ -56,15 +56,16 @@ public class ContactList extends ExpandableListActivity
 	    
 	    DBContact db = new DBContact();
      	
-     	/*Contact contact = new Contact();
+     	Contact contact = new Contact();
         contact.setName("Erik");
         contact.setSecondName("Brooks");
-        contact.setPhone_private("7696980");
-        //contact.setPhone_work("9698798");
+        contact.setDateOfBirth("15.07.67");
         contact.setAdress("London");
-         
+        contact.setPage("www.erik-brooks.com");
+        contact.setFBid("12");
+        
         db.insert(ContactList.this, contact);
-        */
+        
 	    contacts = db.getContactList(ContactList.this);
 
 

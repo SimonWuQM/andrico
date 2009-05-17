@@ -9,13 +9,8 @@ package org.andrico.andrico;
 import java.text.ParseException;
 
 import com.google.gdata.data.Feed;
-/*import com.googlecode.statusinator2.Preferences;
-import com.googlecode.statusinator2.R;
-import com.googlecode.statusinator2.PreferenceActivity.FacebookAppPermissionPreferenceClickListener;
-import com.googlecode.statusinator2.PreferenceActivity.FacebookLoggedInCheckboxOnPreferenceClickListener;
-import com.googlecode.statusinator2.twitter.Twitter;
-*/
-import org.andrico.andrico.facebook.Facebook;
+
+import org.andrico.andrico.facebook.FB;
 import org.andrico.andrico.facebook.LoginActivity;
 
 import android.app.Activity;
@@ -47,7 +42,7 @@ public class Synchronize extends Activity
     
     
     private Context mContext;
-    private Facebook mFacebook;
+    private FB mFacebook;
     private SharedPreferences mSettings;
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;
@@ -74,7 +69,7 @@ public class Synchronize extends Activity
         /*this.addPreferencesFromResource(R.xml.preferences);*/
         mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mFacebook = new Facebook(getString(R.string.facebook_api_key),
+        mFacebook = new FB(getString(R.string.facebook_api_key),
                 getString(R.string.facebook_secret_key));
         // setPrefsFromFakeFacebookSession();
 

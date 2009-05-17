@@ -55,7 +55,7 @@ public class LoginActivity extends AuthorizationActivity {
     }
 
     private String mAuthToken;
-    private Facebook mFacebook;
+    private FB mFacebook;
     private Handler mHandler;
     private int getSessionAttempts = 0;
 
@@ -72,7 +72,7 @@ public class LoginActivity extends AuthorizationActivity {
         Toast.makeText(this, "Requesting session.", Toast.LENGTH_SHORT).show();
 
         mFacebook.authenticate(mFacebook.auth_getSession(authToken),
-                new HttpResponseByHandlerDecorator(mHandler, new FacebookMethodCallback() {
+                new HttpResponseByHandlerDecorator(mHandler, new FBMethodCallback() {
                     @Override
                     public void run() {
                         JSONObject session;
@@ -130,7 +130,7 @@ public class LoginActivity extends AuthorizationActivity {
 
         String apiKey = intent.getStringExtra(API_KEY_EXTRA);
         String apiSecret = intent.getStringExtra(API_SECRET_EXTRA);
-        mFacebook = new Facebook(apiKey, apiSecret);
+        mFacebook = new FB(apiKey, apiSecret);
 
         Log.d(LOG, "Recieved Intent:" + intent.toString());
         // getAuthTokenAndLogin();

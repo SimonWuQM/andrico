@@ -6,13 +6,14 @@
 	android:layout_width="fill_parent"
 	android:background="#30567D">
 		
-				<TextView android:id="@+id/date" 
-						android:width="300px" 
+				<TextView android:id="@+id/date"  
 						android:layout_width="wrap_content" 
 						android:text="date of birth is not avaliable" 
 						android:textSize="21px" 
 						android:textStyle="bold" 
-						android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:height="35px">
+						android:layout_gravity="center_horizontal" 
+						android:layout_height="wrap_content" 
+						android:height="35px">
 				</TextView>
 				<Button android:id="@+id/adress" 
 						android:width="300px" 

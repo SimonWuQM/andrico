@@ -29,7 +29,7 @@ public class DBContact
       
         
         private boolean isDatabaseReady(Context app) {
-                DBHelper helper = new DBHelper(app, "DataBaseAndrico.db" , null, 1);
+                DBHelper helper = new DBHelper(app, "1DataBaseAndrico.db" , null, 1);
                 Log.d(TAG,"isDataBaseReady Called, helper is "+helper);
                 db = helper.getWritableDatabase();
                 Log.d(TAG,"getWritableDatabase called, db is "+db);

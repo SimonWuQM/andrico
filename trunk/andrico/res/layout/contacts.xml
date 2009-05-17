@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:orientation="vertical"
-    	android:id="@id/android:list"
-        android:layout_width="fill_parent" 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:drawSelectorOnTop="false" 
-        android:minHeight="80px"
-        android:background="#30567D" android:choiceMode="singleChoice">
+        android:background="#30567D">
 			
-			
-</ExpandableListView>
- 		
- 	
- 
+			<ExpandableListView android:id="@id/android:list"
+    			android:orientation="vertical"
+        		android:layout_width="fill_parent" 
+        		android:layout_height="fill_parent"
+        		android:drawSelectorOnTop="false" 
+        		android:minHeight="80px"
+        		android:background="#30567D" 
+        		android:choiceMode="singleChoice">
+			</ExpandableListView>
+ 			
+ 			<LinearLayout android:id="@android:id/empty" 
+				android:orientation="vertical"
+				android:layout_height="fill_parent" 
+				android:layout_width="fill_parent">
+ 					
+ 					<TextView android:id="@+id/notification"
+                		android:layout_height="wrap_content" 
+						android:textColor="#FFFFFF" 
+						android:text="@string/notification" 
+						android:textStyle="bold" 
+						android:layout_width="fill_parent" 
+						android:gravity="center_vertical|center_horizontal" 
+						android:minHeight="60px" 
+						android:layout_marginTop="40px"
+						android:textSize="25px"/>
+ 			
+ 					<Button android:id="@+id/list_empty" 
+						android:width="300px" 
+						android:layout_width="fill_parent" 
+						android:layout_height="wrap_content" 
+						android:text="please, synchronize your facebook account at first" 
+						android:textSize="22px" 
+						android:textStyle="bold"  
+						android:height="80px">
+					</Button>
+			</LinearLayout>
+ </RelativeLayout>

@@ -173,7 +173,7 @@ public class DBContact
         
         public boolean insert(Context app, Contact cont) {
         	String request = "INSERT INTO CONTACTS (name, second_name, date_of_birth, adress, page, fb_id)" +
-                " VALUES " + "(?,?,?,?,?)";
+                " VALUES " + "(?,?,?,?,?,?)";
                 
             if(isDatabaseReady(app)) 
             {

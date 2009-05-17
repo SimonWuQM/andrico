@@ -13,7 +13,7 @@
 						android:textStyle="bold" 
 						android:layout_gravity="center_horizontal" 
 						android:layout_height="wrap_content" 
-						android:height="35px">
+						android:height="35px" android:textColor="#FFFFFF">
 				</TextView>
 				<Button android:id="@+id/adress" 
 						android:width="300px" 

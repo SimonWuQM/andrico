@@ -40,6 +40,8 @@ public class ContactList extends ExpandableListActivity
 	final static String TAG = "ContactList";
 	private static int CONFIG_ORDER = 0;
 	private SimpleExpandableListAdapter listAdapter = null;
+	private SimpleExpandableListAdapter listAdapterEmpty = null;
+	private SimpleExpandableListAdapter listAdapterContacts = null;
 	
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -86,7 +88,7 @@ public class ContactList extends ExpandableListActivity
                 infolist.add(info);
                 infos.add(infolist);
             }
-         	listAdapter = new SimpleExpandableListAdapter(
+         	listAdapterContacts = new SimpleExpandableListAdapter(
         												this,
         												conts,
         												R.layout.group_row,
@@ -96,6 +98,7 @@ public class ContactList extends ExpandableListActivity
         												R.layout.child_table,
         												new String[] {"phone1", "phone2", "adress"},
         												new int[] {R.id.phone1, R.id.phone2, R.id.adress});
+         	listAdapter = listAdapterContacts;
         	
         }  
 	    else
@@ -110,7 +113,7 @@ public class ContactList extends ExpandableListActivity
             infolist.add(info);
             infos.add(infolist);
             
-	    	listAdapter = new SimpleExpandableListAdapter(
+	    	listAdapterEmpty = new SimpleExpandableListAdapter(
 	    			 										this,
 	    			 										conts,
 	    			 										R.layout.group_row,
@@ -120,6 +123,7 @@ public class ContactList extends ExpandableListActivity
 	    			 										R.layout.notification,
 	    			 										new String[] {"notification"},
 	    			 										new int[] {R.id.Notification});
+	    	listAdapter = listAdapterEmpty;
 	    }	
 	    
     	setListAdapter(listAdapter);
@@ -139,7 +143,6 @@ public class ContactList extends ExpandableListActivity
 	
 	public boolean onChildClick (ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
 	{
-		
 		switch(childPosition) 
 		{
 			case 1:

@@ -15,6 +15,8 @@ import org.andrico.andrico.content.DBContact;
 import org.andrico.andrico.facebook.LoginActivity;
 
 import com.google.gdata.data.Feed;
+
+import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -118,7 +120,9 @@ public class ContactList extends ExpandableListActivity
         {
         	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) 
         	{
-        		switch(childPosition)
+        		//Response resp = (Response)listAdapter.getChild(groupPosition, childPosition);
+        		Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
+        		/*switch(childPosition)
         		{
         			case 2:
         				Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
@@ -126,7 +130,7 @@ public class ContactList extends ExpandableListActivity
         			case 3:
         				Toast.makeText(ContactList.this,"url", Toast.LENGTH_SHORT).show();		
         		}
-        			
+        		*/	
         		
 				
 				return false;

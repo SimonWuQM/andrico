@@ -13,8 +13,6 @@ package org.andrico.andrico;
 public class Preferences {
 
     static final String FACEBOOK_CRED_LOGGED_IN = "facebook_cred_logged_in";
-    static final String FACEBOOK_CRED_PHOTOS_AUTH = "facebook_cred_photos_authorized";
-    static final String FACEBOOK_CRED_STATUS_AUTH = "facebook_cred_status_authorized";
     static final String FACEBOOK_CRED_SECRET = "facebook_cred_secret";
     static final String FACEBOOK_CRED_SESSION_KEY = "facebook_cred_session_key";
     static final String FACEBOOK_CRED_UID = "facebook_cred_uid";

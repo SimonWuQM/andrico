@@ -28,7 +28,6 @@ class UiHandler extends Handler {
     private static final String LOG = "UiHandler";
 
     private Context mContext;
-    private TextView mStatusBar;
     private FB mFacebook;
 
     /**
@@ -64,7 +63,6 @@ class UiHandler extends Handler {
     protected void finalize() throws Throwable {
         mContext = null;
         mFacebook = null;
-        mStatusBar = null;
         super.finalize();
     }
 
@@ -82,7 +80,6 @@ class UiHandler extends Handler {
     void notifyUser(final String statusBarMessage, final Boolean toast) {
         post(new Runnable() {
             public void run() {
-                mStatusBar.setText(statusBarMessage);
                 if (toast) {
                     Toast.makeText(mContext, statusBarMessage, Toast.LENGTH_LONG).show();
                 }

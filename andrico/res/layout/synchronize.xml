@@ -15,35 +15,47 @@
 				android:layout_width="wrap_content" 
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
-			<LinearLayout android:orientation="vertical" android:id="@+id/LayoutForButtons" android:gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:paddingLeft="12px" android:paddingRight="12px" android:paddingBottom="8px" android:background="@drawable/back" android:layout_marginLeft="10px" android:layout_marginRight="10px">
-			<TextView android:id="@+id/TextProfile" 
-				android:layout_height="wrap_content" 
-				android:textColor="#FFFFFF" 
-				android:text="@string/choose_profile" android:gravity="center_horizontal" android:textStyle="bold" android:layout_width="fill_parent" android:layout_marginTop="10px">
-			</TextView>
-
-			<Spinner android:id="@+id/ChooseProfile" 
-				android:layout_height="wrap_content" 
-				android:minWidth="300px" 
-				android:layout_width="fill_parent" android:clickable="false" android:minHeight="45px">
-			</Spinner>
-
-
-			<Button android:id="@+id/CreateProfile" 
-				android:layout_height="wrap_content" 
-				android:text="@string/create_profile" 
-				android:layout_width="fill_parent" android:textSize="20px" android:textStyle="bold" android:layout_marginTop="5px" android:height="55px" android:drawableLeft="@drawable/ic_add_profile">
-			</Button>
+			<LinearLayout android:orientation="vertical" android:id="@+id/LayoutForButtons" android:gravity="center" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:layout_marginTop="40px" android:layout_width="fill_parent" android:background="@drawable/back_small" android:minHeight="215px">
 			<Button android:id="@+id/LogIn" 
 				android:layout_height="wrap_content" 
 				android:text="@string/log_in" 
-				android:layout_width="fill_parent" android:enabled="false" android:textStyle="bold" android:textSize="20px" android:height="55px" android:layout_marginTop="5px" android:drawableLeft="@android:drawable/ic_menu_myplaces">
+				android:layout_width="fill_parent" 
+				android:enabled="true" 
+				android:textStyle="bold" 
+				android:textSize="20px" 
+				android:height="55px" 
+				android:layout_marginTop="5px" 
+				android:drawableLeft="@android:drawable/ic_menu_myplaces" 
+				android:layout_marginLeft="10px" 
+				android:layout_marginRight="10px">
 			</Button>
 			
+			<Button android:id="@+id/Synch" 
+				android:layout_height="wrap_content" 
+				android:text="@string/start_synchronization" 
+				android:layout_width="fill_parent" 
+				android:enabled="false" 
+				android:textStyle="bold" 
+				android:textSize="20px" 
+				android:height="55px" 
+				android:layout_marginTop="5px" 
+				android:drawableLeft="@drawable/ic_synch" android:layout_marginRight="10px" android:layout_marginLeft="10px">
+			</Button>
+			 
+				 
+				 
+				
 			<Button android:id="@+id/BackToMenu" 
 				android:layout_height="wrap_content" 
 				android:text="@string/back" 
-				android:layout_width="fill_parent" android:textSize="20px" android:textStyle="bold" android:height="55px" android:layout_marginTop="5px" android:drawableLeft="@android:drawable/ic_menu_revert">
+				android:layout_width="fill_parent" 
+				android:textSize="20px" 
+				android:textStyle="bold" 
+				android:height="55px" 
+				android:layout_marginTop="5px" 
+				android:drawableLeft="@android:drawable/ic_menu_revert" 
+				android:layout_marginLeft="10px" 
+				android:layout_marginRight="10px">
 			</Button>
 		</LinearLayout>
 </LinearLayout>

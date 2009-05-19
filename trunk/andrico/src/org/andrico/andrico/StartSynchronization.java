@@ -8,6 +8,7 @@
 package org.andrico.andrico;
 
 import org.andrico.andrico.facebook.FB;
+import org.andrico.andrico.sync.Synchronizer;
 
 import android.app.Activity;
 import android.content.Context;
@@ -65,7 +66,8 @@ public class StartSynchronization extends Activity
         {
         	public void onClick(View v)
         	{
-        	
+        		Synchronizer synch = new Synchronizer();
+        		synch.startSynchronization(StartSynchronization.this, mFacebook);
         	}
         });
     }

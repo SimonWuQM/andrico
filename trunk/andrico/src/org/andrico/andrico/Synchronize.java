@@ -7,9 +7,10 @@
 package org.andrico.andrico;
 
 import java.text.ParseException;
+import java.util.LinkedList;
 
-import com.google.gdata.data.Feed;
-
+import org.andrico.andrico.content.Contact;
+import org.andrico.andrico.content.DBContact;
 import org.andrico.andrico.facebook.FB;
 import org.andrico.andrico.facebook.LoginActivity;
 
@@ -19,6 +20,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
@@ -67,7 +69,7 @@ public class Synchronize extends Activity
 
         // Load the preferences from an XML resource
         /*this.addPreferencesFromResource(R.xml.preferences);*/
-        mSettings = PreferenceManager.getDefaultSharedPreferences(this);
+ //       mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
         mFacebook = new FB(getString(R.string.facebook_api_key),
                 getString(R.string.facebook_secret_key));
@@ -95,9 +97,7 @@ public class Synchronize extends Activity
         
         
         
-        
-        
-        
+               
         
         this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
         {
@@ -112,31 +112,42 @@ public class Synchronize extends Activity
         
         this.findViewById(R.id.LogIn).setOnClickListener(new OnClickListener()
         {
-			public void onClick(View v)
-			{
-        	}
-		});
-        
-        this.findViewById(R.id.CreateProfile).setOnClickListener(new OnClickListener()
-        {
-			public void onClick(View v)
+        	public void onClick(View v)
 			{
 				startActivityForResult(mFacebook.createLoginActivityIntent(mContext), FACEBOOK_LOGIN_REQUEST_CODE);
         	}
 		});
+        
+        this.findViewById(R.id.Synch).setOnClickListener(new OnClickListener()
+        {
+			public void onClick(View v)
+			{
+				LinkedList <Contact> friends = null;
+				
+				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
+				
+				DBContact db = new DBContact();
+				db.synchronize(Synchronize.this, friends);
+				
+				Intent i = new Intent(Synchronize.this,MainActivity.class);
+	    		i.putExtra("ConfigOrder", CONFIG_ORDER);
+	    		startActivity(i);
+	            finish();
+        	}
+		});
     }
     
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+    {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(LOG, "onActivityResult");
-        switch (requestCode) {
-            case FACEBOOK_LOGIN_REQUEST_CODE:
-                if (mFacebook.handleLoginActivityResult(this, resultCode, data)) 
-                {
+        if (mFacebook.handleLoginActivityResult(this, resultCode, data)) 
+        {
+        	this.findViewById(R.id.Synch).setEnabled(true);
                     //setPrefsFromFacebookSession();
                     // Heh. RPC to the server to make sure the login worked.
                     //verifyFacebookLoggedIn();
-                	Intent i = new Intent(Synchronize.this, StartSynchronization.class);
+                	/*Intent i = new Intent(Synchronize.this, StartSynchronization.class);
 					String[] s = {"",""};
 					i.putExtra("ConfigOrder", CONFIG_ORDER);
 					i.putExtra("PostTitleAndContent", s);
@@ -148,25 +159,21 @@ public class Synchronize extends Activity
 					{
 						 Log.e(TAG,"Failed to start activity");
 					}
-		            finish();
-                } 
-                else 
-                {
-                    Toast.makeText(mContext, "Failure logging in.", Toast.LENGTH_SHORT).show();
-                    //unsetUiFacebookLoggedIn();
+		            finish();*/
+                	
+        } 
+        else 
+        {
+        	Toast.makeText(mContext, "Failure logging in.", Toast.LENGTH_SHORT).show();
+            //unsetUiFacebookLoggedIn();
 
-                    // Wipe the user session.
-                    mFacebook.unsetSession();
-                    //setPrefsFromFacebookSession();
-                }
-                break;
-
-            
-						
-            default:
-                break;
-        }
-    }
+            // Wipe the user session.
+            mFacebook.unsetSession();
+            //setPrefsFromFacebookSession();
+        }            
+    }				
+        
+    
     
     
     

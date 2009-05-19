@@ -46,11 +46,8 @@ public class LoginActivity extends AuthorizationActivity {
     public static final String SESSION_KEY_EXTRA = "session_key";
     public static final String UID_EXTRA = "uid";
     
-    //private SharedPreferences mSharedPreferences;
-    
     public static final int DIALOG_AUTH_TOKEN_REQUEST = 1;
 
-    //private SharedPreferences mSharedPreferences;
     
     /**
      * Load up the login activity so that we can get a session.
@@ -162,12 +159,7 @@ public class LoginActivity extends AuthorizationActivity {
                                     	EditText authTokenEditText = (EditText)authDialog
                                     	.findViewById(R.id.auth_token);
                                     	
-                                    	/*mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                                    	Editor editor = mSharedPreferences.edit();
-                                    	editor.putString(Preferences.FACEBOOK_TOKEN, authTokenEditText.getText().toString());
-                                    	*/
-                                    	
-                                    	
+                                    	                                  	
                                     	
                                         getSession(authTokenEditText.getText().toString());
                                     }

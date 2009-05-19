@@ -32,7 +32,10 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
+import android.os.Process;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -56,7 +59,8 @@ public class Synchronize extends Activity
     
     private Context mContext;
     private FB mFacebook;
-    private SharedPreferences mSettings;
+    private SharedPreferences SharedPreferences;
+    
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;
     private static final int MESSAGE_GET_USER_INFO = 1;
@@ -158,7 +162,7 @@ public class Synchronize extends Activity
                             JSONObject obj = jsonResult.getJSONObject(i);
                             JSONObject jsonUserInfo = new JSONArray(result).getJSONObject(i);
                             
-                            if (!obj.getJSONObject("first_name").getString("message").equals("")) {
+                          /*  if (!obj.getJSONObject("first_name").getString("message").equals("")) {*/
                                 Bundle update = new Bundle();
                                /*
                                 update.putString("name", obj.optString("name"));
@@ -176,7 +180,8 @@ public class Synchronize extends Activity
                                 update.putString("profile_url", jsonUserInfo.getString("profile_url"));
                                                                                                                                                     
                                 newList.add(update);
-                            }
+                            
+                            /*}*/
                         } catch (NullPointerException e) {
                             // if we don't have the things we need for this friend, don't
                             // put it in newList
@@ -300,6 +305,21 @@ public class Synchronize extends Activity
 
         mFacebook = new FB(getString(R.string.facebook_api_key),
                 getString(R.string.facebook_secret_key));
+        
+        mHandler = new AndricoHandler(/*mContext*/ getApplicationContext(), mFacebook);
+        
+        SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        
+        if (SharedPreferences.getString(Preferences.FACEBOOK_CRED_SESSION_KEY, "facebook_cred_session_key") != "facebook_cred_session_key")
+        {
+        	this.findViewById(R.id.Synch).setEnabled(true);
+        }
+        else
+        {
+        	this.findViewById(R.id.Synch).setEnabled(false);
+        }
+       
         // setPrefsFromFakeFacebookSession();
 
         /*mFacebookLoggedInCheckBox = (CheckBoxPreference)getPreferenceScreen().findPreference(
@@ -313,12 +333,6 @@ public class Synchronize extends Activity
         mFacebookLoggedInCheckBox
                 .setOnPreferenceClickListener(new FacebookLoggedInCheckboxOnPreferenceClickListener());
 
-        mFacebookPhotosAuthCheckBox
-                .setOnPreferenceClickListener(new FacebookAppPermissionPreferenceClickListener(
-                        "photo_upload", FACEBOOK_AUTH_PHOTO_REQUEST_CODE));
-        mFacebookStatusAuthCheckBox
-                .setOnPreferenceClickListener(new FacebookAppPermissionPreferenceClickListener(
-                        "status_update", FACEBOOK_AUTH_STATUS_REQUEST_CODE));
 */
         
         
@@ -352,8 +366,9 @@ public class Synchronize extends Activity
 				
 				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
 				
+				buildBackgroundHandler();
 				String getFriendsFQL = getGetFriendsStatusUpdatesFql(mFacebook);
-				mHandler = new AndricoHandler(mContext, mFacebook);
+				
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
 				
 				DBContact db = new DBContact();
@@ -369,17 +384,43 @@ public class Synchronize extends Activity
     
     
     
+    
+	private void setPrefsFromFacebookSession() 
+	{
+        SharedPreferences.Editor editor = SharedPreferences.edit();
+
+        if (mFacebook.getSession() != null) 
+        {
+            Log.d(LOG, "Saving session to preferences.");
+            FB.Session session = mFacebook.getSession();
+            editor.putString(Preferences.FACEBOOK_CRED_SESSION_KEY, session.getSession());
+            editor.putString(Preferences.FACEBOOK_CRED_SECRET, session.getSecret());
+            editor.putString(Preferences.FACEBOOK_CRED_UID, session.getUid());
+        } 
+        else 
+        {
+            editor.remove(Preferences.FACEBOOK_CRED_SESSION_KEY);
+            editor.remove(Preferences.FACEBOOK_CRED_SECRET);
+            editor.remove(Preferences.FACEBOOK_CRED_UID);
+        }
+        editor.commit();
+    }
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) 
     {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(LOG, "onActivityResult");
         if (mFacebook.handleLoginActivityResult(this, resultCode, data)) 
         {
+        	setPrefsFromFacebookSession();
         	this.findViewById(R.id.Synch).setEnabled(true);
-                    //setPrefsFromFacebookSession();
+                    
+
+        	/*
+        			//setPrefsFromFacebookSession();
                     // Heh. RPC to the server to make sure the login worked.
                     //verifyFacebookLoggedIn();
-                	/*Intent i = new Intent(Synchronize.this, StartSynchronization.class);
+                	Intent i = new Intent(Synchronize.this, StartSynchronization.class);
 					String[] s = {"",""};
 					i.putExtra("ConfigOrder", CONFIG_ORDER);
 					i.putExtra("PostTitleAndContent", s);
@@ -391,7 +432,8 @@ public class Synchronize extends Activity
 					{
 						 Log.e(TAG,"Failed to start activity");
 					}
-		            finish();*/
+		            finish();
+		            */
                 	
         } 
         else 
@@ -492,6 +534,16 @@ public class Synchronize extends Activity
         } else {
             mBackgroundHandler.post(r);
         }
+    }
+    
+    private void buildBackgroundHandler() {
+        // Start up the thread running fb requests. Note that we create a
+        // separate thread because we don't want to block.
+        HandlerThread thread = new HandlerThread(LOG, Process.THREAD_PRIORITY_BACKGROUND);
+        thread.start();
+
+        Looper fbLooper = thread.getLooper();
+        mBackgroundHandler = new Handler(fbLooper);
     }
     
 /*    

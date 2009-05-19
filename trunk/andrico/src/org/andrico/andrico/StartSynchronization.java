@@ -8,7 +8,6 @@
 package org.andrico.andrico;
 
 import org.andrico.andrico.facebook.FB;
-import org.andrico.andrico.sync.Synchronizer;
 
 import android.app.Activity;
 import android.content.Context;

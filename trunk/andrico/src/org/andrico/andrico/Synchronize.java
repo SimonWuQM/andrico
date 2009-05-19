@@ -160,24 +160,21 @@ public class Synchronize extends Activity
                             
                             if (!obj.getJSONObject("first_name").getString("message").equals("")) {
                                 Bundle update = new Bundle();
+                               /*
                                 update.putString("name", obj.optString("name"));
                                 update.putString("status", obj.optJSONObject("status").optString("message"));
                                 update.putString("status_id", obj.optJSONObject("status")
                                         .optString("status_id"));
                                 update.putString("time", obj.optJSONObject("status").optString("time"));
                                 update.putString("uid", obj.optString("uid"));
-                                                                
+                                */                                
                                 update.putString("firstName", jsonUserInfo.getString("first_name"));
                                 update.putString("lastName", jsonUserInfo.getString("last_name"));
                                 update.putString("location", jsonUserInfo.getJSONArray("location").toString());
                                 update.putString("birthday", jsonUserInfo.getString("birthday"));
                                 update.putString("birthday_date", jsonUserInfo.getString("birthday_date"));
                                 update.putString("profile_url", jsonUserInfo.getString("profile_url"));
-                     
-                                
-                                
-                                
-                                
+                                                                                                                                                    
                                 newList.add(update);
                             }
                         } catch (NullPointerException e) {

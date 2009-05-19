@@ -9,7 +9,9 @@ package org.andrico.andrico.facebook;
 
 
 import org.andrico.andjax.http.HttpResponseByHandlerDecorator;
+import org.andrico.andrico.Preferences;
 import org.andrico.andrico.R;
+import org.andrico.andrico.Synchronize;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,8 +20,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +45,13 @@ public class LoginActivity extends AuthorizationActivity {
     public static final String SECRET_EXTRA = "secret";
     public static final String SESSION_KEY_EXTRA = "session_key";
     public static final String UID_EXTRA = "uid";
-
+    
+    //private SharedPreferences mSharedPreferences;
+    
     public static final int DIALOG_AUTH_TOKEN_REQUEST = 1;
 
+    //private SharedPreferences mSharedPreferences;
+    
     /**
      * Load up the login activity so that we can get a session.
      */
@@ -152,6 +161,14 @@ public class LoginActivity extends AuthorizationActivity {
                                     {
                                     	EditText authTokenEditText = (EditText)authDialog
                                     	.findViewById(R.id.auth_token);
+                                    	
+                                    	/*mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                                    	Editor editor = mSharedPreferences.edit();
+                                    	editor.putString(Preferences.FACEBOOK_TOKEN, authTokenEditText.getText().toString());
+                                    	*/
+                                    	
+                                    	
+                                    	
                                         getSession(authTokenEditText.getText().toString());
                                     }
                                 })

@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Vector;
 
 /**
@@ -28,7 +29,7 @@ public class FBMethod {
      * @param secret A session's secret token.
      * @return
      */
-    protected static String signature(MessageDigest md5, HashMap<String, String> parameters,
+    protected static String signature(MessageDigest md5, TreeMap<String, String> parameters,
             String secret) {
         Vector<String> keys = new Vector<String>(parameters.keySet());
         Collections.sort(keys);
@@ -57,7 +58,7 @@ public class FBMethod {
      * @param parameters The key,value pairs to turn into a query.
      * @return
      */
-    protected static String urlParameters(HashMap<String, String> parameters) {
+    protected static String urlParameters(TreeMap<String, String> parameters) {
         StringBuffer sb = new StringBuffer();
         for (Object key : parameters.keySet()) {
             sb.append((String)key + "=" + java.net.URLEncoder.encode(parameters.get(key)) + "&");
@@ -73,7 +74,7 @@ public class FBMethod {
     private String LOG_SPECIFIC = "FBMethod";
 
     protected String mApiKey;
-    protected HashMap<String, String> mParameters;
+    protected TreeMap<String, String> mParameters;
     protected String mMethod;
     protected String mSecret;
     protected String mSession;
@@ -83,7 +84,7 @@ public class FBMethod {
     private MessageDigest mMd5;
 
     FBMethod(String method, String apiKey, String secret, String session,
-            HashMap<String, String> parameters) {
+            TreeMap<String, String> parameters) {
         // Help keep track of messages when there are multiple at once.
         LOG_SPECIFIC += "." + method;
 
@@ -115,8 +116,8 @@ public class FBMethod {
      * @param method
      * @return
      */
-    private HashMap<String, String> getRequestParameters(String method) {
-        HashMap<String, String> parameters = new HashMap<String, String>();
+    private TreeMap<String, String> getRequestParameters(String method) {
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("api_key", mApiKey);
         parameters.put("format", "JSON");
         parameters.put("v", "1.0");

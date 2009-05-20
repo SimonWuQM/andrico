@@ -52,7 +52,11 @@ abstract class AuthorizationActivity extends Activity {
             Log.d(LOG, "onPageStarted: " + url);
             if ((url.indexOf("http://www.facebook.com/login.php") > -1 ))
             {
+            	//if (AuthorizationActivity.this.getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE)
+            	//{
             	mWebView.scrollTo(190, 230);
+            	//}
+            	((WebView)findViewById(R.id.web_view)).zoomIn();
             }
             AuthorizationActivity.this.onPageFinished(url);
         }

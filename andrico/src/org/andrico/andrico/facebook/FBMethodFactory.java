@@ -10,6 +10,7 @@ package org.andrico.andrico.facebook;
 import org.andrico.andrico.facebook.FBBase.Session;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class FBMethodFactory {
 
@@ -26,14 +27,14 @@ public class FBMethodFactory {
         mApiSecret = secret;
     }
 
-    public FBMethod create(String method, HashMap<String, String> parameters) {
+    public FBMethod create(String method, TreeMap<String, String> parameters) {
         return create(method, parameters, false);
     }
 
-    public FBMethod create(String method, HashMap<String, String> parameters, Boolean session) {
-        if (session && mSession == null) {
-            throw new RuntimeException(
-                    "Unable to associate an established session with new facebook method.");
+    public FBMethod create(String method, TreeMap<String, String> parameters, Boolean session) {
+        if (session && mSession == null) 
+        {
+            throw new RuntimeException("Unable to associate an established session with new facebook method.");
         }
         String secretParam = (session) ? mSession.getSecret() : mApiSecret;
         String sessionParam = (session) ? mSession.getSession() : null;

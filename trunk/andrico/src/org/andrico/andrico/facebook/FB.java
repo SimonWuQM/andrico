@@ -26,6 +26,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class FB extends FBBase {
     final static String LOG = "Facebook";
@@ -86,7 +87,7 @@ public class FB extends FBBase {
      */
     public FBMethod auth_getSession(String authToken) {
         Log.d(LOG, "facebook.auth.getSession");
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("auth_token", authToken);
 
         return getMethodFactory().create("facebook.auth.getSession", parameters);
@@ -104,7 +105,7 @@ public class FB extends FBBase {
     public FBMethod events_get(String uid) {
         Log.d(LOG, "Creating facebook.events.get method.");
 
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("uid", uid);
 
         return getMethodFactory().create("facebook.events.get", parameters, true);
@@ -125,7 +126,7 @@ public class FB extends FBBase {
             ArrayList<ArrayList<String>> images) {
         Log.e(LOG, "Posting Action");
 
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("title", title);
         parameters.put("body", body);
 
@@ -151,7 +152,7 @@ public class FB extends FBBase {
      * @return
      */
     public FBMethod fql_query(String query) {
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String> ();
         parameters.put("query", query);
 
         return getMethodFactory().create("facebook.fql.query", parameters, true);
@@ -190,7 +191,7 @@ public class FB extends FBBase {
     public FBMethod users_getInfo(String uids, String fields) {
         Log.d(LOG, "Creating facebook.users.getInfo method.");
 
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("uids", uids);
         parameters.put("fields", fields);
 
@@ -203,7 +204,7 @@ public class FB extends FBBase {
      * @return
      */
     public FBMethod users_hasAppPermission(String extPerm) {
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("ext_perm", extPerm);
         return getMethodFactory().create("facebook.users.hasAppPermission", parameters, true);
     }
@@ -219,7 +220,7 @@ public class FB extends FBBase {
      */
     public FBMethod users_setStatus(String status, Boolean includesVerb) {
         Log.e(LOG, "Setting Facebook Status: " + status);
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("status", status);
         parameters.put("status_includes_verb", includesVerb.toString());
         return getMethodFactory().create("facebook.users.setStatus", parameters, true);

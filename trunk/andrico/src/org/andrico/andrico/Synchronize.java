@@ -453,6 +453,11 @@ public class Synchronize extends Activity
 
             // Wipe the user session.
             mFacebook.unsetSession();
+            SharedPreferences.Editor editor = SharedPreferences.edit();
+            editor.remove(Preferences.FACEBOOK_CRED_SESSION_KEY);
+            editor.remove(Preferences.FACEBOOK_CRED_SECRET);
+            editor.remove(Preferences.FACEBOOK_CRED_UID);
+            editor.commit();
             //setPrefsFromFacebookSession();
         }            
     }				

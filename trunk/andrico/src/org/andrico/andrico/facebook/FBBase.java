@@ -25,6 +25,7 @@ import android.util.Log;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 
 class FBBase {
@@ -99,7 +100,7 @@ class FBBase {
      * @return String
      */
     public String authorizationParameters(String authToken) {
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("api_key", mApiKey);
         parameters.put("auth_token", authToken);
         parameters.put("popup", "1");
@@ -115,7 +116,7 @@ class FBBase {
      * @return
      */
     public Uri authorizeExtendedPreferenceUrl(String extPerm, String next, String nextCancel) {
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        TreeMap<String, String> parameters = new TreeMap<String, String>();
         parameters.put("api_key", mApiKey);
         parameters.put("ext_perm", extPerm);
         parameters.put("popup", "1");

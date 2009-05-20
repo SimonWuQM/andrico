@@ -70,7 +70,10 @@ public class Synchronize extends Activity
     private Handler mBackgroundHandler;
     private UserInfo mFacebookUserInfo;
     private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=";
-        
+    private List<Bundle> newList;
+    
+    
+    
     private static abstract class FbRunnable implements Runnable {
         final WeakReference<FB> mFacebookWeakRef;
         final WeakReference<UiHandler> mUiHandlerWeakRef;
@@ -154,7 +157,7 @@ public class Synchronize extends Activity
                     
                     //mListAdapter.setListFromJson(jsonResult);
                     
-                    List<Bundle> newList = new Vector<Bundle>();
+                    newList = new Vector<Bundle>();
                     for (int i = 0; i < result.length(); i++) {
                         try {
                             // Verify we have the things we want, otherwise an exception
@@ -303,13 +306,19 @@ public class Synchronize extends Activity
         /*this.addPreferencesFromResource(R.xml.preferences);*/
  //       mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mFacebook = new FB(getString(R.string.facebook_api_key),
-                getString(R.string.facebook_secret_key));
-        
-        mHandler = new AndricoHandler(/*mContext*/ getApplicationContext(), mFacebook);
+       // mFacebook = new FB(getString(R.string.facebook_api_key),
+         //       getString(R.string.facebook_secret_key));
         
         SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         
+        mHandler = new AndricoHandler(/*mContext*/ getApplicationContext(), mFacebook);
+        mFacebook = new FB(getString(R.string.facebook_api_key),
+                getString(R.string.facebook_secret_key));
+        
+        mFacebook.setSession(
+        		SharedPreferences.getString(Preferences.FACEBOOK_CRED_SESSION_KEY, "facebook_cred_session_key"),
+        		SharedPreferences.getString(Preferences.FACEBOOK_CRED_SECRET, "facebook_cred_secret"), 
+        		SharedPreferences.getString(Preferences.FACEBOOK_CRED_UID, "facebook_cred_uid"));
         
         if (SharedPreferences.getString(Preferences.FACEBOOK_CRED_SESSION_KEY, "facebook_cred_session_key") != "facebook_cred_session_key")
         {
@@ -366,13 +375,14 @@ public class Synchronize extends Activity
 				
 				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
 				
-				/*buildBackgroundHandler();
+				buildBackgroundHandler();
 				String getFriendsFQL = getGetFriendsStatusUpdatesFql(mFacebook);
 				
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-				*/
+				
 				DBContact db = new DBContact();
 				db.synchronize(Synchronize.this, friends);
+				
 				
 				Intent i = new Intent(Synchronize.this,MainActivity.class);
 	    		i.putExtra("ConfigOrder", CONFIG_ORDER);

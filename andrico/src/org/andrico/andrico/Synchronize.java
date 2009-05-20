@@ -366,11 +366,11 @@ public class Synchronize extends Activity
 				
 				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
 				
-				buildBackgroundHandler();
+				/*buildBackgroundHandler();
 				String getFriendsFQL = getGetFriendsStatusUpdatesFql(mFacebook);
 				
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-				
+				*/
 				DBContact db = new DBContact();
 				db.synchronize(Synchronize.this, friends);
 				

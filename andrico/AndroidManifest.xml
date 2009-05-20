@@ -16,9 +16,6 @@
         		  android:label="@string/synchronize">
         </activity>
         
-        <activity android:name=".StartSynchronization"
-        		  android:label="@string/synchronize">
-        </activity>
         
         <activity android:name=".ContactList"
         		  android:label="@string/contacts">

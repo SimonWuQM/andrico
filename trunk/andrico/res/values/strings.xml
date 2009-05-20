@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+	<!--
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
+	-->
 <resources>
 	<string name="facebook_api_key">afff0131de7f8a7745e0e2ead131d8a4</string>
 	<string name="facebook_secret_key">df8e91ef195387cdb112751fa22b23f3</string>
@@ -18,7 +26,7 @@
 <string name="start_synchronization">START SYNCH</string>
 <string name="token_headline">ENTER YOUR TOKEN</string>
 <string name="token_text">&lt;-- HERE IT IS</string>
-<string name="login_label">Getting Authorizaion Token</string>
+<string name="login_label">Getting Authorization Token</string>
 <string name="contacts">Contacts</string>
 <string name="no_number">no phone number</string>
 <string name="no_adress">no adress avaliable</string>

@@ -69,7 +69,7 @@ public class Synchronize extends Activity
     private UiHandler mHandler;
     private Handler mBackgroundHandler;
     private UserInfo mFacebookUserInfo;
-    private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=";
+    private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, first_name, last_name, current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=";
     private List<Bundle> newList;
     
     
@@ -163,7 +163,7 @@ public class Synchronize extends Activity
                             // Verify we have the things we want, otherwise an exception
                             // will be thrown.`
                             JSONObject obj = jsonResult.getJSONObject(i);
-                            JSONObject jsonUserInfo = new JSONArray(result).getJSONObject(i);
+                      //      JSONObject jsonUserInfo = new JSONArray(result).getJSONObject(i);
                             
                           /*  if (!obj.getJSONObject("first_name").getString("message").equals("")) {*/
                                 Bundle update = new Bundle();
@@ -174,14 +174,19 @@ public class Synchronize extends Activity
                                         .optString("status_id"));
                                 update.putString("time", obj.optJSONObject("status").optString("time"));
                                 update.putString("uid", obj.optString("uid"));
-                                */                                
-                                update.putString("firstName", jsonUserInfo.getString("first_name"));
-                                update.putString("lastName", jsonUserInfo.getString("last_name"));
-                                update.putString("location", jsonUserInfo.getJSONArray("location").toString());
-                                update.putString("birthday", jsonUserInfo.getString("birthday"));
-                                update.putString("birthday_date", jsonUserInfo.getString("birthday_date"));
-                                update.putString("profile_url", jsonUserInfo.getString("profile_url"));
-                                                                                                                                                    
+                                */    
+                                
+                                update.putString("name", obj.optString("name"));
+                                update.putString("birthday", obj.optString("birthday"));
+                                update.putString("birthdayDate", obj.optString("birthday_date"));
+                                update.putString("profileUrl", obj.optString("profile_url"));
+                                                 
+                                update.putString("firstName",obj.optString("first_name"));
+                                update.putString("lastName", obj.optString("last_name"));
+                                update.putString("location", obj.optString("current_location"));
+                               // update.putString("location2", obj.optJSONArray("location"));
+                              
+                                                                                                                              
                                 newList.add(update);
                             
                             /*}*/
@@ -194,13 +199,14 @@ public class Synchronize extends Activity
                         }
                     }
                     // Sort the status list.
+                  /*  
                     Collections.sort(newList, new Comparator<Bundle>() {
                         public int compare(final Bundle object1, final Bundle object2) {
                             // Reverse the comparison.
                             return -1 * object1.getString("time").compareTo(object2.getString("time"));
                         }
                     });
-
+				*/
                     // Update the status list.
                   //  setList(newList);
                     
@@ -379,9 +385,11 @@ public class Synchronize extends Activity
 				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
 				
 				buildBackgroundHandler();
-				String getFriendsFQL = getGetFriendsStatusUpdatesFql(mFacebook);
-				
+				Toast.makeText(getApplicationContext(), "Loading Friends Info.",
+                        Toast.LENGTH_SHORT).show();
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+				Toast.makeText(getApplicationContext(), "Friends Info loaded to List<Bundle> newList",
+                        Toast.LENGTH_SHORT).show();
 				
 				DBContact db = new DBContact();
 				/*
@@ -495,20 +503,6 @@ public class Synchronize extends Activity
 		return false; 
 	}
 
-    String getGetFriendsStatusUpdatesFql(FB facebook) {
-        /*
-    	FB facebook = mFacebookWeakRef.get();
-        if (facebook == null) {
-            return null;
-        }
-        */
-        StringBuffer friendQuery = new StringBuffer();
-        friendQuery.append(FRIENDS_STATUS_UPDATES_FQL);
-        friendQuery.append(facebook.getSession().getUid());
-        friendQuery.append(")");
-        return friendQuery.toString();
-    }
-    
     
     /**
      * @return the mFacebookUserInfo

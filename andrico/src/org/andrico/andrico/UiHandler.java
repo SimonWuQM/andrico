@@ -43,6 +43,7 @@ class UiHandler extends Handler {
     void executeMethodForMessage(FBMethod m, int messageCode, WriteToProgressHandler progressHandler) {
         HttpResponse response = null;
         try {
+        	//TODO: mFACEBOOK = NULL!!!!
             response = mFacebook.execute(m, progressHandler);
         } catch (NullPointerException e) {
             // We don't care if we get a npe. the npe will be handled by the handler.

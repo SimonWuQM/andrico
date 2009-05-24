@@ -311,14 +311,17 @@ public class Synchronize extends Activity
         
         SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         
-        mHandler = new AndricoHandler(/*mContext*/ getApplicationContext(), mFacebook);
+       
         mFacebook = new FB(getString(R.string.facebook_api_key),
                 getString(R.string.facebook_secret_key));
+       
         
         mFacebook.setSession(
         		SharedPreferences.getString(Preferences.FACEBOOK_CRED_SESSION_KEY, "facebook_cred_session_key"),
         		SharedPreferences.getString(Preferences.FACEBOOK_CRED_SECRET, "facebook_cred_secret"), 
         		SharedPreferences.getString(Preferences.FACEBOOK_CRED_UID, "facebook_cred_uid"));
+        
+        mHandler = new AndricoHandler(/*mContext*/ getApplicationContext(), mFacebook);
         
         if (SharedPreferences.getString(Preferences.FACEBOOK_CRED_SESSION_KEY, "facebook_cred_session_key") != "facebook_cred_session_key")
         {
@@ -381,13 +384,15 @@ public class Synchronize extends Activity
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
 				
 				DBContact db = new DBContact();
+				/*
 				db.synchronize(Synchronize.this, friends);
 				
 				
 				Intent i = new Intent(Synchronize.this,MainActivity.class);
 	    		i.putExtra("ConfigOrder", CONFIG_ORDER);
 	    		startActivity(i);
-	            finish();
+	            finish();*/
+				
         	}
 		});
     }

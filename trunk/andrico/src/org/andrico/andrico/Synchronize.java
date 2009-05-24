@@ -56,7 +56,6 @@ public class Synchronize extends Activity
 	private static final int STATE_INSERT = 0;
     private static int CONFIG_ORDER=0;
     
-    
     private Context mContext;
     private FB mFacebook;
     private SharedPreferences SharedPreferences;
@@ -173,7 +172,6 @@ public class Synchronize extends Activity
                                 update.putString("status_id", obj.optJSONObject("status")
                                         .optString("status_id"));
                                 update.putString("time", obj.optJSONObject("status").optString("time"));
-                                update.putString("uid", obj.optString("uid"));
                                 */    
                                 
                                 update.putString("name", obj.optString("name"));
@@ -184,7 +182,9 @@ public class Synchronize extends Activity
                                 update.putString("firstName",obj.optString("first_name"));
                                 update.putString("lastName", obj.optString("last_name"));
                                 update.putString("location", obj.optString("current_location"));
-                               // update.putString("location2", obj.optJSONArray("location"));
+                                update.putString("uid", obj.optString("uid"));
+                                
+                                // update.putString("location2", obj.optJSONArray("location"));
                               
                                                                                                                               
                                 newList.add(update);
@@ -380,27 +380,40 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				LinkedList <Contact> friends = null;
-				
-				//HERE FRIEND INFORMATION MUST BE WROTE TO THE LIST
-				
-				buildBackgroundHandler();
-				Toast.makeText(getApplicationContext(), "Loading Friends Info.",
-                        Toast.LENGTH_SHORT).show();
-				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-				Toast.makeText(getApplicationContext(), "Friends Info loaded to List<Bundle> newList",
-                        Toast.LENGTH_SHORT).show();
-				
+				LinkedList <Contact> friends = new LinkedList<Contact>();
 				DBContact db = new DBContact();
-				/*
+				
+				Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_SHORT).show();
+				buildBackgroundHandler();
+				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+				
+				int size = newList.size();
+				
+				for(int i = 0; i<size; i++)
+				{
+					Bundle bundContact = new Bundle();
+					bundContact = newList.get(i);
+					
+					Contact contact = new Contact();
+					
+					contact.setAdress(bundContact.getString("location"));
+					contact.setDateOfBirth(bundContact.getString("birthday"));
+					contact.setFBid(bundContact.getString("uid"));
+					contact.setName(bundContact.getString("firstName"));
+					contact.setSecondName(bundContact.getString("lastName"));
+					contact.setPage(bundContact.getString("profileUrl"));
+					
+					friends.add(contact);
+				}
+				
 				db.synchronize(Synchronize.this, friends);
 				
+				Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
 				
 				Intent i = new Intent(Synchronize.this,MainActivity.class);
 	    		i.putExtra("ConfigOrder", CONFIG_ORDER);
 	    		startActivity(i);
-	            finish();*/
-				
+	            finish();
         	}
 		});
     }

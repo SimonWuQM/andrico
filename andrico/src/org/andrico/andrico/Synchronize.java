@@ -549,7 +549,10 @@ public class Synchronize extends Activity
         	Toast t = Toast.makeText(mContext, "FAILURE LOGGING IN", Toast.LENGTH_LONG);
         	t.setGravity(Gravity.CENTER, 0, 0);
         	t.show();
-            //unsetUiFacebookLoggedIn();
+            
+        	this.findViewById(R.id.Synch).setEnabled(false);
+            
+        	//unsetUiFacebookLoggedIn();
 
             // Wipe the user session.
             mFacebook.unsetSession();

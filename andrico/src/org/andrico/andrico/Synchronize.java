@@ -177,7 +177,7 @@ public class Synchronize extends Activity
                                 update.putString("birthday", obj.optString("birthday"));
                                 update.putString("birthdayDate", obj.optString("birthday_date"));
                                 update.putString("profileUrl", obj.optString("profile_url"));
-                                                 
+                                 
                                 update.putString("firstName",obj.optString("first_name"));
                                 update.putString("lastName", obj.optString("last_name"));
                                 update.putString("location", obj.optString("current_location"));

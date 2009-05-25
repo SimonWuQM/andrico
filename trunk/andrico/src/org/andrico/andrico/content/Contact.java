@@ -23,6 +23,19 @@ public class Contact{
     	adress = "no adress avaliable";	
     }
     
+    public boolean Equals(Contact cont)
+    {
+    	if ((this.name != cont.name) || (this.secondName != cont.secondName) || 
+    				(this.fbId != cont.fbId) || (this.adress != cont.adress) || (this.page != cont.page))
+    	{	
+    		return false;
+    	}
+    	else
+    	{
+    		return  true;
+    	}
+    }
+    
     public int getId() 
     {
             return id;

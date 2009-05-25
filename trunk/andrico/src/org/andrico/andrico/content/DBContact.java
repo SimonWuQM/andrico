@@ -250,7 +250,7 @@ public class DBContact
         {
         	if(isDatabaseReady(app)) 
         	{
-        		db.delete("CONTACT","id=?",new String[]{""+id});
+        		db.delete("CONTACTS","id=?",new String[]{""+id});
                 db.close();
             }
         }
@@ -278,9 +278,11 @@ public class DBContact
         		}
         		else
         		{
-        			if (contact != newContact)
+        			if (!newContact.Equals(contact))
         			{
-        				this.update(app, newContact);
+        				//this.update(app, newContact);
+        				this.deleteContact(app, contact.getId());
+        				this.insert(app, newContact);
         			}
         		}
         	}

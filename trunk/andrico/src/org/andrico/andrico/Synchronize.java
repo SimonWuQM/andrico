@@ -386,12 +386,13 @@ public class Synchronize extends Activity
 				Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_SHORT).show();
 				buildBackgroundHandler();
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+							
 				
 				int size = newList.size();
 				
 				for(int i = 0; i<size; i++)
 				{
-					Bundle bundContact = new Bundle();
+					Bundle bundContact = null;
 					bundContact = newList.get(i);
 					
 					Contact contact = new Contact();

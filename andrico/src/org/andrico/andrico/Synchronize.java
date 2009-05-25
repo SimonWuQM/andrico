@@ -10,6 +10,7 @@ import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -68,7 +69,9 @@ public class Synchronize extends Activity
     private UiHandler mHandler;
     private Handler mBackgroundHandler;
     private UserInfo mFacebookUserInfo;
-    private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, first_name, last_name, current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=";
+    private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, first_name, last_name, " +
+    					"current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN " +
+    					"(SELECT uid2 FROM friend WHERE uid1=";
     private List<Bundle> newList;
     private Boolean creatingList;
     
@@ -180,7 +183,22 @@ public class Synchronize extends Activity
                                  
                                 update.putString("firstName",obj.optString("first_name"));
                                 update.putString("lastName", obj.optString("last_name"));
-                                update.putString("location", obj.optString("current_location"));
+                                update.putString("location_zip", (String)obj.optJSONObject("current_location").get("zip"));
+                                if (obj.optJSONObject("current_location").has("country"))
+                                {
+                                	update.putString("location_country", (String)obj.optJSONObject("current_location").get("country"));
+                                }
+                                
+                                if (obj.optJSONObject("current_location").has("state"))
+                                {
+                                	update.putString("location_state", (String)obj.optJSONObject("current_location").get("state"));
+                                }
+                                
+                                if (obj.optJSONObject("current_location").has("city"))
+                                {
+                                	update.putString("location_city", (String)obj.optJSONObject("current_location").get("city"));
+                                }
+                                
                                 update.putString("uid", obj.optString("uid"));
                                 
                                 // update.putString("location2", obj.optJSONArray("location"));
@@ -215,10 +233,14 @@ public class Synchronize extends Activity
     					{
     						Bundle bundContact = null;
     						bundContact = newList.get(i);
-    					
+    						String adress = createAdress(bundContact.getString("location_zip"), 
+    								bundContact.getString("location_country"), 
+    								bundContact.getString("location_state"),
+    								bundContact.getString("location_city"));
+    								
     						Contact contact = new Contact();
     					
-    						contact.setAdress(bundContact.getString("location"));
+    						contact.setAdress(adress);
     						contact.setDateOfBirth(bundContact.getString("birthday"));
     						contact.setFBid(bundContact.getString("uid"));
     						contact.setName(bundContact.getString("firstName"));
@@ -288,8 +310,7 @@ public class Synchronize extends Activity
             }
             
             creatingList = false;
-            notify();
-        }
+       }
 
         
        /*
@@ -658,7 +679,56 @@ public class Synchronize extends Activity
         mBackgroundHandler = new Handler(fbLooper);
     }
     
-/*    
+    String createAdress(String zip, String country, String state, String city)
+    {
+    	String adr = "";
+    	
+    	if (zip != "" && zip != null)
+    	{
+    		adr = zip;
+    	}
+    	
+    	if (country != "" && country != null)
+    	{
+    		if (adr != "")
+    		{
+    			adr = adr + ", " + country;
+    		}
+    		else
+    		{
+    			adr = country;
+    		}
+    	}
+    	
+    	if (state != "" && state != null)
+    	{
+    		if (adr != "")
+    		{
+    			adr = adr + ", " + state;
+    		}
+    		else
+    		{
+    			adr = state;
+    		}
+    	}
+    	
+    	if (city != "" && city != null)
+    	{
+    		if (city != "")
+    		{
+    			adr = adr + ", " + city;
+    		}
+    		else
+    		{
+    			adr = city;
+    		}
+    	}
+    	
+    	return adr;
+    }
+    
+    
+    /*    
     private void shortMessage(String msg) {
         Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
         Float horizontalMargin = toast.getHorizontalMargin();

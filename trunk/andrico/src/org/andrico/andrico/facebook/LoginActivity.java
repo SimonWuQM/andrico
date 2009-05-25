@@ -75,7 +75,7 @@ public class LoginActivity extends AuthorizationActivity {
         Log.d(LOG, "Have authToken (" + authToken + "), requesting session");
         getSessionAttempts += 1;
 
-        Toast.makeText(this, "Requesting session.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "REQUESTING SESSION", Toast.LENGTH_SHORT).show();
 
         mFacebook.authenticate(mFacebook.auth_getSession(authToken),
                 new HttpResponseByHandlerDecorator(mHandler, new FBMethodCallback() {
@@ -93,7 +93,7 @@ public class LoginActivity extends AuthorizationActivity {
                             result.putExtra(LoginActivity.SESSION_KEY_EXTRA, sessionKey);
                             result.putExtra(LoginActivity.SECRET_EXTRA, secret);
                             result.putExtra(LoginActivity.UID_EXTRA, uid);
-                            Toast.makeText(LoginActivity.this, "Acquired Facebook Session.",
+                            Toast.makeText(LoginActivity.this, "ACQUIRED FACEBOOK SESSION",
                                     Toast.LENGTH_SHORT).show();
                             setResult(RESULT_OK, result);
                             
@@ -113,7 +113,7 @@ public class LoginActivity extends AuthorizationActivity {
                             } catch (JSONException e1) {
                                 Log.e(LOG, "Stil cannot Parse JSON result", e1);
                             }
-                            Toast.makeText(LoginActivity.this, "Could not acquire session.",
+                            Toast.makeText(LoginActivity.this, "COULD NOT ACQUIRE SESSION",
                                     Toast.LENGTH_SHORT).show();
                             setResult(RESULT_CANCELED);
                         }
@@ -170,7 +170,7 @@ public class LoginActivity extends AuthorizationActivity {
                                     public void onClick(DialogInterface dialog, int whichButton) 
                                     {
                                         Toast.makeText(LoginActivity.this,
-                                                "Could not acquire session.", Toast.LENGTH_SHORT)
+                                                "COULD NOT ACQUIRE SESSION", Toast.LENGTH_SHORT)
                                                 .show();
                                         setResult(RESULT_CANCELED);
                                         finish();

@@ -43,8 +43,6 @@ public class ContactList extends ExpandableListActivity
 	final static String TAG = "ContactList";
 	private static int CONFIG_ORDER = 0;
 	private SimpleExpandableListAdapter listAdapter = null;
-	private SimpleExpandableListAdapter listAdapterEmpty = null;
-	private SimpleExpandableListAdapter listAdapterContacts = null;
 	protected ExpandableListView list;
 	
 	
@@ -55,8 +53,6 @@ public class ContactList extends ExpandableListActivity
 	    w.requestFeature(Window.FEATURE_LEFT_ICON);   
 	    setContentView(R.layout.contacts);
 	    w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
-	    
-	    
 	    
 	    DBContact db = new DBContact();
      	
@@ -70,6 +66,7 @@ public class ContactList extends ExpandableListActivity
         
         db.insert(ContactList.this, contact);
         */
+	    
 	    contacts = db.getContactList(ContactList.this);
 
 	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
@@ -95,7 +92,7 @@ public class ContactList extends ExpandableListActivity
                 infolist.add(info);
                 infos.add(infolist);
             }
-         	listAdapterContacts = new SimpleExpandableListAdapter(
+         	listAdapter = new SimpleExpandableListAdapter(
         												this,
         												conts,
         												R.layout.group_row,
@@ -105,8 +102,6 @@ public class ContactList extends ExpandableListActivity
         												R.layout.child_table,
         												new String[] {"date", "adress", "page"},
         												new int[] {R.id.date, R.id.adress, R.id.page});
-         	listAdapter = listAdapterContacts;
-        	
         }  
 	    
 	    
@@ -118,7 +113,7 @@ public class ContactList extends ExpandableListActivity
     	this.registerForContextMenu(list);
     	this.list.setOnChildClickListener(new OnChildClickListener()
         {
-        	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) 
+    		public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) 
         	{
         		//Response resp = (Response)listAdapter.getChild(groupPosition, childPosition);
         		Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
@@ -131,10 +126,9 @@ public class ContactList extends ExpandableListActivity
         				Toast.makeText(ContactList.this,"url", Toast.LENGTH_SHORT).show();		
         		}
         		*/	
-        		
-				
-				return false;
+        		return false;
         	}
+        	
         });
     	
     	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()

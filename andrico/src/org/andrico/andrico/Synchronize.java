@@ -72,7 +72,6 @@ public class Synchronize extends Activity
     private List<Bundle> newList;
     private Boolean creatingList;
     
-    
     private static abstract class FbRunnable implements Runnable {
         final WeakReference<FB> mFacebookWeakRef;
         final WeakReference<UiHandler> mUiHandlerWeakRef;
@@ -200,7 +199,53 @@ public class Synchronize extends Activity
                         }
                     }
                     
-                    creatingList = false;
+                    
+                    
+                    
+                    
+                    
+                    
+                    LinkedList <Contact> friends = new LinkedList<Contact>();
+    				DBContact db = new DBContact();
+    				try
+    				{
+    					int size = newList.size();
+    				
+    					for(int i = 0; i<size; i++)
+    					{
+    						Bundle bundContact = null;
+    						bundContact = newList.get(i);
+    					
+    						Contact contact = new Contact();
+    					
+    						contact.setAdress(bundContact.getString("location"));
+    						contact.setDateOfBirth(bundContact.getString("birthday"));
+    						contact.setFBid(bundContact.getString("uid"));
+    						contact.setName(bundContact.getString("firstName"));
+    						contact.setSecondName(bundContact.getString("lastName"));
+    						contact.setPage(bundContact.getString("profileUrl"));
+    					
+    						friends.add(contact);
+    					}
+    				
+    					db.synchronize(Synchronize.this, friends);
+    				
+    					Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
+    				
+    					Intent i = new Intent(Synchronize.this,MainActivity.class);
+    					i.putExtra("ConfigOrder", CONFIG_ORDER);
+    					startActivity(i);
+    					finish();
+    				}
+    				catch (NullPointerException e)
+    				{
+    					Log.e(TAG,"Failed to synch");
+    					Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+    					creatingList = false;
+    				}
+                    
+                    
+                    
                     // Sort the status list.
                   /*  
                     Collections.sort(newList, new Comparator<Bundle>() {
@@ -223,9 +268,13 @@ public class Synchronize extends Activity
                     
                     notifyUser("", false);
                     return;
-                } catch (JSONException jsonArrayConversionException) {
-                    errorCode = 0; // Signify that something did go wrong but we
-                    // don't know what.
+                } 
+                catch (JSONException jsonArrayConversionException) 
+                {
+                    errorCode = 0; 
+                    
+                    Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+					creatingList = false;
                 }
             }
 
@@ -312,6 +361,7 @@ public class Synchronize extends Activity
         super.onCreate(savedInstanceState);
         Log.d(LOG, "onCreate");
         mContext = this;
+        creatingList = false;
 
         // Load the preferences from an XML resource
         /*this.addPreferencesFromResource(R.xml.preferences);*/
@@ -385,77 +435,71 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				LinkedList <Contact> friends = new LinkedList<Contact>();
-				DBContact db = new DBContact();
-				creatingList = true;
+				if (!creatingList)
+				{
+					/*LinkedList <Contact> friends = new LinkedList<Contact>();
+					DBContact db = new DBContact();*/
+					creatingList = true;
 				
-				buildBackgroundHandler();
-				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-					
-				
-				////////
-				///////////////
-				//////////////////
-				///////////////////////
-				//HERE WE MUST WAIT FOR CREATION OF newList
-				///////////////////////
-				//////////////////
-				///////////////
-				
-				
-				
-				
-				
-				
-				/*while (creatingList)
-				{				
 					Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_LONG).show();
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						Log.e(TAG,"InterruptedException");
+				
+					buildBackgroundHandler();
+					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+					
+				
+						
+				
+				
+				
+					/*while (creatingList)
+					{				
+						try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							Log.e(TAG,"InterruptedException");
+						}
 					}
-				}
-				*/
+					 */
 				
 				
-				try
-				{
-					int size = newList.size();
-				
-					for(int i = 0; i<size; i++)
+/*					try
 					{
-						Bundle bundContact = null;
-						bundContact = newList.get(i);
+						int size = newList.size();
+				
+						for(int i = 0; i<size; i++)
+						{
+							Bundle bundContact = null;
+							bundContact = newList.get(i);
 					
-						Contact contact = new Contact();
+							Contact contact = new Contact();
 					
-						contact.setAdress(bundContact.getString("location"));
-						contact.setDateOfBirth(bundContact.getString("birthday"));
-						contact.setFBid(bundContact.getString("uid"));
-						contact.setName(bundContact.getString("firstName"));
-						contact.setSecondName(bundContact.getString("lastName"));
-						contact.setPage(bundContact.getString("profileUrl"));
+							contact.setAdress(bundContact.getString("location"));
+							contact.setDateOfBirth(bundContact.getString("birthday"));
+							contact.setFBid(bundContact.getString("uid"));
+							contact.setName(bundContact.getString("firstName"));
+							contact.setSecondName(bundContact.getString("lastName"));
+							contact.setPage(bundContact.getString("profileUrl"));
 					
-						friends.add(contact);
+							friends.add(contact);
+						}
+				
+						db.synchronize(Synchronize.this, friends);
+				
+						Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
+				
+						Intent i = new Intent(Synchronize.this,MainActivity.class);
+						i.putExtra("ConfigOrder", CONFIG_ORDER);
+						startActivity(i);
+						finish();
 					}
-				
-					db.synchronize(Synchronize.this, friends);
-				
-					Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
-				
-					Intent i = new Intent(Synchronize.this,MainActivity.class);
-					i.putExtra("ConfigOrder", CONFIG_ORDER);
-					startActivity(i);
-					finish();
-				}
-				catch (NullPointerException e)
-				{
-					Log.e(TAG,"Failed to synch");
-					Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
-				}
-        	}
+					catch (NullPointerException e)
+					{
+						Log.e(TAG,"Failed to synch");
+						Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+					}
+*/        		}
+			}
 		});
     }
     

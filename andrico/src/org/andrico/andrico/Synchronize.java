@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -61,9 +62,11 @@ public class Synchronize extends Activity
     private FB mFacebook;
     private SharedPreferences SharedPreferences;
     
+    private static final int DIALOG_SET_STATUS = 0;
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;
     private static final int MESSAGE_GET_USER_INFO = 1;
+    private static final int MESSAGE_SET_STATUS = 3;
     private static final int MESSAGE_FRIEND_STATUS_UPDATE = 0;
     private static final String LOG = "PreferenceActivity";
     private UiHandler mHandler;
@@ -251,7 +254,8 @@ public class Synchronize extends Activity
     					}
     				
     					db.synchronize(Synchronize.this, friends);
-    				
+    						
+    					dismissDialog(DIALOG_SET_STATUS);
     					Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
     				
     					Intent i = new Intent(Synchronize.this,MainActivity.class);
@@ -462,14 +466,13 @@ public class Synchronize extends Activity
 					DBContact db = new DBContact();*/
 					creatingList = true;
 				
-					Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_LONG).show();
+					showDialog(DIALOG_SET_STATUS);
+					//Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_LONG).show();
 				
 					buildBackgroundHandler();
 					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
 					
-				
-						
-				
+												
 				
 				
 					/*while (creatingList)
@@ -725,6 +728,48 @@ public class Synchronize extends Activity
     	}
     	
     	return adr;
+    }
+    
+    
+    // Creating ProgressBar Dialog
+    
+    @Override
+    public Dialog onCreateDialog(int id) {        
+        ProgressDialog dialog = new ProgressDialog(this);
+        switch (id) {
+            case DIALOG_SET_STATUS:
+                dialog.setTitle("LOADING FRIENDS INFO");
+                dialog.setIndeterminate(true);
+                return dialog;
+            /*    
+            case DIALOG_GET_USER_INFO:
+                dialog.setTitle("Retrieving Status");
+                dialog.setIndeterminate(true);
+                dialog.setMessage("Looking up your current status.");
+                return dialog;
+            case DIALOG_SET_STATUS_LOCATION:
+                dialog.setTitle("Update Status with Location");
+                return dialog;
+            */    
+        }
+        return null;
+    }
+
+    @Override
+    public void onPrepareDialog(int id, Dialog dialog) {
+        switch (id) {
+            case DIALOG_SET_STATUS:
+            	            	               
+            	((ProgressDialog)dialog).setMessage("Synchronizing");
+                        
+                break;
+            /*
+            case DIALOG_SET_STATUS_LOCATION:
+                ((ProgressDialog)dialog).setMessage("Setting status: "
+                        + mEditStatus.getText().toString());
+                break;
+            */    
+        }
     }
     
     

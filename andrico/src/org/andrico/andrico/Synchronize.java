@@ -32,6 +32,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -41,6 +43,7 @@ import android.os.Process;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -256,8 +259,10 @@ public class Synchronize extends Activity
     					db.synchronize(Synchronize.this, friends);
     						
     					dismissDialog(DIALOG_SET_STATUS);
-    					Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
-    				
+    					Toast t = Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT);
+    					t.setGravity(Gravity.CENTER, 0, 0);
+    					t.show();
+    					
     					Intent i = new Intent(Synchronize.this,MainActivity.class);
     					i.putExtra("ConfigOrder", CONFIG_ORDER);
     					startActivity(i);
@@ -266,7 +271,10 @@ public class Synchronize extends Activity
     				catch (NullPointerException e)
     				{
     					Log.e(TAG,"Failed to synch");
-    					Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+    					Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
+    					t.setGravity(Gravity.CENTER, 0, 0);
+    					t.show();
+    					
     					creatingList = false;
     				}
                     
@@ -299,7 +307,9 @@ public class Synchronize extends Activity
                 {
                     errorCode = 0; 
                     
-                    Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+                    Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.CENTER ,0, 0);
+                    t.show();
 					creatingList = false;
                 }
             }
@@ -460,70 +470,23 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				if (!creatingList)
+				ConnectivityManager cm = (ConnectivityManager) Synchronize.this.getSystemService(Synchronize.this.CONNECTIVITY_SERVICE); 
+				NetworkInfo netInfo = cm.getActiveNetworkInfo();
+				         
+				if(netInfo.getState() != NetworkInfo.State.CONNECTED)
 				{
-					/*LinkedList <Contact> friends = new LinkedList<Contact>();
-					DBContact db = new DBContact();*/
-					creatingList = true;
-				
+					Toast t = Toast.makeText(getApplicationContext(), "INTERNET CONNECTION UNAVALIABLE", Toast.LENGTH_LONG);;
+					t.setGravity(Gravity.CENTER, 0, 0);
+					t.show();
+				}
+				else
+				{
 					showDialog(DIALOG_SET_STATUS);
-					//Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_LONG).show();
-				
+					
 					buildBackgroundHandler();
 					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-					
-												
-				
-				
-					/*while (creatingList)
-					{				
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							Log.e(TAG,"InterruptedException");
-						}
-					}
-					 */
-				
-				
-/*					try
-					{
-						int size = newList.size();
-				
-						for(int i = 0; i<size; i++)
-						{
-							Bundle bundContact = null;
-							bundContact = newList.get(i);
-					
-							Contact contact = new Contact();
-					
-							contact.setAdress(bundContact.getString("location"));
-							contact.setDateOfBirth(bundContact.getString("birthday"));
-							contact.setFBid(bundContact.getString("uid"));
-							contact.setName(bundContact.getString("firstName"));
-							contact.setSecondName(bundContact.getString("lastName"));
-							contact.setPage(bundContact.getString("profileUrl"));
-					
-							friends.add(contact);
-						}
-				
-						db.synchronize(Synchronize.this, friends);
-				
-						Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
-				
-						Intent i = new Intent(Synchronize.this,MainActivity.class);
-						i.putExtra("ConfigOrder", CONFIG_ORDER);
-						startActivity(i);
-						finish();
-					}
-					catch (NullPointerException e)
-					{
-						Log.e(TAG,"Failed to synch");
-						Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
-					}
-*/        		}
-			}
+				}
+        	}
 		});
     }
     
@@ -583,7 +546,9 @@ public class Synchronize extends Activity
         } 
         else 
         {
-        	Toast.makeText(mContext, "FAILURE LOGGING IN", Toast.LENGTH_LONG).show();
+        	Toast t = Toast.makeText(mContext, "FAILURE LOGGING IN", Toast.LENGTH_LONG);
+        	t.setGravity(Gravity.CENTER, 0, 0);
+        	t.show();
             //unsetUiFacebookLoggedIn();
 
             // Wipe the user session.
@@ -738,8 +703,9 @@ public class Synchronize extends Activity
         ProgressDialog dialog = new ProgressDialog(this);
         switch (id) {
             case DIALOG_SET_STATUS:
-                dialog.setTitle("LOADING FRIENDS INFO");
+                dialog.setTitle("SYNCHRONIZING");
                 dialog.setIndeterminate(true);
+                
                 return dialog;
             /*    
             case DIALOG_GET_USER_INFO:
@@ -760,7 +726,7 @@ public class Synchronize extends Activity
         switch (id) {
             case DIALOG_SET_STATUS:
             	            	               
-            	((ProgressDialog)dialog).setMessage("Synchronizing");
+            	((ProgressDialog)dialog).setMessage("LOADING FRIENDS INFO");
                         
                 break;
             /*

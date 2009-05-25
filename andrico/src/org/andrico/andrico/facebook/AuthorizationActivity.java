@@ -10,6 +10,7 @@ package org.andrico.andrico.facebook;
 import org.andrico.andrico.R;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,11 +53,18 @@ abstract class AuthorizationActivity extends Activity {
             Log.d(LOG, "onPageStarted: " + url);
             if ((url.indexOf("http://www.facebook.com/login.php") > -1 ))
             {
-            	//if (AuthorizationActivity.this.getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE)
-            	//{
-            	mWebView.scrollTo(190, 230);
-            	//}
+            	if (AuthorizationActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            	{
+            		mWebView.scrollTo(200, 270);
+            		((WebView)findViewById(R.id.web_view)).zoomIn();
+            	}
+            	else
+            	{
+            		mWebView.scrollTo(270, 350);
+            	}
+            	
             	((WebView)findViewById(R.id.web_view)).zoomIn();
+            	
             }
             AuthorizationActivity.this.onPageFinished(url);
         }

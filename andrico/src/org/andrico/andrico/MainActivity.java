@@ -15,12 +15,15 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -29,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.gdata.data.Feed;
 import com.google.gdata.util.ServiceException;
@@ -86,13 +90,25 @@ public class MainActivity extends Activity
 	        this.findViewById(R.id.Synchronize).setOnClickListener(new OnClickListener()
 	        {
 				public void onClick(View v)
-				{        		
-					Intent i = new Intent(MainActivity.this, Synchronize.class);
-					String[] s = {"",""};
-					i.putExtra("ConfigOrder", CONFIG_ORDER);
-					i.putExtra("PostTitleAndContent", s);
-					startActivity(i);
-		            finish();
+				{   
+					ConnectivityManager cm = (ConnectivityManager) MainActivity.this.getSystemService(MainActivity.this.CONNECTIVITY_SERVICE); 
+					NetworkInfo netInfo = cm.getActiveNetworkInfo();
+					         
+					if(netInfo.getState() != NetworkInfo.State.CONNECTED)
+					{
+						Toast t = Toast.makeText(getApplicationContext(), "INTERNET CONNECTION UNAVALIABLE", Toast.LENGTH_LONG);;
+						t.setGravity(Gravity.CENTER, 0, 0);
+						t.show();
+					} 
+					else
+					{
+						Intent i = new Intent(MainActivity.this, Synchronize.class);
+						String[] s = {"",""};
+						i.putExtra("ConfigOrder", CONFIG_ORDER);
+						i.putExtra("PostTitleAndContent", s);
+						startActivity(i);
+						finish();
+					}
 	       		}
 			});
 	        

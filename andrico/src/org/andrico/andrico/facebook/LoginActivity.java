@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -211,6 +212,10 @@ public class LoginActivity extends AuthorizationActivity {
     	   	 
         if (url.indexOf("login.facebook.com/code_gen.php") > -1) 
         {
+        	if (LoginActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+        	{
+        		((WebView)findViewById(R.id.web_view)).scrollTo(43, 0);
+        	}
             Log.d(LOG, "code_gen.php was noticed, prompting user...");
             ((WebView)findViewById(R.id.web_view)).zoomIn();
             showDialog(DIALOG_AUTH_TOKEN_REQUEST);

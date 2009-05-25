@@ -274,7 +274,7 @@ public class DBContact
         		Contact contact = this.getContactByFBid(app, fbid);
         		if (contact == null)
         		{
-        			
+        			this.insert(app, newContact);
         		}
         		else
         		{

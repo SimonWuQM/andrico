@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -76,8 +77,10 @@ public class LoginActivity extends AuthorizationActivity {
         Log.d(LOG, "Have authToken (" + authToken + "), requesting session");
         getSessionAttempts += 1;
 
-        Toast.makeText(this, "REQUESTING SESSION", Toast.LENGTH_SHORT).show();
-
+        Toast t = Toast.makeText(this, "REQUESTING SESSION", Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.CENTER, 0, 0);
+    	t.show();
+    	
         mFacebook.authenticate(mFacebook.auth_getSession(authToken),
                 new HttpResponseByHandlerDecorator(mHandler, new FBMethodCallback() {
                     @Override
@@ -94,8 +97,11 @@ public class LoginActivity extends AuthorizationActivity {
                             result.putExtra(LoginActivity.SESSION_KEY_EXTRA, sessionKey);
                             result.putExtra(LoginActivity.SECRET_EXTRA, secret);
                             result.putExtra(LoginActivity.UID_EXTRA, uid);
-                            Toast.makeText(LoginActivity.this, "ACQUIRED FACEBOOK SESSION",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast t = Toast.makeText(LoginActivity.this, "ACQUIRED FACEBOOK SESSION",
+                                    Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER, 0, 0);
+                        	t.show();
+                        	
                             setResult(RESULT_OK, result);
                             
                             
@@ -114,8 +120,11 @@ public class LoginActivity extends AuthorizationActivity {
                             } catch (JSONException e1) {
                                 Log.e(LOG, "Stil cannot Parse JSON result", e1);
                             }
-                            Toast.makeText(LoginActivity.this, "COULD NOT ACQUIRE SESSION",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast t = Toast.makeText(LoginActivity.this, "COULD NOT ACQUIRE SESSION",
+                                    Toast.LENGTH_SHORT);
+                            t.setGravity(Gravity.CENTER, 0, 0);
+                        	t.show();
+                        	
                             setResult(RESULT_CANCELED);
                         }
                         finish();
@@ -170,9 +179,11 @@ public class LoginActivity extends AuthorizationActivity {
                                 {
                                     public void onClick(DialogInterface dialog, int whichButton) 
                                     {
-                                        Toast.makeText(LoginActivity.this,
-                                                "COULD NOT ACQUIRE SESSION", Toast.LENGTH_SHORT)
-                                                .show();
+                                        Toast t = Toast.makeText(LoginActivity.this,
+                                                "COULD NOT ACQUIRE SESSION", Toast.LENGTH_SHORT);
+                                        t.setGravity(Gravity.CENTER, 0, 0);
+                                    	t.show();
+                                    	
                                         setResult(RESULT_CANCELED);
                                         finish();
                                     }

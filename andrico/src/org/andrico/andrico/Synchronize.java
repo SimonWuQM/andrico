@@ -70,7 +70,7 @@ public class Synchronize extends Activity
     private UserInfo mFacebookUserInfo;
     private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, first_name, last_name, current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=";
     private List<Bundle> newList;
-    
+    private Boolean creatingList;
     
     
     private static abstract class FbRunnable implements Runnable {
@@ -188,8 +188,9 @@ public class Synchronize extends Activity
                               
                                                                                                                               
                                 newList.add(update);
-                            
-                            /*}*/
+                                
+                                
+                                /*}*/
                         } catch (NullPointerException e) {
                             // if we don't have the things we need for this friend, don't
                             // put it in newList
@@ -198,6 +199,8 @@ public class Synchronize extends Activity
                             // put it in newList
                         }
                     }
+                    
+                    creatingList = false;
                     // Sort the status list.
                   /*  
                     Collections.sort(newList, new Comparator<Bundle>() {
@@ -234,7 +237,9 @@ public class Synchronize extends Activity
                 postToBackgroundHandler(new FbExecuteGetFriendsStatusUpdatesRunnable(mHandler,
                         mFacebook), mRandom.nextInt(10) * 1000 + 1000);
             }
-
+            
+            creatingList = false;
+            notify();
         }
 
         
@@ -382,39 +387,74 @@ public class Synchronize extends Activity
 			{
 				LinkedList <Contact> friends = new LinkedList<Contact>();
 				DBContact db = new DBContact();
+				creatingList = true;
 				
-				Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_SHORT).show();
 				buildBackgroundHandler();
 				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-							
+					
 				
-				int size = newList.size();
+				////////
+				///////////////
+				//////////////////
+				///////////////////////
+				//HERE WE MUST WAIT FOR CREATION OF newList
+				///////////////////////
+				//////////////////
+				///////////////
 				
-				for(int i = 0; i<size; i++)
-				{
-					Bundle bundContact = null;
-					bundContact = newList.get(i);
-					
-					Contact contact = new Contact();
-					
-					contact.setAdress(bundContact.getString("location"));
-					contact.setDateOfBirth(bundContact.getString("birthday"));
-					contact.setFBid(bundContact.getString("uid"));
-					contact.setName(bundContact.getString("firstName"));
-					contact.setSecondName(bundContact.getString("lastName"));
-					contact.setPage(bundContact.getString("profileUrl"));
-					
-					friends.add(contact);
+				
+				
+				
+				
+				
+				/*while (creatingList)
+				{				
+					Toast.makeText(getApplicationContext(), "LOADING FRIENDS INFO", Toast.LENGTH_LONG).show();
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						Log.e(TAG,"InterruptedException");
+					}
 				}
+				*/
 				
-				db.synchronize(Synchronize.this, friends);
 				
-				Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
+				try
+				{
+					int size = newList.size();
 				
-				Intent i = new Intent(Synchronize.this,MainActivity.class);
-	    		i.putExtra("ConfigOrder", CONFIG_ORDER);
-	    		startActivity(i);
-	            finish();
+					for(int i = 0; i<size; i++)
+					{
+						Bundle bundContact = null;
+						bundContact = newList.get(i);
+					
+						Contact contact = new Contact();
+					
+						contact.setAdress(bundContact.getString("location"));
+						contact.setDateOfBirth(bundContact.getString("birthday"));
+						contact.setFBid(bundContact.getString("uid"));
+						contact.setName(bundContact.getString("firstName"));
+						contact.setSecondName(bundContact.getString("lastName"));
+						contact.setPage(bundContact.getString("profileUrl"));
+					
+						friends.add(contact);
+					}
+				
+					db.synchronize(Synchronize.this, friends);
+				
+					Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT).show();
+				
+					Intent i = new Intent(Synchronize.this,MainActivity.class);
+					i.putExtra("ConfigOrder", CONFIG_ORDER);
+					startActivity(i);
+					finish();
+				}
+				catch (NullPointerException e)
+				{
+					Log.e(TAG,"Failed to synch");
+					Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG).show();
+				}
         	}
 		});
     }
@@ -475,7 +515,7 @@ public class Synchronize extends Activity
         } 
         else 
         {
-        	Toast.makeText(mContext, "Failure logging in.", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(mContext, "FAILURE LOGGING IN", Toast.LENGTH_LONG).show();
             //unsetUiFacebookLoggedIn();
 
             // Wipe the user session.

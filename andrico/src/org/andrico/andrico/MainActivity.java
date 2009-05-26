@@ -94,7 +94,7 @@ public class MainActivity extends Activity
 					ConnectivityManager cm = (ConnectivityManager) MainActivity.this.getSystemService(MainActivity.this.CONNECTIVITY_SERVICE); 
 					NetworkInfo netInfo = cm.getActiveNetworkInfo();
 					         
-					if(netInfo.getState() != NetworkInfo.State.CONNECTED)
+					if(netInfo == null)
 					{
 						Toast t = Toast.makeText(getApplicationContext(), "INTERNET CONNECTION UNAVALIABLE", Toast.LENGTH_LONG);;
 						t.setGravity(Gravity.CENTER, 0, 0);

@@ -7,6 +7,8 @@
 
 package org.andrico.andrico;
 
+import java.net.URLConnection;
+
 import org.andrico.andjax.http.HttpResponseRunnable;
 import org.andrico.andjax.http.ByteArrayBody.WriteToProgressHandler;
 import org.andrico.andrico.facebook.FB;
@@ -44,7 +46,8 @@ class UiHandler extends Handler {
         HttpResponse response = null;
         try {
         	//TODO: mFACEBOOK = NULL!!!!
-            response = mFacebook.execute(m, progressHandler);
+        	
+        	response = mFacebook.execute(m, progressHandler);
         } catch (NullPointerException e) {
             // We don't care if we get a npe. the npe will be handled by the handler.
         } finally {

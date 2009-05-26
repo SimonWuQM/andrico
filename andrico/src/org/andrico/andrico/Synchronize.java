@@ -25,10 +25,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -65,7 +67,7 @@ public class Synchronize extends Activity
     private FB mFacebook;
     private SharedPreferences SharedPreferences;
     
-    private static final int DIALOG_SET_STATUS = 0;
+    public static final int DIALOG_SYNCHRONIZE = 0;
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;
     private static final int MESSAGE_GET_USER_INFO = 1;
@@ -155,8 +157,10 @@ public class Synchronize extends Activity
         void handleGetFriendsStatusUpdatesMessage(Message msg) {
             String result = msg.getData().getString("result");
             Integer errorCode = JsonParser.parseForErrorCode(result);
-            if (errorCode != null && errorCode == -1) {
-                try {
+            if (errorCode != null && errorCode == -1) 
+            {
+                try 
+                {
                     Log.d(LOG, "Setting status list from json result:" + result);
                     JSONArray jsonResult = new JSONArray(result);
                     
@@ -258,23 +262,42 @@ public class Synchronize extends Activity
     				
     					db.synchronize(Synchronize.this, friends);
     						
-    					dismissDialog(DIALOG_SET_STATUS);
-    					Toast t = Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT);
+    					dismissDialog(DIALOG_SYNCHRONIZE);
+    					
+    					AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
+    												.setTitle("SYNCHRONIZED")
+    												.setMessage(Integer.toString(size) + " friends processed")
+    											.setPositiveButton("OK", 
+    										new DialogInterface.OnClickListener() 
+    						                {
+    												public void onClick(DialogInterface dialog, int whichButton)
+    						                        {
+    													dialog.dismiss();
+    													Intent i = new Intent(Synchronize.this,MainActivity.class);
+    							    					i.putExtra("ConfigOrder", CONFIG_ORDER);
+    							    					startActivity(i);
+    							    					finish();
+    						                        }
+    						                }).create(); 
+    					dialog.show(); 
+    					
+    					
+    					
+    					/*Toast t = Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT);
     					t.setGravity(Gravity.CENTER, 0, 0);
     					t.show();
+    					*/
     					
-    					Intent i = new Intent(Synchronize.this,MainActivity.class);
-    					i.putExtra("ConfigOrder", CONFIG_ORDER);
-    					startActivity(i);
-    					finish();
+    					
     				}
     				catch (NullPointerException e)
     				{
-    					dismissDialog(DIALOG_SET_STATUS);
+    					//dismissDialog(DIALOG_SYNCHRONIZE);
     					Log.e(TAG,"Failed to synch");
-    					Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
+    					errorCode = 123;
+    					/*Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
     					t.setGravity(Gravity.CENTER, 0, 0);
-    					t.show();
+    					t.show();*/
     				}
                     
                     
@@ -305,10 +328,10 @@ public class Synchronize extends Activity
                 catch (JSONException jsonArrayConversionException) 
                 {
                     errorCode = 0; 
-                    dismissDialog(DIALOG_SET_STATUS);
+                    /*dismissDialog(DIALOG_SYNCHRONIZE);
                     Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
                     t.setGravity(Gravity.CENTER ,0, 0);
-                    t.show();
+                    t.show();*/
 			
                 }
             }
@@ -316,7 +339,53 @@ public class Synchronize extends Activity
             // We're checking for errorCode -1 because if we got an exception
             // above then the errorCode would indicate a success even though we
             // had a failure of some sort.
-            handleErrorCode(errorCode);
+           
+            //handleErrorCode(errorCode);
+            dismissDialog(DIALOG_SYNCHRONIZE);
+            
+            String message = "";
+            if (errorCode == null) 
+            {
+                Log.d(LOG, "handleErrorCode was handed null");  
+                message = "PLEASE, CHECK FOR INTERNET CONNECTION";
+            } 
+            else if (errorCode == 102) 
+            {
+                message = "SESSION IS INVALID, PLEASE, LOGIN AGAIN";
+                mFacebook.unsetSession();
+                
+                Editor editor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+                editor.remove(Preferences.FACEBOOK_CRED_SESSION_KEY);
+                editor.remove(Preferences.FACEBOOK_CRED_SECRET);
+                editor.remove(Preferences.FACEBOOK_CRED_UID);
+                editor.commit();
+            } 
+            else if (errorCode == 123)
+            {
+            	message = "NO FRIENDS FOUND";
+            }
+            else 	
+            {
+                message = "UNKNOWN ERROR OCCURED"; //////catch kind of error, when user have no friends
+            }
+            
+            
+            AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
+									.setTitle("FAILED")
+									.setMessage(message)
+									.setPositiveButton("OK", 
+											new DialogInterface.OnClickListener() 
+											{
+												public void onClick(DialogInterface dialog, int whichButton)
+												{
+													dialog.dismiss();
+												}
+											}).create(); 
+            dialog.show(); 
+            
+            
+            
+            
             if (errorCode == null || errorCode == 1 || errorCode == 103 || errorCode == 104) {
                 postToBackgroundHandler(new FbExecuteGetFriendsStatusUpdatesRunnable(mHandler,
                         mFacebook), mRandom.nextInt(10) * 1000 + 1000);
@@ -480,7 +549,7 @@ public class Synchronize extends Activity
 				}
 				else
 				{
-					showDialog(DIALOG_SET_STATUS);
+					showDialog(DIALOG_SYNCHRONIZE);
 					
 					buildBackgroundHandler();
 					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
@@ -704,21 +773,12 @@ public class Synchronize extends Activity
     public Dialog onCreateDialog(int id) {        
         ProgressDialog dialog = new ProgressDialog(this);
         switch (id) {
-            case DIALOG_SET_STATUS:
+            case DIALOG_SYNCHRONIZE:
                 dialog.setTitle("SYNCHRONIZING");
                 dialog.setIndeterminate(true);
                 
                 return dialog;
-            /*    
-            case DIALOG_GET_USER_INFO:
-                dialog.setTitle("Retrieving Status");
-                dialog.setIndeterminate(true);
-                dialog.setMessage("Looking up your current status.");
-                return dialog;
-            case DIALOG_SET_STATUS_LOCATION:
-                dialog.setTitle("Update Status with Location");
-                return dialog;
-            */    
+                
         }
         return null;
     }
@@ -726,17 +786,12 @@ public class Synchronize extends Activity
     @Override
     public void onPrepareDialog(int id, Dialog dialog) {
         switch (id) {
-            case DIALOG_SET_STATUS:
+            case DIALOG_SYNCHRONIZE:
             	            	               
             	((ProgressDialog)dialog).setMessage("LOADING FRIENDS INFO");
                         
                 break;
-            /*
-            case DIALOG_SET_STATUS_LOCATION:
-                ((ProgressDialog)dialog).setMessage("Setting status: "
-                        + mEditStatus.getText().toString());
-                break;
-            */    
+                
         }
     }
     

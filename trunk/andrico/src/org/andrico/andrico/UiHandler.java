@@ -17,6 +17,7 @@ import org.andrico.andrico.facebook.FBMethod;
 import org.apache.http.HttpResponse;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -97,21 +98,25 @@ class UiHandler extends Handler {
      * @param errorCode
      */
     void handleErrorCode(Integer errorCode) {
-        if (errorCode == null) {
-            Log.d(LOG, "handleErrorCode was handed null");
-            notifyUser("A network error occured.");
-        } else if (errorCode == 102) {
-            notifyUser("Please login again, your session is invalid.");
+        if (errorCode == null) 
+        {
+            Log.d(LOG, "handleErrorCode was handed null");  
+            notifyUser("PLEASE, CHECK FOR INTERNET CONNECTION");
+        } 
+        else if (errorCode == 102) 
+        {
+            notifyUser("SESSION IS INVALID, PLEASE, LOGIN AGAIN");
+            mFacebook.unsetSession();
+            
             Editor editor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
-            editor.putBoolean(Preferences.FACEBOOK_CRED_LOGGED_IN, false);
+            editor.remove(Preferences.FACEBOOK_CRED_SESSION_KEY);
+            editor.remove(Preferences.FACEBOOK_CRED_SECRET);
+            editor.remove(Preferences.FACEBOOK_CRED_UID);
             editor.commit();
-        } else if (errorCode == 104) {
-            // This means the signature was incorrect... The app will
-            // probably want to try this request again.
-        } else if (errorCode == 250) {
-            notifyUser("Please authorize 'Status Updates' and 'Photo Uploads' from preferences.");
-        } else {
-            notifyUser("An unknown error occured.");
+        } 
+        else 
+        {
+            notifyUser("An unknown error occured"); //////catch kind of error, when user have no friends
         }
     }
 

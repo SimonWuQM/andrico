@@ -97,10 +97,7 @@ public class LoginActivity extends AuthorizationActivity {
                             result.putExtra(LoginActivity.SESSION_KEY_EXTRA, sessionKey);
                             result.putExtra(LoginActivity.SECRET_EXTRA, secret);
                             result.putExtra(LoginActivity.UID_EXTRA, uid);
-                            Toast t = Toast.makeText(LoginActivity.this, "ACQUIRED FACEBOOK SESSION",
-                                    Toast.LENGTH_SHORT);
-                            t.setGravity(Gravity.CENTER, 0, 0);
-                        	t.show();
+                            Synchronize.tokenMessage = "ACQUIRED FACEBOOK SESSION";
                         	
                             setResult(RESULT_OK, result);
                             
@@ -120,11 +117,8 @@ public class LoginActivity extends AuthorizationActivity {
                             } catch (JSONException e1) {
                                 Log.e(LOG, "Stil cannot Parse JSON result", e1);
                             }
-                            Toast t = Toast.makeText(LoginActivity.this, "COULD NOT ACQUIRE SESSION",
-                                    Toast.LENGTH_SHORT);
-                            t.setGravity(Gravity.CENTER, 0, 0);
-                        	t.show();
-                        	
+                            Synchronize.tokenMessage = "COULD NOT ACQUIRE SESSION";
+                                                            	
                             setResult(RESULT_CANCELED);
                         }
                         finish();
@@ -174,7 +168,7 @@ public class LoginActivity extends AuthorizationActivity {
                                         getSession(authTokenEditText.getText().toString());
                                     }
                                 })
-                                .setNegativeButton(android.R.string.cancel, 
+                                /*.setNegativeButton(android.R.string.cancel, 
                                 	new DialogInterface.OnClickListener() 
                                 {
                                     public void onClick(DialogInterface dialog, int whichButton) 
@@ -187,7 +181,7 @@ public class LoginActivity extends AuthorizationActivity {
                                         setResult(RESULT_CANCELED);
                                         finish();
                                     }
-                                }).create();
+                                })*/.create();
         }
         return null;
     }

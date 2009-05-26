@@ -13,7 +13,7 @@
         android:layout_height="fill_parent"
         android:background="#30567D">
 			
-			<ExpandableListView android:id="@id/android:list"
+			<ListView android:id="@id/android:list"
     			android:orientation="vertical"
         		android:layout_width="fill_parent" 
         		android:layout_height="fill_parent"
@@ -21,7 +21,7 @@
         		android:minHeight="80px"
         		android:background="#30567D" 
         		android:choiceMode="singleChoice">
-			</ExpandableListView>
+			</ListView>
  			
  			<LinearLayout android:id="@android:id/empty" 
 				android:orientation="vertical"

@@ -270,12 +270,11 @@ public class Synchronize extends Activity
     				}
     				catch (NullPointerException e)
     				{
+    					dismissDialog(DIALOG_SET_STATUS);
     					Log.e(TAG,"Failed to synch");
     					Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
     					t.setGravity(Gravity.CENTER, 0, 0);
     					t.show();
-    					
-    					creatingList = false;
     				}
                     
                     
@@ -306,11 +305,11 @@ public class Synchronize extends Activity
                 catch (JSONException jsonArrayConversionException) 
                 {
                     errorCode = 0; 
-                    
+                    dismissDialog(DIALOG_SET_STATUS);
                     Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
                     t.setGravity(Gravity.CENTER ,0, 0);
                     t.show();
-					creatingList = false;
+			
                 }
             }
 
@@ -323,7 +322,7 @@ public class Synchronize extends Activity
                         mFacebook), mRandom.nextInt(10) * 1000 + 1000);
             }
             
-            creatingList = false;
+            
        }
 
         

@@ -55,6 +55,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class Synchronize extends Activity 
 {
 	private EditText textProfile, textUsername, textPassword;
@@ -81,7 +82,8 @@ public class Synchronize extends Activity
     					"current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN " +
     					"(SELECT uid2 FROM friend WHERE uid1=";
     private List<Bundle> newList;
-    private Boolean creatingList;
+    public static String tokenMessage;
+    
     
     private static abstract class FbRunnable implements Runnable {
         final WeakReference<FB> mFacebookWeakRef;
@@ -166,25 +168,13 @@ public class Synchronize extends Activity
                     
                     ///!!! HERE We can Pars Json Response
                     
-                    //mListAdapter.setListFromJson(jsonResult);
                     
                     newList = new Vector<Bundle>();
                     for (int i = 0; i < result.length(); i++) {
                         try {
-                            // Verify we have the things we want, otherwise an exception
-                            // will be thrown.`
                             JSONObject obj = jsonResult.getJSONObject(i);
-                      //      JSONObject jsonUserInfo = new JSONArray(result).getJSONObject(i);
                             
-                          /*  if (!obj.getJSONObject("first_name").getString("message").equals("")) {*/
-                                Bundle update = new Bundle();
-                               /*
-                                update.putString("name", obj.optString("name"));
-                                update.putString("status", obj.optJSONObject("status").optString("message"));
-                                update.putString("status_id", obj.optJSONObject("status")
-                                        .optString("status_id"));
-                                update.putString("time", obj.optJSONObject("status").optString("time"));
-                                */    
+                            	Bundle update = new Bundle();
                                 
                                 update.putString("name", obj.optString("name"));
                                 update.putString("birthday", obj.optString("birthday"));
@@ -211,13 +201,11 @@ public class Synchronize extends Activity
                                 
                                 update.putString("uid", obj.optString("uid"));
                                 
-                                // update.putString("location2", obj.optJSONArray("location"));
                               
                                                                                                                               
                                 newList.add(update);
                                 
                                 
-                                /*}*/
                         } catch (NullPointerException e) {
                             // if we don't have the things we need for this friend, don't
                             // put it in newList
@@ -227,12 +215,7 @@ public class Synchronize extends Activity
                         }
                     }
                     
-                    
-                    
-                    
-                    
-                    
-                    
+                                        
                     LinkedList <Contact> friends = new LinkedList<Contact>();
     				DBContact db = new DBContact();
     				try
@@ -280,59 +263,17 @@ public class Synchronize extends Activity
     						                        }
     						                }).create(); 
     					dialog.show(); 
-    					
-    					
-    					
-    					/*Toast t = Toast.makeText(getApplicationContext(), "SYNCHRONIZATION COMPLETE",Toast.LENGTH_SHORT);
-    					t.setGravity(Gravity.CENTER, 0, 0);
-    					t.show();
-    					*/
-    					
-    					
     				}
     				catch (NullPointerException e)
     				{
-    					//dismissDialog(DIALOG_SYNCHRONIZE);
     					Log.e(TAG,"Failed to synch");
     					errorCode = 123;
-    					/*Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
-    					t.setGravity(Gravity.CENTER, 0, 0);
-    					t.show();*/
     				}
-                    
-                    
-                    
-                    // Sort the status list.
-                  /*  
-                    Collections.sort(newList, new Comparator<Bundle>() {
-                        public int compare(final Bundle object1, final Bundle object2) {
-                            // Reverse the comparison.
-                            return -1 * object1.getString("time").compareTo(object2.getString("time"));
-                        }
-                    });
-				*/
-                    // Update the status list.
-                  //  setList(newList);
-                    
-                    
-                    
                     // -------------------- end of parsing -------------------------------
-                    
-                    
-                    
-                    
-                    
-                    notifyUser("", false);
-                    return;
                 } 
                 catch (JSONException jsonArrayConversionException) 
                 {
                     errorCode = 0; 
-                    /*dismissDialog(DIALOG_SYNCHRONIZE);
-                    Toast t = Toast.makeText(getApplicationContext(), "FAILURE SYNCHRONIZING",Toast.LENGTH_LONG);
-                    t.setGravity(Gravity.CENTER ,0, 0);
-                    t.show();*/
-			
                 }
             }
 
@@ -340,7 +281,6 @@ public class Synchronize extends Activity
             // above then the errorCode would indicate a success even though we
             // had a failure of some sort.
            
-            //handleErrorCode(errorCode);
             dismissDialog(DIALOG_SYNCHRONIZE);
             
             String message = "";
@@ -366,7 +306,7 @@ public class Synchronize extends Activity
             }
             else 	
             {
-                message = "UNKNOWN ERROR OCCURED"; //////catch kind of error, when user have no friends
+                message = "UNKNOWN ERROR OCCURED";
             }
             
             
@@ -464,8 +404,7 @@ public class Synchronize extends Activity
         super.onCreate(savedInstanceState);
         Log.d(LOG, "onCreate");
         mContext = this;
-        creatingList = false;
-
+        
         // Load the preferences from an XML resource
         /*this.addPreferencesFromResource(R.xml.preferences);*/
  //       mSettings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -496,25 +435,6 @@ public class Synchronize extends Activity
         	this.findViewById(R.id.Synch).setEnabled(false);
         }
        
-        // setPrefsFromFakeFacebookSession();
-
-        /*mFacebookLoggedInCheckBox = (CheckBoxPreference)getPreferenceScreen().findPreference(
-                Preferences.FACEBOOK_CRED_LOGGED_IN);
-        mFacebookPhotosAuthCheckBox = (CheckBoxPreference)getPreferenceScreen().findPreference(
-                Preferences.FACEBOOK_CRED_PHOTOS_AUTH);
-        mFacebookStatusAuthCheckBox = (CheckBoxPreference)getPreferenceScreen().findPreference(
-                Preferences.FACEBOOK_CRED_STATUS_AUTH);
-
-        mFacebookLoggedInCheckBox.setEnabled(true);
-        mFacebookLoggedInCheckBox
-                .setOnPreferenceClickListener(new FacebookLoggedInCheckboxOnPreferenceClickListener());
-
-*/
-        
-        
-        
-               
-        
         this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
@@ -530,6 +450,7 @@ public class Synchronize extends Activity
         {
         	public void onClick(View v)
 			{
+        		tokenMessage = "TOKEN WASN'T CREATED";
 				startActivityForResult(mFacebook.createLoginActivityIntent(mContext), FACEBOOK_LOGIN_REQUEST_CODE);
         	}
 		});
@@ -588,66 +509,48 @@ public class Synchronize extends Activity
         Log.d(LOG, "onActivityResult");
         if (mFacebook.handleLoginActivityResult(this, resultCode, data)) 
         {
+        	AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
+			.setTitle("LOGGED IN")
+			.setMessage(tokenMessage)
+			.setPositiveButton("OK", 
+					new DialogInterface.OnClickListener() 
+					{
+						public void onClick(DialogInterface dialog, int whichButton)
+						{
+							dialog.dismiss();
+						}
+					}).create(); 
+        	dialog.show();
         	setPrefsFromFacebookSession();
-        	this.findViewById(R.id.Synch).setEnabled(true);
-                    
-
-        	/*
-        			//setPrefsFromFacebookSession();
-                    // Heh. RPC to the server to make sure the login worked.
-                    //verifyFacebookLoggedIn();
-                	Intent i = new Intent(Synchronize.this, StartSynchronization.class);
-					String[] s = {"",""};
-					i.putExtra("ConfigOrder", CONFIG_ORDER);
-					i.putExtra("PostTitleAndContent", s);
-					try
-					{
-					startActivity(i);
-					}
-					catch (ActivityNotFoundException e)
-					{
-						 Log.e(TAG,"Failed to start activity");
-					}
-		            finish();
-		            */
-                	
+        	this.findViewById(R.id.Synch).setEnabled(true);                	
         } 
         else 
         {
-        	Toast t = Toast.makeText(mContext, "FAILURE LOGGING IN", Toast.LENGTH_LONG);
-        	t.setGravity(Gravity.CENTER, 0, 0);
-        	t.show();
+        	AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
+			.setTitle("FAILED")
+			.setMessage(tokenMessage)
+			.setPositiveButton("OK", 
+					new DialogInterface.OnClickListener() 
+					{
+						public void onClick(DialogInterface dialog, int whichButton)
+						{
+							dialog.dismiss();
+						}
+					}).create(); 
+        	dialog.show();
             
         	this.findViewById(R.id.Synch).setEnabled(false);
             
-        	//unsetUiFacebookLoggedIn();
-
-            // Wipe the user session.
+        	//Unset the user session.
             mFacebook.unsetSession();
             SharedPreferences.Editor editor = SharedPreferences.edit();
             editor.remove(Preferences.FACEBOOK_CRED_SESSION_KEY);
             editor.remove(Preferences.FACEBOOK_CRED_SECRET);
             editor.remove(Preferences.FACEBOOK_CRED_UID);
             editor.commit();
-            //setPrefsFromFacebookSession();
         }            
     }				
-        
     
-    
-    
-    
-    
-    /*private void createConfigDependentFields(BlogConfig bcb) {
-    	BlogConfigBLOGGER.BlogInterfaceType blogtype = BlogConfigBLOGGER.getInterfaceTypeByNumber(bcb.getPostmethod());
-        bi = BlogInterfaceFactory.getInstance(blogtype);
-        bi.setInstanceConfig(myBlogConfig.getPostConfig());
-        Button verify = (Button)findViewById(R.id.FETCH_BUTTON_ID);
-        if(bi != null) {
-                bi.createOnClickListener(this, verify);
-        }
-    }*/
-
     public boolean onKeyDown(int keyCode, KeyEvent event) 
     { 
     	if(keyCode==KeyEvent.KEYCODE_BACK)

@@ -18,6 +18,7 @@ import com.google.gdata.data.Feed;
 
 import android.app.Activity;
 import android.app.ExpandableListActivity;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,24 +27,28 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import 	android.widget.ExpandableListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ExpandableListView.OnChildClickListener;
 
 
 
-public class ContactList extends ExpandableListActivity
+public class ContactList extends ListActivity
 {
 	private LinkedList<Contact> contacts = null;
 	final static String TAG = "ContactList";
 	private static int CONFIG_ORDER = 0;
-	private SimpleExpandableListAdapter listAdapter = null;
-	protected ExpandableListView list;
+	private SimpleAdapter listAdapter = null;
+	protected ListView list;
 	
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -56,80 +61,41 @@ public class ContactList extends ExpandableListActivity
 	    
 	    DBContact db = new DBContact();
      	
-     	/*Contact contact = new Contact();
-        contact.setName("Erik");
-        contact.setSecondName("Brooks");
-        contact.setDateOfBirth("15.07.67");
-        contact.setAdress("London");
-        contact.setPage("www.erik-brooks.com");
-        contact.setFBid("12");
-        
-        db.insert(ContactList.this, contact);
-        */
-	    
 	    contacts = db.getContactList(ContactList.this);
 
 	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
-	    LinkedList<LinkedList<Map<String, String>>> infos = new LinkedList<LinkedList<Map<String, String>>>();
-	    
-	  
-		
 	    
 	    if (contacts != null)
 		{
 	    	for(int j = 0; j < contacts.size(); j++) 
          	{
         		TreeMap<String, String> cont = new TreeMap<String, String> ();
-                TreeMap<String, String> info = new TreeMap<String, String> ();
                 
         		cont.put("contact", contacts.get(j).getName() + " " + contacts.get(j).getSecondName());
-                info.put( "date", contacts.get(j).getDateOfBirth());
-                info.put( "adress", contacts.get(j).getAdress());
-                info.put( "page", contacts.get(j).getPage());
-                
-                conts.add(cont);
-                LinkedList<Map<String, String>> infolist = new LinkedList<Map<String, String>>();
-                infolist.add(info);
-                infos.add(infolist);
+                cont.put("fbid", contacts.get(j).getFBid());
+        		conts.add(cont);
             }
-         	listAdapter = new SimpleExpandableListAdapter(
-        												this,
-        												conts,
-        												R.layout.group_row,
-        												new String[] {"contact"},
-        												new int[] { R.id.NameOfGroup },
-        												infos,
-        												R.layout.child_table,
-        												new String[] {"date", "adress", "page"},
-        												new int[] {R.id.date, R.id.adress, R.id.page});
+         	listAdapter = new SimpleAdapter(this, conts, R.layout.group_row, 
+         					new String[] {"contact", "fbid"},
+         					new int[] {R.id.NameOfGroup, R.id.FBID});
         }  
 	    
 	    
-	    this.list = (ExpandableListView) this.findViewById(android.R.id.list);
-    	this.list.setAdapter(listAdapter);
-        
-    
+	    this.list = (ListView) this.findViewById(android.R.id.list);
     	
-    	this.registerForContextMenu(list);
-    	this.list.setOnChildClickListener(new OnChildClickListener()
-        {
-    		public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) 
-        	{
-        		//Response resp = (Response)listAdapter.getChild(groupPosition, childPosition);
-        		Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
-        		/*switch(childPosition)
-        		{
-        			case 2:
-        				Toast.makeText(ContactList.this,"adress", Toast.LENGTH_SHORT).show();
-        					
-        			case 3:
-        				Toast.makeText(ContactList.this,"url", Toast.LENGTH_SHORT).show();		
-        		}
-        		*/	
-        		return false;
-        	}
-        	
-        });
+    	getListView().setTextFilterEnabled(true);
+    	//getListView().setItemsCanFocus(true);
+    	
+    	list.setOnItemClickListener(new OnItemClickListener()
+    	{
+			public void onItemClick(AdapterView parent, View v, int position, long id) 
+			{
+				Toast.makeText(ContactList.this, "CLICKED", Toast.LENGTH_SHORT);
+			}
+    		
+    	});
+    	
+    	
     	
     	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()
         {
@@ -143,18 +109,9 @@ public class ContactList extends ExpandableListActivity
 	            finish();
        		}
 		});
-        //this.getExpandableListView().setOnGroupClickListener(this);
-        
-    	//this.getExpandableListView().setOnGroupExpandListener(ContactList.this);
 	}
 	
-	public void onGroupExpand(int groupPosition)
-	{
-		Object group;
-		
-		group = listAdapter.getGroup(groupPosition);
-		
-	}
+	
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
     { 

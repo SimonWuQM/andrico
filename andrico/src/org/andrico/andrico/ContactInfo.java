@@ -13,6 +13,8 @@ import java.util.LinkedList;
 
 import org.andrico.andrico.content.Contact;
 import org.andrico.andrico.content.DBContact;
+import org.andrico.andrico.facebook.AuthorizationActivity;
+import org.andrico.andrico.facebook.LoginActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -33,6 +35,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,12 +50,12 @@ import com.google.gdata.util.ServiceException;
 
 
 
-public class ContactInfo extends Activity 
+public class ContactInfo extends Activity
 {
     /** Called when the activity is first created. */
     private static String fbid = "";
 	
-	final static String TAG = "ContactInfo";
+	final static String LOG = "ContactInfo";
 	public static Feed resultFeed = null;
 	int viewStatus = 0;
 	
@@ -129,19 +132,22 @@ public class ContactInfo extends Activity
 	    	((Button) this.findViewById(R.id.page)).setVisibility(View.VISIBLE);
 	    }
 	    
-	    /*this.findViewById(R.id.ViewContacts).setOnClickListener(new OnClickListener()
+	    this.findViewById(R.id.page).setOnClickListener(new OnClickListener()
 	        {
 	        	public void onClick(View v)
-				{        		
-					Intent i = new Intent(MainActivity.this, ContactList.class);
-					String[] s = {"",""};
-					i.putExtra("ConfigOrder", CONFIG_ORDER);
-					i.putExtra("PostTitleAndContent", s);
-					startActivity(i);
-		            finish();
+				{   
+	        		
+	        		
+	        		String path = (String)((Button) ContactInfo.this.findViewById(R.id.page)).getText();
+	        		
+	        		Intent i = new Intent(ContactInfo.this, WebActivity.class);
+	        		i.putExtra("url", path);
+	        		Log.d(LOG, "loadUrl: " + path.toString());
+	        		startActivity(i);
+	        		 
 	       		}
 			}); 
-	        */
+	        
 	       
 	}
 		

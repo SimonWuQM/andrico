@@ -75,6 +75,7 @@ public final class R {
         public static final int exit=0x7f040006;
         public static final int facebook_api_key=0x7f040000;
         public static final int facebook_secret_key=0x7f040001;
+        public static final int loading_page=0x7f040016;
         public static final int log_in=0x7f040008;
         public static final int login_label=0x7f040010;
         public static final int new_profile=0x7f040007;

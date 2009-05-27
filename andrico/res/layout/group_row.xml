@@ -19,7 +19,11 @@
 				android:text="name of group" 
 				android:textStyle="bold" 
 				android:layout_width="fill_parent" 
-				android:gravity="center_vertical|center_horizontal" android:minHeight="57px" android:textSize="25px" android:singleLine="true" android:clickable="true">
+				android:gravity="center_vertical|center_horizontal" 
+				android:minHeight="57px" 
+				android:textSize="25px" 
+				android:singleLine="true" 
+				android:clickable="true" android:focusable="true">
 		</TextView>
 		
 		<TextView android:id="@+id/FBID" 
@@ -29,7 +33,8 @@
 				android:textStyle="bold" 
 				android:layout_width="fill_parent" 
 				android:gravity="center_vertical|center_horizontal" 
-				android:minHeight="1px" android:textSize="1px" android:visibility="invisible">
+				android:minHeight="1px" android:textSize="1px" 
+				android:visibility="invisible">
 		</TextView>		
 </LinearLayout>
 

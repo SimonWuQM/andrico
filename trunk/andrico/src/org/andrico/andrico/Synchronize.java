@@ -460,22 +460,9 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				ConnectivityManager cm = (ConnectivityManager) Synchronize.this.getSystemService(Synchronize.this.CONNECTIVITY_SERVICE); 
-				NetworkInfo netInfo = cm.getActiveNetworkInfo();
-				         
-				if(netInfo.getState() != NetworkInfo.State.CONNECTED)
-				{
-					Toast t = Toast.makeText(getApplicationContext(), "INTERNET CONNECTION UNAVALIABLE", Toast.LENGTH_LONG);;
-					t.setGravity(Gravity.CENTER, 0, 0);
-					t.show();
-				}
-				else
-				{
-					showDialog(DIALOG_SYNCHRONIZE);
-					
-					buildBackgroundHandler();
-					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
-				}
+				showDialog(DIALOG_SYNCHRONIZE);
+				buildBackgroundHandler();
+				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
         	}
 		});
     }

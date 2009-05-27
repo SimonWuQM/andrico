@@ -46,11 +46,7 @@ public class MainActivity extends Activity
     
 	Context cont;
 	
-	private static final int BLOGCONFIG_REQUEST = 4;
 	final static String TAG = "MainActivity";
-	private static int CONFIG_ORDER = 0;
-	private ProgressDialog viewProgress = null;
-	private final String MSG_KEY="value";
 	public static Feed resultFeed = null;
 	int viewStatus = 0;
 	
@@ -65,14 +61,7 @@ public class MainActivity extends Activity
 	        w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_andrico);
 	        
 	        Intent i = this.getIntent();
-	        if(i.hasExtra("ConfigOrder"))
-	        {
-	        	CONFIG_ORDER=i.getIntExtra("ConfigOrder", 0);
-	        }
-	        else
-	        {
-	        	CONFIG_ORDER=0;
-	        }
+	        
 	        
 	        this.findViewById(R.id.ViewContacts).setOnClickListener(new OnClickListener()
 	        {
@@ -80,7 +69,6 @@ public class MainActivity extends Activity
 				{        		
 					Intent i = new Intent(MainActivity.this, ContactList.class);
 					String[] s = {"",""};
-					i.putExtra("ConfigOrder", CONFIG_ORDER);
 					i.putExtra("PostTitleAndContent", s);
 					startActivity(i);
 		            finish();
@@ -91,24 +79,11 @@ public class MainActivity extends Activity
 	        {
 				public void onClick(View v)
 				{   
-					ConnectivityManager cm = (ConnectivityManager) MainActivity.this.getSystemService(MainActivity.this.CONNECTIVITY_SERVICE); 
-					NetworkInfo netInfo = cm.getActiveNetworkInfo();
-					         
-					if(netInfo == null)
-					{
-						Toast t = Toast.makeText(getApplicationContext(), "INTERNET CONNECTION UNAVALIABLE", Toast.LENGTH_LONG);;
-						t.setGravity(Gravity.CENTER, 0, 0);
-						t.show();
-					} 
-					else
-					{
 						Intent i = new Intent(MainActivity.this, Synchronize.class);
 						String[] s = {"",""};
-						i.putExtra("ConfigOrder", CONFIG_ORDER);
 						i.putExtra("PostTitleAndContent", s);
 						startActivity(i);
 						finish();
-					}
 	       		}
 			});
 	        
@@ -126,25 +101,4 @@ public class MainActivity extends Activity
 	       		}
 			});
 	    }
-
-		public void onItemSelected(AdapterView<?> parent, View v, int position, long id) 
-		{
-			// TODO Auto-generated method stub
-			CONFIG_ORDER=position;
-		}
-
-		public void onNothingSelected(AdapterView<?> arg0) 
-		{
-			// TODO Auto-generated method stub	
-		}
-		
-		private void showViewStatus() 
-		{
-	        viewProgress.dismiss();
-	        if(viewStatus != 5) 
-	        {
-	        	/*Alert.showAlert(this,"View status","View failed! (Code "+viewStatus+")\nTry again.");*/
-	        }
-	    }
-	
 }

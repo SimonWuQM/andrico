@@ -95,17 +95,6 @@ public class ContactList extends ListActivity
 	    this.list = (ListView) this.findViewById(android.R.id.list);
     	list.setAdapter(listAdapter);
     	getListView().setTextFilterEnabled(true);
-    	//getListView().setClickable(true);
-    	//getListView().setFocusable(true);
-    	
-    	/*list.setOnItemClickListener(new OnItemClickListener()
-    	{
-			public void onItemClick(AdapterView parent, View v, int position, long id) 
-			{
-				Toast.makeText(ContactList.this, "CLICKED", Toast.LENGTH_SHORT);
-			}
-    		
-    	});*/
     	
     	    	
     	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()
@@ -113,9 +102,6 @@ public class ContactList extends ListActivity
 			public void onClick(View v)
 			{        		
 				Intent i = new Intent(ContactList.this, Synchronize.class);
-				String[] s = {"",""};
-				i.putExtra("ConfigOrder", CONFIG_ORDER);
-				i.putExtra("PostTitleAndContent", s);
 				startActivity(i);
 	            finish();
        		}
@@ -127,18 +113,15 @@ public class ContactList extends ListActivity
 	{
 		super.onListItemClick(l, v, position, id);
 		
-		AlertDialog dialog = new AlertDialog.Builder(ContactList.this)
-										.setTitle("CLICKED")
-										.setMessage("contact number " + Integer.toString(position))
-										.setPositiveButton("OK", 
-										new DialogInterface.OnClickListener() 
-										{
-											public void onClick(DialogInterface dialog, int whichButton)
-											{
-												dialog.dismiss();
-											}
-										}).create();
-		dialog.show();
+		TextView faceBookID = (TextView)v.findViewById(R.id.FBID );
+		
+		String fbid = (String) faceBookID.getText();
+		
+		Intent i = new Intent(ContactList.this, ContactInfo.class);
+		i.putExtra("fbid", fbid);
+		
+		startActivity(i);
+        finish();
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
@@ -146,7 +129,6 @@ public class ContactList extends ListActivity
     	if(keyCode==KeyEvent.KEYCODE_BACK)
     	{
     		Intent i = new Intent(ContactList.this,MainActivity.class);
-    		i.putExtra("ConfigOrder", CONFIG_ORDER);
     		startActivity(i);
             finish();
             return true;

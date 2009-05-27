@@ -33,17 +33,18 @@
         		  android:label="@string/contact_info">
         </activity>
         
+        <activity
+			android:name=".WebActivity"
+			android:label="@string/loading_page"
+			
+			android:configChanges="keyboardHidden|orientation">
+		</activity>
         
         <activity
 			android:name=".facebook.LoginActivity"
 			android:label="@string/login_label"
 			
 			android:configChanges="keyboardHidden|orientation">
-		</activity>
-	
-		<activity
-			android:name=".facebook.ExtendedPreferenceActivity"
-			android:label="Authorize Facebook Extended Preference">
 		</activity>
 
 			

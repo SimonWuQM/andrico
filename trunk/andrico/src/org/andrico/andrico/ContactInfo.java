@@ -123,7 +123,9 @@ public class ContactInfo extends Activity
 	    	((TextView) this.findViewById(R.id.secondName)).setText(contact.getSecondName());
 	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
 	    	((Button) this.findViewById(R.id.adress)).setText(contact.getAdress());
-	    	((Button) this.findViewById(R.id.page)).setText(contact.getPage());
+	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
+	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
+	    	
 	    	
 	    	((TextView) this.findViewById(R.id.name)).setVisibility(View.VISIBLE);
 	    	((TextView) this.findViewById(R.id.secondName)).setVisibility(View.VISIBLE);
@@ -138,7 +140,7 @@ public class ContactInfo extends Activity
 				{   
 	        		
 	        		
-	        		String path = (String)((Button) ContactInfo.this.findViewById(R.id.page)).getText();
+	        		String path = (String)((TextView) ContactInfo.this.findViewById(R.id.url)).getText();
 	        		
 	        		Intent i = new Intent(ContactInfo.this, WebActivity.class);
 	        		i.putExtra("url", path);

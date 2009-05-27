@@ -70,7 +70,7 @@ public abstract class AuthorizationActivity extends Activity {
             {
             	if (AuthorizationActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             	{
-            		mWebView.scrollTo(120, 120);
+            		mWebView.scrollTo(150, 50);
             	}
             	else
             	{

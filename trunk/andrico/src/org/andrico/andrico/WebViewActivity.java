@@ -5,9 +5,10 @@
  *										*
  ****************************************/
 
-package org.andrico.andrico.facebook;
+package org.andrico.andrico;
 
 import org.andrico.andrico.R;
+import org.andrico.andrico.facebook.AuthorizationActivity;
 
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -19,24 +20,16 @@ import android.view.Window;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 
-/**
- * An activity that will connect to facebook, have the user log in and return to
- * the caller a string representing session information. It expects to receive
- * an Intent with the extras "api_key" and "api_secret" as provided by facebook.
- */
-public abstract class AuthorizationActivity extends Activity {
+
+public abstract class WebViewActivity extends Activity {
     private class WebChromeClient extends android.webkit.WebChromeClient {
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            AuthorizationActivity.this.setProgress(newProgress * 100);
+            WebViewActivity.this.setProgress(newProgress * 100);
         }
     }
    
-    /**
-     * Capture a web session and close it as soon as a user has successfully
-     * logged in.
-     */
     
     private class WebViewClient extends android.webkit.WebViewClient {
 
@@ -44,7 +37,7 @@ public abstract class AuthorizationActivity extends Activity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             Log.d(LOG, "onPageStarted: " + url);
-            AuthorizationActivity.this.onPageStarted(url);   
+            WebViewActivity.this.onPageStarted(url);   
         }
         
         @Override
@@ -53,7 +46,7 @@ public abstract class AuthorizationActivity extends Activity {
             Log.d(LOG, "onPageStarted: " + url);
             if ((url.indexOf("http://www.facebook.com/login.php") > -1 ))
             {
-            	if (AuthorizationActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            	if (WebViewActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             	{
             		mWebView.scrollTo(200, 270);
             		((WebView)findViewById(R.id.web_view)).zoomIn();
@@ -66,14 +59,14 @@ public abstract class AuthorizationActivity extends Activity {
             	((WebView)findViewById(R.id.web_view)).zoomIn();
             	
             }
-            AuthorizationActivity.this.onPageFinished(url);
+            WebViewActivity.this.onPageFinished(url);
         }
     }
     
     // ----------------------------------------------------------------------------
     
     
-    private static final String LOG = "AuthorizationActivity";
+    private static final String LOG = "WebViewActivity";
 
     private Uri mLastUrl = null;
     private WebView mWebView;

@@ -114,7 +114,6 @@ public class ContactList extends ListActivity
 		super.onListItemClick(l, v, position, id);
 		
 		TextView faceBookID = (TextView)v.findViewById(R.id.FBID );
-		
 		String fbid = (String) faceBookID.getText();
 		
 		Intent i = new Intent(ContactList.this, ContactInfo.class);

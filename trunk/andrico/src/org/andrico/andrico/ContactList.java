@@ -23,13 +23,16 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -41,6 +44,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -80,21 +84,16 @@ public class ContactList extends ListActivity
                 cont.put("fbid", contacts.get(j).getFBid());
         		conts.add(cont);
             }
+	    	
 	    	listAdapter = new SimpleAdapter(this, conts, R.layout.group_row, 
          					new String[] {"contact", "fbid"},
          					new int[] {R.id.NameOfGroup, R.id.FBID});
-         	
-         	/*listAdapter = new SimpleAdapter(this, conts, android.R.layout.simple_list_item_2, 
-                    new String[] {"contact", "fbid"},
-                    new int[] {android.R.id.text1, android.R.id.text2});*/
         }  
-	    
-	  //getListView().setItemsCanFocus(true);
-    	
 	    
 	    this.list = (ListView) this.findViewById(android.R.id.list);
     	list.setAdapter(listAdapter);
     	getListView().setTextFilterEnabled(true);
+    	
     	
     	    	
     	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()

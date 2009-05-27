@@ -66,6 +66,20 @@ public abstract class AuthorizationActivity extends Activity {
             	((WebView)findViewById(R.id.web_view)).zoomIn();
             	
             }
+            else if(url.indexOf("http://www.facebook.com/code_gen.php?v=1.0")>-1)
+            {
+            	if (AuthorizationActivity.this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            	{
+            		mWebView.scrollTo(120, 120);
+            	}
+            	else
+            	{
+            		mWebView.scrollTo(190, 0);
+            	}
+            	
+            	((WebView)findViewById(R.id.web_view)).zoomIn();
+        		((WebView)findViewById(R.id.web_view)).zoomIn();
+            }
             AuthorizationActivity.this.onPageFinished(url);
         }
     }

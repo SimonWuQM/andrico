@@ -54,7 +54,7 @@
 						android:text="@string/no_adress" 
 						android:textStyle="bold" 
 						android:drawableLeft="@android:drawable/ic_menu_mapmode" 
-						android:height="55px" 
+						android:height="65px" 
 						android:textSize="18px" android:layout_marginTop="10px" android:visibility="invisible">
 				</Button>
 				<Button android:id="@+id/page" 

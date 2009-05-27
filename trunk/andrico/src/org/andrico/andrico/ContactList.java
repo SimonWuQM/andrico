@@ -36,6 +36,7 @@ import android.widget.SimpleCursorAdapter;
 import 	android.widget.ExpandableListView;
 import android.widget.ExpandableListAdapter;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -49,7 +50,7 @@ public class ContactList extends ListActivity
 	private static int CONFIG_ORDER = 0;
 	private SimpleAdapter listAdapter = null;
 	protected ListView list;
-	
+	TextView selection;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -82,11 +83,15 @@ public class ContactList extends ListActivity
 	    
 	    
 	    this.list = (ListView) this.findViewById(android.R.id.list);
-    	
+    	list.setAdapter(listAdapter);
     	getListView().setTextFilterEnabled(true);
+    	registerForContextMenu(getListView());
+    	
+    	
     	//getListView().setItemsCanFocus(true);
     	
-    	list.setOnItemClickListener(new OnItemClickListener()
+    	
+    	/*list.setOnItemClickListener(new OnItemClickListener()
     	{
 			public void onItemClick(AdapterView parent, View v, int position, long id) 
 			{
@@ -94,7 +99,7 @@ public class ContactList extends ListActivity
 			}
     		
     	});
-    	
+    	*/
     	
     	
     	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()
@@ -111,7 +116,11 @@ public class ContactList extends ListActivity
 		});
 	}
 	
-	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id)
+	{
+		Toast.makeText(ContactList.this, "CLICKED", Toast.LENGTH_LONG);
+	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
     { 
@@ -127,4 +136,6 @@ public class ContactList extends ListActivity
 	}
 	
  }
- 
+
+
+

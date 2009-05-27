@@ -263,6 +263,7 @@ public class Synchronize extends Activity
     						                        }
     						                }).create(); 
     					dialog.show(); 
+    					return;
     				}
     				catch (NullPointerException e)
     				{

@@ -126,12 +126,11 @@ public class ContactInfo extends Activity
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
 	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
 	    	
-	    	
 	    	((TextView) this.findViewById(R.id.name)).setVisibility(View.VISIBLE);
 	    	((TextView) this.findViewById(R.id.secondName)).setVisibility(View.VISIBLE);
 	    	((TextView) this.findViewById(R.id.date)).setVisibility(View.VISIBLE);
 	    	((Button) this.findViewById(R.id.adress)).setVisibility(View.VISIBLE);
-	    	((Button) this.findViewById(R.id.page)).setVisibility(View.VISIBLE);
+	    	((Button) this.findViewById(R.id.page)).setVisibility(View.VISIBLE);    	
 	    }
 	    
 	    this.findViewById(R.id.page).setOnClickListener(new OnClickListener()

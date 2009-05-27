@@ -32,4 +32,5 @@
 <string name="no_adress">no adress avaliable</string>
 <string name="notification">&quot;no contacts avaliable&quot;</string>
 <string name="contact_info">Contact Information</string>
+<string name="loading_page">Loading Page</string>
 </resources>

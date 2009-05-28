@@ -288,6 +288,18 @@ public class DBContact
         	}
         }
         
+        public void synchronizeDel(Context app, LinkedList <Contact> contacts)
+        {
+        	this.deleteContacts(app);
+        	
+        	for (int j = 0; j < contacts.size(); j++)
+        	{
+        		Contact newContact = contacts.get(j);
+        		this.insert(app, newContact);
+        	}
+        }
+        
+        
         /*public void dropContacts(Context app)
         {
         	db.execSQL("DROP TABLE IF EXISTS CONTACTS");

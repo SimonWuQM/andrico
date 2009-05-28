@@ -79,11 +79,9 @@ public class MainActivity extends Activity
 	        {
 				public void onClick(View v)
 				{   
-						Intent i = new Intent(MainActivity.this, Synchronize.class);
-						String[] s = {"",""};
-						i.putExtra("PostTitleAndContent", s);
-						startActivity(i);
-						finish();
+					Intent i = new Intent(MainActivity.this, Synchronize.class);
+					startActivity(i);
+					finish();
 	       		}
 			});
 	        
@@ -91,6 +89,9 @@ public class MainActivity extends Activity
 	        {
 				public void onClick(View v)
 				{
+					Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+					startActivity(i);
+					finish();
 	       		}
 			});
 	        

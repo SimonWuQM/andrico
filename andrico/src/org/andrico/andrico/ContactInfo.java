@@ -119,17 +119,17 @@ public class ContactInfo extends Activity
 	    } 
 	    else
 	    {
-	    	((TextView) this.findViewById(R.id.name)).setText(contact.getName());
-	    	((TextView) this.findViewById(R.id.secondName)).setText(contact.getSecondName());
-	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
-	    	((Button) this.findViewById(R.id.adress)).setText(contact.getAdress());
+	    	((TextView) this.findViewById(R.id.name)).setText(contact.getName() + " " + contact.getSecondName());
+	    	((TextView) this.findViewById(R.id.date)).setText("date of birth: " + contact.getDateOfBirth());
+	    	((TextView) this.findViewById(R.id.adress)).setText("adress: " + contact.getAdress());
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
+	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADRESS ON MAP");
 	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
 	    	
 	    	((TextView) this.findViewById(R.id.name)).setVisibility(View.VISIBLE);
-	    	((TextView) this.findViewById(R.id.secondName)).setVisibility(View.VISIBLE);
 	    	((TextView) this.findViewById(R.id.date)).setVisibility(View.VISIBLE);
-	    	((Button) this.findViewById(R.id.adress)).setVisibility(View.VISIBLE);
+	    	((TextView) this.findViewById(R.id.adress)).setVisibility(View.VISIBLE);
+	    	((Button) this.findViewById(R.id.goToAdress)).setVisibility(View.VISIBLE);
 	    	((Button) this.findViewById(R.id.page)).setVisibility(View.VISIBLE);    	
 	    }
 	    

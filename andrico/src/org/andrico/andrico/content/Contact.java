@@ -19,14 +19,15 @@ public class Contact{
     {
     	name = "";
     	secondName = "";
-    	dateOfBirth = "date of birth is not avaliable";
-    	adress = "no adress avaliable";	
+    	dateOfBirth = "";
+    	adress = "";	
     }
     
     public boolean Equals(Contact cont)
     {
-    	if ((this.name != cont.name) || (this.secondName != cont.secondName) || 
-    				(this.fbId != cont.fbId) || (this.adress != cont.adress) || (this.page != cont.page))
+    	if (!(this.getName().equals(cont.getName())) || !(this.getSecondName().equals(cont.getSecondName())) || 
+    				(!this.getFBid().equals(cont.getFBid())) || (!this.getAdress().equals(cont.getAdress())) || 
+    				(!this.getPage().equals(cont.getPage())))
     	{	
     		return false;
     	}
@@ -68,7 +69,14 @@ public class Contact{
     
     public String getDateOfBirth() 
     {
+    	if (!dateOfBirth.equals(""))
+    	{
             return dateOfBirth;
+    	}
+    	else
+    	{
+    		return "date of birth isn't avaliable";
+    	}
     }
     
     public void setDateOfBirth(String date) 
@@ -78,7 +86,14 @@ public class Contact{
             
     public String getAdress() 
     {
+    	if (!adress.equals(""))
+    	{
             return adress;
+    	}
+    	else
+    	{
+    		return "no adress avaliable";
+    	}
     }
     
     public void setAdress(String info) 

@@ -24,6 +24,9 @@
         		  android:label="@string/synchronize">
         </activity>
         
+        <activity android:name=".SettingsActivity"
+        		  android:label="@string/settings">
+        </activity>
         
         <activity android:name=".ContactList"
         		  android:label="@string/contacts">

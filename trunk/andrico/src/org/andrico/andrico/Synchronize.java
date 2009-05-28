@@ -243,7 +243,15 @@ public class Synchronize extends Activity
     						friends.add(contact);
     					}
     				
-    					db.synchronize(Synchronize.this, friends);
+    					if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no") == "no")
+    					{
+    						db.synchronize(Synchronize.this, friends);
+    					}
+    					else
+    					{
+    						db.synchronizeDel(Synchronize.this, friends);
+    					}
+    					
     						
     					dismissDialog(DIALOG_SYNCHRONIZE);
     					
@@ -644,7 +652,7 @@ public class Synchronize extends Activity
     	
     	if (city != "" && city != null)
     	{
-    		if (city != "")
+    		if (adr != "")
     		{
     			adr = adr + ", " + city;
     		}

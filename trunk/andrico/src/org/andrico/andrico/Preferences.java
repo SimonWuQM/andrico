@@ -23,6 +23,6 @@ public class Preferences {
     static final String FACEBOOK_CACHED_USER_INFO_BIRTHDAY = "facebook_cached_user_birthday";
     static final String FACEBOOK_CACHED_USER_INFO_BIRTHDAY_DATE = "facebook_cached_user_birthday_date";
     static final String FACEBOOK_CACHED_USER_INFO_PROFILE_URL = "facebook_cached_user_profile_url";
-
+    static final String DELETE_CONTACTS = "no";
 
 }

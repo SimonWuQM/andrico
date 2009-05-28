@@ -70,6 +70,16 @@ public class ContactList extends ListActivity
 	    
 	    DBContact db = new DBContact();
      	
+	    /*Contact contact = new Contact();
+	    contact.setAdress("Moscow");
+	    contact.setDateOfBirth("4.06.90");
+	    contact.setFBid("1");
+	    contact.setName("Mike");
+	    contact.setPage("www.mike.com");
+	    contact.setSecondName("Lanin");
+	    
+	    db.insert(ContactList.this, contact);
+	    */
 	    contacts = db.getContactList(ContactList.this);
 
 	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();

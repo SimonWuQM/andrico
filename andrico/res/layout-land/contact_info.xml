@@ -116,7 +116,7 @@
 				<LinearLayout  android:orientation="vertical"
 					android:layout_width="fill_parent"
 					android:background="#30567D"
-					layout_weight="0" android:layout_height="wrap_content" android:layout_marginTop="80px">
+					layout_weight="0" android:layout_height="wrap_content">
 				
 						<Button android:id="@+id/goToAdress" 
 							android:width="300px" 
@@ -127,7 +127,6 @@
 							android:drawableLeft="@android:drawable/ic_menu_mapmode" 
 							android:height="55px" 
 							android:textSize="18px" 
-							android:layout_marginTop="15px" 
 							android:enabled="false"/>
 				
 						<Button android:id="@+id/page" 
@@ -138,8 +137,7 @@
 							android:textSize="18px" 
 							android:textStyle="bold" 
 							android:drawableLeft="@android:drawable/ic_menu_crop" 
-							android:height="55px" 
-							android:layout_marginTop="5px"/>
+							android:height="55px"/>
 				</LinearLayout>
 			
 		</LinearLayout>

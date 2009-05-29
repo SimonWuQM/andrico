@@ -33,19 +33,20 @@ public class DBContact
       private static final String TAG = "DBContact";
       
         
-        private boolean isDatabaseReady(Context app) {
-                DBHelper helper = new DBHelper(app, "andricontacts.db" , null, 1);
-                Log.d(TAG,"isDataBaseReady Called, helper is "+helper);
-                db = helper.getWritableDatabase();
-                Log.d(TAG,"getWritableDatabase called, db is "+db);
-                if(db == null) 
-                {
-                        return false;
-                } 
-                else 
-                {
-                        return true;
-                }
+        private boolean isDatabaseReady(Context app) 
+        {
+        	DBHelper helper = new DBHelper(app, "andricontacts.db" , null, 1);
+            Log.d(TAG,"isDataBaseReady Called, helper is "+helper);
+            db = helper.getWritableDatabase();
+            Log.d(TAG,"getWritableDatabase called, db is "+db);
+            if(db == null) 
+            {
+            	return false;
+            } 
+            else 
+            {
+            	return true;
+            }
         }
                         
         
@@ -81,7 +82,8 @@ public class DBContact
                         c.setAdress(cur.getString(4));
                         c.setPage(cur.getString(5));
                         c.setFBid(cur.getString(6));
-                        
+                        c.setPic(cur.getString(7));
+                        c.setPhoto(cur.getBlob(8));
                         cont[i] = c;        
                         cur.moveToNext();
                     }
@@ -180,8 +182,9 @@ public class DBContact
         }
         
         public boolean insert(Context app, Contact cont) {
-        	String request = "INSERT INTO CONTACTS (name, second_name, date_of_birth, adress, page, fb_id)" +
-                " VALUES " + "(?,?,?,?,?,?)";
+        	String request = "INSERT INTO CONTACTS (name, second_name, date_of_birth, adress, page, fb_id, "+
+        							"small_pic, image )" +
+        							" VALUES " + "(?,?,?,?,?,?,?,?)";
                 
             if(isDatabaseReady(app)) 
             {
@@ -193,7 +196,12 @@ public class DBContact
                     insertStmt.bindString(3, cont.getDateOfBirth());
                     insertStmt.bindString(4, cont.getAdress());
                     insertStmt.bindString(5, cont.getPage());
-                    insertStmt.bindString(6, cont.getFBid());  
+                    insertStmt.bindString(6, cont.getFBid());
+                    insertStmt.bindString(7, cont.getPic());
+                    if (cont.getPhoto() != null)
+                    {	
+                    	insertStmt.bindBlob(8, cont.getPhoto());
+                    }
                     insertStmt.execute();
                 } 
             	catch (SQLException e) 
@@ -277,11 +285,14 @@ public class DBContact
         {
         	for (int j = 0; j < contacts.size(); j++)
         	{
-        		Contact newContact = contacts.get(j);
+        		Contact newContact = new Contact();
+        		contacts.get(j).copyTo(newContact);
         		String fbid = newContact.getFBid();
         		Contact contact = this.getContactByFBid(app, fbid);
         		if (contact == null)
         		{
+        			newContact.setPic(null);
+    				newContact.setPhoto(null);	
         			this.insert(app, newContact);
         		}
         		else
@@ -289,6 +300,8 @@ public class DBContact
         			if (!newContact.Equals(contact))
         			{
         				//this.update(app, newContact);
+        				newContact.setPic(contact.getPic());
+        				newContact.setPhoto(contact.getPhoto());
         				this.deleteContact(app, contact.getId());
         				this.insert(app, newContact);
         			}
@@ -298,12 +311,45 @@ public class DBContact
         
         public void synchronizeDel(Context app, LinkedList <Contact> contacts)
         {
-        	this.deleteContacts(app);
+        	LinkedList <Contact> oldContacts = this.getContactList(app);
+        	LinkedList <Contact> compare = this.getContactList(app);
         	
-        	for (int j = 0; j < contacts.size(); j++)
+        	if (oldContacts != null)
         	{
-        		Contact newContact = contacts.get(j);
-        		this.insert(app, newContact);
+        		for (int i = 0; i < compare.size(); i++)
+        		{
+        			compare.get(i).setPhoto(null);
+        		}
+        	
+        		this.deleteContacts(app);
+        	
+        	
+        		for (int j = 0; j < contacts.size(); j++)
+        		{
+        			Contact newContact = new Contact();
+        			contacts.get(j).copyTo(newContact);
+        			
+        			if (compare.contains(newContact))
+        			{
+        				int k = compare.indexOf(newContact);
+        				newContact.setPhoto(oldContacts.get(k).getPhoto());
+        			}
+        			else
+        			{
+        				newContact.setPic(null);
+        			}
+        			this.insert(app, newContact);
+        		}
+        	}
+        	else
+        	{
+        		for (int j = 0; j < contacts.size(); j++)
+        		{
+        			Contact newContact = new Contact();
+        			contacts.get(j).copyTo(newContact);
+        			newContact.setPic(null);
+        			this.insert(app, newContact);
+        		}
         	}
         }
         
@@ -323,34 +369,35 @@ public class DBContact
         
         public void updatePic(Context app, String fbid, String link, byte[] hash) 
         {
-                String request = null;
-                if(fbid != "") 
-                {
-                	request = "UPDATE CONTACTS SET "+
+        	String request = null;
+            if(fbid != "") 
+            {
+               request = "UPDATE CONTACTS SET "+
                 		"small_pic = ?,"+
                         "image = ? "+
                         "WHERE fb_id = ?";
-                } 
-                else 
-                {
-                	Log.e(TAG,"Failed to update CONTACTS due to the fb id is not good!");
-                }
+            } 
+            else 
+            {
+            	Log.e(TAG,"Failed to update CONTACTS due to the fb id is not good!");
+            }
                 
-                if(isDatabaseReady(app)) 
-                {
-                	SQLiteStatement updateStmt = db.compileStatement(request);
-                    updateStmt.bindString(1, link);
-                    updateStmt.bindBlob(2, hash);
-                    updateStmt.bindString(3, fbid);
-                    updateStmt.execute();
-                    db.close();
-                    Log.d(TAG,"Executing: "+request);
-                } 
-                else 
-                {
-                        Log.e(TAG,"Database is not open when updating contacts!");
-                }
-                Log.d(TAG,"Blog config updated with, id = "+fbid);
+            if(isDatabaseReady(app)) 
+            {
+        	   SQLiteStatement updateStmt = db.compileStatement(request);
+               updateStmt.bindString(1, link);
+               updateStmt.bindBlob(2, hash);
+               updateStmt.bindString(3, fbid);
+               updateStmt.execute();
+               db.close();
+               Log.d(TAG,"Executing: "+request);
+            } 
+            else 
+            {
+            	 Log.e(TAG,"Database is not open when updating contacts!");
+            }
+                
+            Log.d(TAG,"Blog config updated with, id = "+fbid);
         }
         
         /*public void dropContacts(Context app)

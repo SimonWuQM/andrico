@@ -76,6 +76,17 @@ public class SettingsActivity extends Activity
 	        	delBox.setChecked(false);
 	        }
 	        
+	        
+	        if (SharedPreferences.getString(Preferences.SYNCH_PHOTOS, "yes").equals("yes"))
+	        {
+	        	picBox.setChecked(true);
+	        }
+	        else
+	        {
+	        	picBox.setChecked(false);
+	        }
+	        
+	        
 	        delBox.setOnCheckedChangeListener(new OnCheckedChangeListener()
 	        {	    
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) 
@@ -99,7 +110,17 @@ public class SettingsActivity extends Activity
 	        {	    
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) 
 				{
+					SharedPreferences.Editor editor = SharedPreferences.edit();
+					if (SharedPreferences.getString(Preferences.SYNCH_PHOTOS, "yes").equals("yes"))
+					{
+						editor.putString(Preferences.SYNCH_PHOTOS, "no");
+					}
+					else
+					{
+						editor.putString(Preferences.SYNCH_PHOTOS, "yes");
+					}
 					
+					editor.commit();
 				}
 			});
 

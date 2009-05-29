@@ -257,41 +257,45 @@ public class Synchronize extends Activity
     						friends.add(contact);
     					}
     				
-    					if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no") == "no")
+    					if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no").equals("no"))
     					{
+    						Log.d(TAG, "Starting synch");
     						db.synchronize(Synchronize.this, friends);
     					}
-    					else
+    					else    					
     					{
+    						Log.d(TAG, "Starting del synch");
     						db.synchronizeDel(Synchronize.this, friends);
     					}
     					
     					
-                        Log.i(TAG, "Contacts synchronized");
+                        Log.d(TAG, "Contacts synchronized");
     					
-                        Log.i(TAG, "Starting synchronize photos");
+                        Log.d(TAG, "Starting synchronize photos");
     			        
                         boolean connected = true; 
     					Integer picturesToSynch = 0;
     					Integer picturesSynched = 0;
     					
-    					
+    				if (SharedPreferences.getString(Preferences.SYNCH_PHOTOS, "yes").equals("yes"))
+    				{
     					for(int i = 0; i<size; i++)
     					{
     						Contact newContact = friends.get(i);
     						Contact contact = db.getContactByFBid(Synchronize.this, newContact.getFBid());
     						if (contact != null)
     						{
-    							if (!contact.getPic().equals(newContact.getPic()))
+    							if (!contact.getPic().equals(newContact.getPic())&& 
+    																		!newContact.getPic().equals(""))
     							{
     								picturesToSynch++; 
-    								if (connected)
-    								{
+    								//if (connected)
+    								//{
     									try 
     									{ 
     										URL picPath = new URL(newContact.getPic()); 
     										URLConnection con = picPath.openConnection();
-    										con.setConnectTimeout(7000);
+    										con.setConnectTimeout(3000);
     										con.connect(); 
     					                    
     										InputStream is = con.getInputStream(); 
@@ -310,30 +314,31 @@ public class Synchronize extends Activity
     					                catch (IOException e) 
     					                  { 
     					                        Log.e(TAG, "Remtoe Image Exception", e);
-    					                        connected = false;
+    					                        //connected = false;
     					                  }
-    								}
+    								//}
     							}
     						}
     					}
-    					
+    				}	
     					dismissDialog(DIALOG_SYNCHRONIZE);
     					
+    					
     					AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
-    												.setTitle("SYNCHRONIZED")
-    												.setMessage(Integer.toString(size) + " friends processed")
-    											.setPositiveButton("OK", 
-    										new DialogInterface.OnClickListener() 
-    						                {
-    												public void onClick(DialogInterface dialog, int whichButton)
-    						                        {
-    													dialog.dismiss();
-    													Intent i = new Intent(Synchronize.this,MainActivity.class);
-    							    					i.putExtra("ConfigOrder", CONFIG_ORDER);
-    							    					startActivity(i);
-    							    					finish();
-    						                        }
-    						                }).create(); 
+												.setTitle("SYNCHRONIZED")
+												.setMessage(Integer.toString(size) + " friends processed")
+												.setPositiveButton("OK", 
+							new DialogInterface.OnClickListener() 
+												{
+													public void onClick(DialogInterface dialog, int whichButton)
+													{
+														dialog.dismiss();
+														Intent i = new Intent(Synchronize.this,MainActivity.class);
+														i.putExtra("ConfigOrder", CONFIG_ORDER);
+														startActivity(i);
+														finish();
+													}
+												}).create(); 
     					dialog.show(); 
     					
     					if (picturesSynched < picturesToSynch)
@@ -349,14 +354,16 @@ public class Synchronize extends Activity
 										public void onClick(DialogInterface dialog, int whichButton)
 										{
 											dialog.dismiss();
-											Intent i = new Intent(Synchronize.this,MainActivity.class);
-											i.putExtra("ConfigOrder", CONFIG_ORDER);
-											startActivity(i);
-											finish();
+											
 										}
 									}).create(); 
     						dialogErrPic.show();
     					}
+    					
+    					
+    					
+    					
+    					
     					
     					return;
     				}

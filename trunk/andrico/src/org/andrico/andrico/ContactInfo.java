@@ -22,6 +22,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -39,6 +41,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -81,16 +84,16 @@ public class ContactInfo extends Activity
 			.setTitle("FAILED")
 			.setMessage("UNKNOWN ERROR OCCURED")
 			.setPositiveButton("OK", 
-						new DialogInterface.OnClickListener() 
-						{
-							public void onClick(DialogInterface dialog, int whichButton)
-							{
-								dialog.dismiss();
-								Intent j = new Intent(ContactInfo.this, ContactList.class);
-								startActivity(j);
-						        finish();
-							}
-						}).create(); 
+				new DialogInterface.OnClickListener() 
+				{
+					public void onClick(DialogInterface dialog, int whichButton)
+					{
+						dialog.dismiss();
+						Intent j = new Intent(ContactInfo.this, ContactList.class);
+						startActivity(j);
+						finish();
+					}
+				}).create(); 
 	        	
 	    	dialog.show(); 
 	    }
@@ -111,7 +114,7 @@ public class ContactInfo extends Activity
 								dialog.dismiss();
 								Intent j = new Intent(ContactInfo.this, ContactList.class);
 								startActivity(j);
-						        finish();
+								finish();
 							}
 						}).create(); 
 	        	
@@ -125,6 +128,16 @@ public class ContactInfo extends Activity
 	    	((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
 	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADRESS ON MAP");
+	    	
+	    	if (contact.getPhoto()!=null)
+	    	{
+	    		Bitmap bm = BitmapFactory.decodeByteArray(contact.getPhoto(), 0, contact.getPhoto().length);
+	    		
+	    		if (bm != null)
+	    		{
+	    			((ImageView) this.findViewById(R.id.photo)).setImageBitmap(bm);
+	    		}
+	    	}
 	    	
 	    	this.findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);    	
 	    }

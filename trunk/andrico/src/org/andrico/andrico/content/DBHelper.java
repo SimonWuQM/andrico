@@ -27,7 +27,9 @@ public class DBHelper extends SQLiteOpenHelper {
 			"date_of_birth TEXT,"+
 			"adress TEXT, "+
 			"page TEXT, "+
-			"fb_id TEXT" +
+			"fb_id TEXT," +
+			"small_pic Text," +
+			"image BLOB" +
 			");";
         
         

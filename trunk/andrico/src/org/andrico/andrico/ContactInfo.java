@@ -127,7 +127,7 @@ public class ContactInfo extends Activity
 	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
 	    	((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
-	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADRESS ON MAP");
+	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADDRESS ON MAP");
 	    	
 	    	if (contact.getPhoto()!=null)
 	    	{

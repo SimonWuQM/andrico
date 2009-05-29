@@ -24,14 +24,19 @@ public class Contact{
     	name = "";
     	secondName = "";
     	dateOfBirth = "";
-    	adress = "";	
+    	adress = "";
+    	page = "";
+    	smallPic = "";
+    	byte[] ar = {0};
+    	photo = ar;
     }
     
     public boolean Equals(Contact cont)
     {
     	if (!(this.getName().equals(cont.getName())) || !(this.getSecondName().equals(cont.getSecondName())) || 
     				(!this.getFBid().equals(cont.getFBid())) || (!this.getAdress().equals(cont.getAdress())) || 
-    				(!this.getPage().equals(cont.getPage())))
+    				(!this.getPage().equals(cont.getPage())) || (!this.getPic().equals(cont.getPic())) ||
+    				(!this.getPhoto().equals(cont.getPhoto())))
     	{	
     		return false;
     	}
@@ -53,22 +58,50 @@ public class Contact{
     
     public String getName() 
     {
+    	if (name != null)
+    	{
             return name;
+    	}
+    	else
+    	{
+    		return "";
+    	}
     }
     
     public void setName(String name) 
     {
-            this.name = name;
+    	if (name != null)
+    	{
+    		this.name = name;
+    	}
+    	else
+    	{
+    		this.name = "";
+    	}
     }
     
     public String getSecondName() 
     {
+    	if (secondName != null)
+    	{
             return secondName;
+    	}
+    	else
+    	{
+    		return "";
+    	}
     }
     
     public void setSecondName(String secondName) 
     {
+    	if (secondName != null)
+    	{
             this.secondName = secondName;
+    	}
+    	else
+    	{
+    		this.secondName = "";
+    	}
     }
     
     public String getDateOfBirth() 
@@ -85,7 +118,14 @@ public class Contact{
     
     public void setDateOfBirth(String date) 
     {
-            this.dateOfBirth = date;
+    	if (date != null)
+    	{
+    		this.dateOfBirth = date;
+    	}
+    	else
+    	{
+    		this.dateOfBirth = "";
+    	}
     }
             
     public String getAdress() 
@@ -102,27 +142,48 @@ public class Contact{
     
     public void setAdress(String info) 
     {
+    	if (info != null)
+    	{
             this.adress = info;
+    	}
+    	else
+    	{
+    		this.adress = "";
+    	}
     }
     
     public String getPage() 
     {
+    	if (page != null)
+    	{
             return page;
+    	}
+    	else
+    	{
+    		return "";
+    	}
     }
     
     public void setPage(String info) 
     {
-            this.page = info;
+    	if (info != null)
+    	{
+    		this.page = info;
+    	}
+    	else
+    	{
+    		this.page = "";
+    	}
     }
     
     public String getFBid() 
     {
-            return fbId;
+    	return fbId;
     }
     
     public void setFBid(String info) 
     {
-            this.fbId = info;
+    	this.fbId = info;
     }
     
     public String getPic() 
@@ -139,17 +200,40 @@ public class Contact{
     
     public void setPic(String url) 
     {
+    	if (url != null)
+    	{
             this.smallPic = url;
+    	}
+    	else
+    	{
+            this.smallPic = "";
+    	}
     }
     
     public byte[] getPhoto() 
     {
+    	if (photo != null)
+    	{
             return photo;
+    	}
+    	else
+    	{
+    		byte[] arr = {0};
+    		return arr;
+    	}
     }
     
-    public void setPhoto(byte[] phot) 
+    public void setPhoto(byte[] photo) 
     {
-            this.photo = phot;
+    	if(photo != null)
+    	{
+            this.photo = photo;
+    	}
+    	else
+    	{
+    		byte[] arr = {0};
+    		this.photo = arr;
+    	}
     }
     
     
@@ -158,5 +242,14 @@ public class Contact{
             return "facebook id: " + fbId +"name: " + name + " second name: " + secondName + " date of birth: " + dateOfBirth + " adress: " + adress + " id: " + id;
     }
     
-    
+    public void copyTo(Contact newContact)
+    {
+    	newContact.setDateOfBirth(this.getDateOfBirth());
+		newContact.setAdress(this.getAdress());
+		newContact.setFBid(this.getFBid());
+		newContact.setName(this.getName());
+		newContact.setPage(this.getPage());
+		newContact.setPic(this.getPic());
+		newContact.setSecondName(this.getSecondName());
+    }
 }

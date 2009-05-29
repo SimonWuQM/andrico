@@ -38,6 +38,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -764,6 +765,20 @@ public class Synchronize extends Activity
             case DIALOG_SYNCHRONIZE:
                 dialog.setTitle("SYNCHRONIZING");
                 dialog.setIndeterminate(true);
+                dialog.setOnKeyListener(new OnKeyListener()
+                {
+					public boolean onKey(DialogInterface arg0, int keyCode,
+							KeyEvent event) 
+					{
+						if(keyCode==KeyEvent.KEYCODE_BACK)
+				    	{
+							//lock it
+							return true;
+				    	}
+						return false;
+					}
+        		});
+                
                 
                 return dialog;
             

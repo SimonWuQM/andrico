@@ -124,8 +124,22 @@ public class ContactInfo extends Activity
 	    {
 	    	((TextView) this.findViewById(R.id.name)).setText(contact.getName() + " " + contact.getSecondName());
 	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
+	    	if (!contact.getDateOfBirth().equals(""))
+	    	{
 	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
-	    	((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
+	    	}
+	    	else
+	    	{
+	    	((TextView) this.findViewById(R.id.date)).setText("date of birth isn't avaliable");
+	    	}
+	    	if (!contact.getAdress().equals(""))
+	    	{
+	    		((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
+	    	}
+	    	else
+	    	{
+	    		((TextView) this.findViewById(R.id.adress)).setText("no adress avaliable");
+	    	}
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
 	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADDRESS ON MAP");
 	    	

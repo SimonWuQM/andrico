@@ -6,7 +6,12 @@
  ****************************************/
 package org.andrico.andrico;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,6 +39,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -69,6 +76,7 @@ public class Synchronize extends Activity
     private SharedPreferences SharedPreferences;
     
     public static final int DIALOG_SYNCHRONIZE = 0;
+    public static final int DIALOG_PIC = 1;
     private static final int FACEBOOK_LOGIN_REQUEST_CODE = 3;
     private static final int FACEBOOK_AUTH_STATUS_REQUEST_CODE = 2;
     private static final int MESSAGE_GET_USER_INFO = 1;
@@ -79,10 +87,12 @@ public class Synchronize extends Activity
     private Handler mBackgroundHandler;
     private UserInfo mFacebookUserInfo;
     private static final String FRIENDS_STATUS_UPDATES_FQL = "SELECT uid, name, first_name, last_name, " +
-    					"current_location, birthday, birthday_date, profile_url FROM user WHERE uid IN " +
+    					"current_location, birthday, birthday_date, profile_url, pic FROM user WHERE uid IN " +
     					"(SELECT uid2 FROM friend WHERE uid1=";
     private List<Bundle> newList;
     public static String tokenMessage;
+    private boolean beClicked;
+    
     
     
     private static abstract class FbRunnable implements Runnable {
@@ -159,6 +169,7 @@ public class Synchronize extends Activity
         void handleGetFriendsStatusUpdatesMessage(Message msg) {
             String result = msg.getData().getString("result");
             Integer errorCode = JsonParser.parseForErrorCode(result);
+            ProgressDialog dialogPic;
             if (errorCode != null && errorCode == -1) 
             {
                 try 
@@ -180,7 +191,9 @@ public class Synchronize extends Activity
                                 update.putString("birthday", obj.optString("birthday"));
                                 update.putString("birthdayDate", obj.optString("birthday_date"));
                                 update.putString("profileUrl", obj.optString("profile_url"));
+                                update.putString("pic", obj.optString("pic"));
                                  
+                                
                                 update.putString("firstName",obj.optString("first_name"));
                                 update.putString("lastName", obj.optString("last_name"));
                                 update.putString("location_zip", (String)obj.optJSONObject("current_location").get("zip"));
@@ -239,7 +252,8 @@ public class Synchronize extends Activity
     						contact.setName(bundContact.getString("firstName"));
     						contact.setSecondName(bundContact.getString("lastName"));
     						contact.setPage(bundContact.getString("profileUrl"));
-    					
+    						contact.setPic(bundContact.getString("pic"));
+    						
     						friends.add(contact);
     					}
     				
@@ -252,7 +266,57 @@ public class Synchronize extends Activity
     						db.synchronizeDel(Synchronize.this, friends);
     					}
     					
-    						
+    					
+                        Log.i(TAG, "Contacts synchronized");
+    					
+                        Log.i(TAG, "Starting synchronize photos");
+    			        
+                        boolean connected = true; 
+    					Integer picturesToSynch = 0;
+    					Integer picturesSynched = 0;
+    					
+    					
+    					for(int i = 0; i<size; i++)
+    					{
+    						Contact newContact = friends.get(i);
+    						Contact contact = db.getContactByFBid(Synchronize.this, newContact.getFBid());
+    						if (contact != null)
+    						{
+    							if (!contact.getPic().equals(newContact.getPic()))
+    							{
+    								picturesToSynch++; 
+    								if (connected)
+    								{
+    									try 
+    									{ 
+    										URL picPath = new URL(newContact.getPic()); 
+    										URLConnection con = picPath.openConnection();
+    										con.setConnectTimeout(7000);
+    										con.connect(); 
+    					                    
+    										InputStream is = con.getInputStream(); 
+    					                    BufferedInputStream bis = new BufferedInputStream(is); 
+    					                    
+    					                    Bitmap pic = BitmapFactory.decodeStream(bis); 
+    					                    
+    					                    bis.close(); 
+    					                    is.close(); 
+    					                    
+    					                    db.synchImage (Synchronize.this, newContact.getFBid(),
+    					                    									newContact.getPic(), pic);
+    					                    picturesSynched++;
+    									}
+    					              
+    					                catch (IOException e) 
+    					                  { 
+    					                        Log.e(TAG, "Remtoe Image Exception", e);
+    					                        connected = false;
+    					                  }
+    								}
+    							}
+    						}
+    					}
+    					
     					dismissDialog(DIALOG_SYNCHRONIZE);
     					
     					AlertDialog dialog = new AlertDialog.Builder(Synchronize.this)
@@ -271,6 +335,29 @@ public class Synchronize extends Activity
     						                        }
     						                }).create(); 
     					dialog.show(); 
+    					
+    					if (picturesSynched < picturesToSynch)
+    					{
+    						AlertDialog dialogErrPic = new AlertDialog.Builder(Synchronize.this)
+									.setTitle("SORRY")
+									.setMessage(Integer.toString(picturesSynched) + " OF REQUIRED " + 
+											Integer.toString(picturesToSynch) + " PHOTOS WERE UPDATED. "+
+											"CHECK FOR INTERNET CONNECTION, PLEASE.")
+									.setPositiveButton("OK", 
+									new DialogInterface.OnClickListener() 
+									{
+										public void onClick(DialogInterface dialog, int whichButton)
+										{
+											dialog.dismiss();
+											Intent i = new Intent(Synchronize.this,MainActivity.class);
+											i.putExtra("ConfigOrder", CONFIG_ORDER);
+											startActivity(i);
+											finish();
+										}
+									}).create(); 
+    						dialogErrPic.show();
+    					}
+    					
     					return;
     				}
     				catch (NullPointerException e)
@@ -328,19 +415,10 @@ public class Synchronize extends Activity
 												public void onClick(DialogInterface dialog, int whichButton)
 												{
 													dialog.dismiss();
+													beClicked = true;
 												}
 											}).create(); 
             dialog.show(); 
-            
-            
-            
-            
-            if (errorCode == null || errorCode == 1 || errorCode == 103 || errorCode == 104) {
-                postToBackgroundHandler(new FbExecuteGetFriendsStatusUpdatesRunnable(mHandler,
-                        mFacebook), mRandom.nextInt(10) * 1000 + 1000);
-            }
-            
-            
        }
 
         
@@ -400,7 +478,6 @@ public class Synchronize extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
-    	// TODO Auto-generated method stub
     	super.onCreate(savedInstanceState);
     	
     	Window  w = getWindow(); 
@@ -413,6 +490,8 @@ public class Synchronize extends Activity
         super.onCreate(savedInstanceState);
         Log.d(LOG, "onCreate");
         mContext = this;
+        beClicked = true;
+        
         
         // Load the preferences from an XML resource
         /*this.addPreferencesFromResource(R.xml.preferences);*/
@@ -468,9 +547,13 @@ public class Synchronize extends Activity
         {
 			public void onClick(View v)
 			{
-				showDialog(DIALOG_SYNCHRONIZE);
-				buildBackgroundHandler();
-				postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+				if (beClicked)
+				{
+					beClicked =false;
+					showDialog(DIALOG_SYNCHRONIZE);
+					buildBackgroundHandler();
+					postToBackgroundHandler(new FbExecuteGetAllDataRunnable(mHandler, mFacebook));
+				}
         	}
 		});
     }
@@ -552,7 +635,6 @@ public class Synchronize extends Activity
     	if(keyCode==KeyEvent.KEYCODE_BACK)
     	{
     		Intent i = new Intent(Synchronize.this,MainActivity.class);
-    		i.putExtra("ConfigOrder", CONFIG_ORDER);
     		startActivity(i);
             finish();
             return true;
@@ -677,7 +759,12 @@ public class Synchronize extends Activity
                 dialog.setIndeterminate(true);
                 
                 return dialog;
+            
+            case DIALOG_PIC:
+                dialog.setTitle("SYNCHRONIZING");
+                dialog.setIndeterminate(true);
                 
+                return dialog;    
         }
         return null;
     }
@@ -690,7 +777,11 @@ public class Synchronize extends Activity
             	((ProgressDialog)dialog).setMessage("LOADING FRIENDS INFO");
                         
                 break;
-                
+            case DIALOG_PIC:
+	               
+            	((ProgressDialog)dialog).setMessage("LOADING PICTURES");
+                        
+                break;    
         }
     }
     

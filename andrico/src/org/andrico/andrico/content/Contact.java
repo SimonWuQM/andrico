@@ -13,7 +13,11 @@ public class Contact{
     private String dateOfBirth;
     private String adress;
     private String page;
+    private String smallPic;
+    private byte[] photo;
     private int id; //id in db
+    
+    
     
     public Contact()
     {
@@ -120,6 +124,34 @@ public class Contact{
     {
             this.fbId = info;
     }
+    
+    public String getPic() 
+    {
+    	if (smallPic != null)
+    	{
+            return smallPic;
+    	}
+    	else
+    	{
+    		return "";
+    	}
+    }
+    
+    public void setPic(String url) 
+    {
+            this.smallPic = url;
+    }
+    
+    public byte[] getPhoto() 
+    {
+            return photo;
+    }
+    
+    public void setPhoto(byte[] phot) 
+    {
+            this.photo = phot;
+    }
+    
     
     public String toString() 
     {

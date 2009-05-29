@@ -7,6 +7,9 @@
 
 package org.andrico.andrico.content;
 
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +21,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 
 
@@ -107,7 +112,7 @@ public class DBContact
                 }
         }
         
-        public Contact getContactById(Context app,int id) {
+       /* public Contact getContactById(Context app,int id) {
                 final String request = 
                         "SELECT name, second_name, date_of_birth, adress, page, fb_id FROM CONTACTS where id = ?"; 
                 Cursor cur = null;
@@ -138,10 +143,11 @@ public class DBContact
                 db.close();
                 return c;
         }
-       
+       */
         public Contact getContactByFBid(Context app,String id) {
             final String request = 
-                    "SELECT id, name, second_name, date_of_birth, adress, page FROM CONTACTS where fb_id = ?"; 
+                    "SELECT id, name, second_name, date_of_birth, adress, page, small_pic, image "+ 
+                    						"FROM CONTACTS where fb_id = ?"; 
             Cursor cur = null;
             Contact c = null;
             if(isDatabaseReady(app)) 
@@ -164,6 +170,8 @@ public class DBContact
                 c.setDateOfBirth(cur.getString(3));
                 c.setAdress(cur.getString(4));
                 c.setPage(cur.getString(5));
+                c.setPic(cur.getString(6));
+                c.setPhoto(cur.getBlob(7));
                 c.setFBid(id);
                 cur.close();
             }
@@ -203,7 +211,7 @@ public class DBContact
             }
         }
       
-        public void update(Context app,final Contact c) 
+        /*public void update(Context app,final Contact c) 
         {
                 String id = "";
                 String request = null;
@@ -243,7 +251,7 @@ public class DBContact
                         Log.e(TAG,"Database is not open when updating contacts!");
                 }
                 Log.d(TAG,"Blog config updated with, id = "+id);
-        }
+        }*/
                 
         
         public void deleteContact(Context app,int id) 
@@ -299,6 +307,51 @@ public class DBContact
         	}
         }
         
+        public void synchImage (Context app, String fbid, String link, Bitmap pic)
+        {
+        	Contact contact = this.getContactByFBid(app, fbid);
+    		
+        	if (contact != null)
+    		{
+        		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        		pic.compress(CompressFormat.PNG, 100, baos);
+        		byte[] hash = baos.toByteArray(); 
+        		
+        		this.updatePic(app, fbid, link, hash);
+    		}
+        }
+        
+        public void updatePic(Context app, String fbid, String link, byte[] hash) 
+        {
+                String request = null;
+                if(fbid != "") 
+                {
+                	request = "UPDATE CONTACTS SET "+
+                		"small_pic = ?,"+
+                        "image = ? "+
+                        "WHERE fb_id = ?";
+                } 
+                else 
+                {
+                	Log.e(TAG,"Failed to update CONTACTS due to the fb id is not good!");
+                }
+                
+                if(isDatabaseReady(app)) 
+                {
+                	SQLiteStatement updateStmt = db.compileStatement(request);
+                    updateStmt.bindString(1, link);
+                    updateStmt.bindBlob(2, hash);
+                    updateStmt.bindString(3, fbid);
+                    updateStmt.execute();
+                    db.close();
+                    Log.d(TAG,"Executing: "+request);
+                } 
+                else 
+                {
+                        Log.e(TAG,"Database is not open when updating contacts!");
+                }
+                Log.d(TAG,"Blog config updated with, id = "+fbid);
+        }
         
         /*public void dropContacts(Context app)
         {

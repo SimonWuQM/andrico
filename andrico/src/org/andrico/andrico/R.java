@@ -54,9 +54,9 @@ public final class R {
         public static final int list_empty=0x7f050009;
         public static final int mainLayout=0x7f050000;
         public static final int name=0x7f050001;
-        public static final int no_photo=0x7f050003;
         public static final int notification=0x7f050008;
         public static final int page=0x7f050007;
+        public static final int photo=0x7f050003;
         public static final int url=0x7f050002;
         public static final int web_view=0x7f05000a;
     }

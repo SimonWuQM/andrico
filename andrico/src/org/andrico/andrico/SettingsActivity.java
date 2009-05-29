@@ -26,6 +26,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -66,7 +67,7 @@ public class SettingsActivity extends Activity
 	        
 	        SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);  
 	        
-	        if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no") == "no")
+	        if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no").equals("no"))
 	        {
 	        	delBox.setChecked(true);
 	        }
@@ -80,7 +81,7 @@ public class SettingsActivity extends Activity
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) 
 				{
 					SharedPreferences.Editor editor = SharedPreferences.edit();
-					if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no") == "no")
+					if (SharedPreferences.getString(Preferences.DELETE_CONTACTS, "no").equals("no"))
 					{
 						editor.putString(Preferences.DELETE_CONTACTS, "yes");
 					}
@@ -112,4 +113,16 @@ public class SettingsActivity extends Activity
 	       		}
 			});
 	    }
+		
+		public boolean onKeyDown(int keyCode, KeyEvent event) 
+	    { 
+	    	if(keyCode==KeyEvent.KEYCODE_BACK)
+	    	{
+	    		Intent i = new Intent(SettingsActivity.this,MainActivity.class);
+	    		startActivity(i);
+	            finish();
+	            return true;
+	    	}
+			return false; 
+		}
 }

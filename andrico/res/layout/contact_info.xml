@@ -53,7 +53,7 @@
 				android:layout_height="fill_parent" 
 				android:layout_width="fill_parent"
 				android:background="#30567D"
-				layout_weight="0">
+				layout_weight="0" android:layout_marginLeft="5px">
 				
 				
 					
@@ -61,7 +61,7 @@
 					android:layout_height="wrap_content" 
 					android:layout_width="fill_parent"
 					android:background="#30567D"
-					layout_weight="0" android:layout_marginLeft="2px">
+					layout_weight="0" android:layout_marginLeft="5px">
 					
 						<LinearLayout  android:orientation="horizontal"
 							android:layout_width="fill_parent"
@@ -117,8 +117,9 @@
 		
 				<LinearLayout  android:orientation="vertical"
 					android:layout_width="fill_parent"
-					android:background="#30567D"
-					layout_weight="0" android:layout_height="wrap_content" android:layout_marginTop="50px">
+					layout_weight="0"  
+					android:layout_height="wrap_content" 
+					android:layout_marginTop="10px" android:background="@drawable/back_small" android:minHeight="140px">
 				
 						<Button android:id="@+id/goToAdress" 
 							android:width="300px" 
@@ -129,7 +130,7 @@
 							android:drawableLeft="@android:drawable/ic_menu_mapmode" 
 							android:height="55px" 
 							android:textSize="18px" 
-							android:enabled="false"/>
+							android:enabled="false" android:layout_marginTop="15px" android:layout_marginRight="10px" android:layout_marginLeft="10px"/>
 				
 						<Button android:id="@+id/page" 
 							android:width="300px" 
@@ -140,7 +141,7 @@
 							android:textStyle="bold" 
 							android:drawableLeft="@android:drawable/ic_menu_crop" 
 							android:height="55px" 
-							android:layout_marginTop="5px"/>
+							android:layout_marginTop="5px" android:layout_marginRight="10px" android:layout_marginLeft="10px"/>
 				</LinearLayout>
 			
 		</LinearLayout>

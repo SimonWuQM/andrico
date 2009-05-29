@@ -58,7 +58,8 @@
 					  android:layout_width="wrap_content"
 					  android:textSize="20px" 
 					  android:textStyle="bold"
-					  android:text=" SYNCHRONIZE PICTURES" android:layout_marginTop="10px" android:enabled="false"/>
+					  android:text=" SYNCHRONIZE PICTURES" 
+					  android:layout_marginTop="10px"/>
 			
 			<TextView 
 				android:layout_height="wrap_content"

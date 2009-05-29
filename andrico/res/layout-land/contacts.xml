@@ -24,7 +24,7 @@
 			</ListView>
  			
  			<LinearLayout android:id="@android:id/empty" 
-								android:orientation="vertical"
+									android:orientation="vertical"
 				android:layout_height="fill_parent" 
 				android:layout_width="fill_parent"
 				android:background="#30567D">
@@ -38,7 +38,7 @@
 									android:gravity="center">
 						<ImageView android:id="@+id/Logo" 
 							android:layout_height="wrap_content" 
-							android:src="@drawable/logo"
+							android:src="@drawable/logo_land"
 							android:layout_gravity="center" 
 							android:layout_width="wrap_content" 
 							android:layout_margin="5px"/>
@@ -53,7 +53,7 @@
 						android:layout_marginLeft="10px" 
 						android:layout_marginRight="10px" 
 						android:layout_width="fill_parent" 
-						android:background="@drawable/back_small" 
+						android:background="@drawable/back_small_land" 
 						android:layout_marginTop="20px" android:minHeight="180px">
 			
 							<TextView android:layout_height="wrap_content" 

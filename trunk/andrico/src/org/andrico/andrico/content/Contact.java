@@ -35,8 +35,7 @@ public class Contact{
     {
     	if (!(this.getName().equals(cont.getName())) || !(this.getSecondName().equals(cont.getSecondName())) || 
     				(!this.getFBid().equals(cont.getFBid())) || (!this.getAdress().equals(cont.getAdress())) || 
-    				(!this.getPage().equals(cont.getPage())) || (!this.getPic().equals(cont.getPic())) ||
-    				(!this.getPhoto().equals(cont.getPhoto())))
+    				(!this.getPage().equals(cont.getPage())) || (!this.getPic().equals(cont.getPic())))
     	{	
     		return false;
     	}
@@ -106,14 +105,15 @@ public class Contact{
     
     public String getDateOfBirth() 
     {
-    	if (!dateOfBirth.equals(""))
+    	if (dateOfBirth != null)
     	{
-            return dateOfBirth;
+    	    return dateOfBirth;
     	}
     	else
     	{
-    		return "date of birth isn't avaliable";
+    		return "";
     	}
+    	
     }
     
     public void setDateOfBirth(String date) 
@@ -130,13 +130,13 @@ public class Contact{
             
     public String getAdress() 
     {
-    	if (!adress.equals(""))
+    	if (adress != null)
     	{
             return adress;
     	}
     	else
     	{
-    		return "no address avaliable";
+    		return "";
     	}
     }
     
@@ -250,6 +250,7 @@ public class Contact{
 		newContact.setName(this.getName());
 		newContact.setPage(this.getPage());
 		newContact.setPic(this.getPic());
+		newContact.setPhoto(this.getPhoto());
 		newContact.setSecondName(this.getSecondName());
     }
 }

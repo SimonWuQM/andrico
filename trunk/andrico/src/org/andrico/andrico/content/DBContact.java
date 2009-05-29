@@ -305,51 +305,49 @@ public class DBContact
         				this.deleteContact(app, contact.getId());
         				this.insert(app, newContact);
         			}
+        			
         		}
         	}
         }
         
         public void synchronizeDel(Context app, LinkedList <Contact> contacts)
         {
-        	LinkedList <Contact> oldContacts = this.getContactList(app);
-        	LinkedList <Contact> compare = this.getContactList(app);
+        	LinkedList <Contact> conts = new LinkedList <Contact>();
         	
-        	if (oldContacts != null)
+        	for (int j = 0; j < contacts.size(); j++)
         	{
-        		for (int i = 0; i < compare.size(); i++)
+        		Contact newContact = new Contact();
+        		contacts.get(j).copyTo(newContact);
+        		String fbid = newContact.getFBid();
+        		Contact contact = this.getContactByFBid(app, fbid);
+        		if (contact == null)
         		{
-        			compare.get(i).setPhoto(null);
+        			newContact.setPic(null);
+    				newContact.setPhoto(null);
+    				conts.add(newContact);
         		}
-        	
-        		this.deleteContacts(app);
-        	
-        	
-        		for (int j = 0; j < contacts.size(); j++)
+        		else
         		{
-        			Contact newContact = new Contact();
-        			contacts.get(j).copyTo(newContact);
-        			
-        			if (compare.contains(newContact))
+        			if (!newContact.Equals(contact))
         			{
-        				int k = compare.indexOf(newContact);
-        				newContact.setPhoto(oldContacts.get(k).getPhoto());
+        				newContact.setPic(contact.getPic());
+        				newContact.setPhoto(contact.getPhoto());
+        				conts.add(newContact);
         			}
         			else
         			{
-        				newContact.setPic(null);
+        				newContact.setPhoto(contact.getPhoto());
+        				conts.add(newContact);
         			}
-        			this.insert(app, newContact);
+        			
         		}
         	}
-        	else
+        	
+        	this.deleteContacts(app);
+        	
+        	for (int j = 0; j < conts.size(); j++)
         	{
-        		for (int j = 0; j < contacts.size(); j++)
-        		{
-        			Contact newContact = new Contact();
-        			contacts.get(j).copyTo(newContact);
-        			newContact.setPic(null);
-        			this.insert(app, newContact);
-        		}
+        		this.insert(app, conts.get(j));
         	}
         }
         

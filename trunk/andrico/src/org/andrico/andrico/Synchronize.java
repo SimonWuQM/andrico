@@ -66,7 +66,7 @@ import android.widget.Toast;
 public class Synchronize extends Activity 
 {
 	private EditText textProfile, textUsername, textPassword;
-	private final String TAG = "CreateProfile";
+	private final String TAG = "Synch Activity";
 	private int mState = 0;
 	private static final int STATE_INSERT = 0;
     private static int CONFIG_ORDER=0;
@@ -295,7 +295,7 @@ public class Synchronize extends Activity
     									{ 
     										URL picPath = new URL(newContact.getPic()); 
     										URLConnection con = picPath.openConnection();
-    										con.setConnectTimeout(3000);
+    										con.setConnectTimeout(2500);
     										con.connect(); 
     					                    
     										InputStream is = con.getInputStream(); 

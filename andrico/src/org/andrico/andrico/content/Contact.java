@@ -92,7 +92,7 @@ public class Contact{
     	}
     	else
     	{
-    		return "no adress avaliable";
+    		return "no address avaliable";
     	}
     }
     

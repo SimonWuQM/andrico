@@ -38,21 +38,23 @@
 					android:textSize="1px" 
 					android:visibility="invisible"/>
 				
+				
+				
 			<LinearLayout  android:orientation="horizontal"
 				android:layout_height="fill_parent" 
 				android:layout_width="fill_parent"
 				android:background="#30567D"
 				layout_weight="0">
 				
-				<ImageView android:id="@+id/no_photo" 
+				<ImageView android:id="@+id/photo" 
 					android:layout_height="wrap_content" 
 					android:src="@drawable/no_photo" 
-					android:layout_gravity="center" 
 					android:layout_width="wrap_content" 
-					android:layout_margin="5px"
 					android:background="#30567D" 
-					android:minWidth="50px" 
-					android:minHeight="150px"/>				
+					android:minWidth="100px" 
+					android:minHeight="100px"
+					android:maxHeight = "100px"
+					android:maxWidth = "100px" android:layout_gravity="top|center_horizontal"/>				
 				
 					
 				<LinearLayout  android:orientation="vertical"
@@ -127,7 +129,7 @@
 							android:drawableLeft="@android:drawable/ic_menu_mapmode" 
 							android:height="55px" 
 							android:textSize="18px" 
-							android:enabled="false"/>
+							android:enabled="false" android:layout_marginTop="10px"/>
 				
 						<Button android:id="@+id/page" 
 							android:width="300px" 
@@ -137,7 +139,8 @@
 							android:textSize="18px" 
 							android:textStyle="bold" 
 							android:drawableLeft="@android:drawable/ic_menu_crop" 
-							android:height="55px"/>
+							android:height="55px" 
+							android:layout_marginTop="5px"/>
 				</LinearLayout>
 			
 		</LinearLayout>

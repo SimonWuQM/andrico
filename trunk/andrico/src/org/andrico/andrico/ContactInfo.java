@@ -120,32 +120,25 @@ public class ContactInfo extends Activity
 	    else
 	    {
 	    	((TextView) this.findViewById(R.id.name)).setText(contact.getName() + " " + contact.getSecondName());
-	    	((TextView) this.findViewById(R.id.date)).setText("date of birth: " + contact.getDateOfBirth());
-	    	((TextView) this.findViewById(R.id.adress)).setText("adress: " + contact.getAdress());
+	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
+	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
+	    	((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
 	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADRESS ON MAP");
-	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
 	    	
-	    	((TextView) this.findViewById(R.id.name)).setVisibility(View.VISIBLE);
-	    	((TextView) this.findViewById(R.id.date)).setVisibility(View.VISIBLE);
-	    	((TextView) this.findViewById(R.id.adress)).setVisibility(View.VISIBLE);
-	    	((Button) this.findViewById(R.id.goToAdress)).setVisibility(View.VISIBLE);
-	    	((Button) this.findViewById(R.id.page)).setVisibility(View.VISIBLE);    	
+	    	this.findViewById(R.id.mainLayout).setVisibility(View.VISIBLE);    	
 	    }
 	    
 	    this.findViewById(R.id.page).setOnClickListener(new OnClickListener()
 	        {
 	        	public void onClick(View v)
-				{   
-	        		
-	        		
+				{  		
 	        		String path = (String)((TextView) ContactInfo.this.findViewById(R.id.url)).getText();
 	        		
 	        		Intent i = new Intent(ContactInfo.this, WebActivity.class);
 	        		i.putExtra("url", path);
 	        		Log.d(LOG, "loadUrl: " + path.toString());
-	        		startActivity(i);
-	        		 
+	        		startActivity(i); 
 	       		}
 			}); 
 	        

@@ -106,13 +106,33 @@ public class ContactList extends ListActivity
     	
     	
     	    	
-    	this.findViewById(R.id.list_empty).setOnClickListener(new OnClickListener()
+    	this.findViewById(R.id.Synchronize).setOnClickListener(new OnClickListener()
         {
 			public void onClick(View v)
-			{        		
+			{   
 				Intent i = new Intent(ContactList.this, Synchronize.class);
 				startActivity(i);
-	            finish();
+				finish();
+       		}
+		});
+        
+        this.findViewById(R.id.Settings).setOnClickListener(new OnClickListener()
+        {
+			public void onClick(View v)
+			{
+				Intent i = new Intent(ContactList.this, SettingsActivity.class);
+				startActivity(i);
+				finish();
+       		}
+		});
+        
+        this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
+        {
+			public void onClick(View v)
+			{
+				Intent i = new Intent(ContactList.this,MainActivity.class);
+                startActivity(i);
+                finish();
        		}
 		});
 	}

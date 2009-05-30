@@ -51,15 +51,15 @@ public final class R {
         public static final int auth_token_spacer=0x7f050010;
         public static final int date=0x7f050004;
         public static final int goToAdress=0x7f050006;
+        public static final int main=0x7f050017;
         public static final int mainLayout=0x7f050000;
-        public static final int mainlayout=0x7f050017;
         public static final int mapview=0x7f050018;
         public static final int name=0x7f050001;
         public static final int page=0x7f050007;
         public static final int photo=0x7f050003;
         public static final int url=0x7f050002;
         public static final int web_view=0x7f05000d;
-        public static final int zoomview=0x7f050019;
+        public static final int zoom=0x7f050019;
     }
     public static final class layout {
         public static final int contact_info=0x7f030000;

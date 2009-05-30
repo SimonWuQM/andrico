@@ -181,19 +181,22 @@ public class ContactInfo extends Activity
         		public void onClick(View v)
         		{  		
         			String address = (String)((TextView) ContactInfo.this.findViewById(R.id.adress)).getText();
-        			String path = "http://maps.google.com/?q=" + address;
+        			String path = "http://maps.google.com/?q=" + address + "&output=html&zoom=7";
         			
         			Intent i = new Intent(ContactInfo.this, WebActivity.class);
 	        		i.putExtra("url", path);
 	        		Log.d(LOG, "loadUrl: " + path.toString());
 	        		startActivity(i);
         		
-	        		/*Geocoder geo = new Geocoder(ContactInfo.this);
+	        	/*	Geocoder geo = new Geocoder(ContactInfo.this);
         			final Integer MAX_RESULTS = 1;
         		
         			try 
         			{
         				List<Address> results = geo.getFromLocationName(address, MAX_RESULTS);
+        				
+        				
+        				
 					} 
         			catch (IOException e) 
         			{

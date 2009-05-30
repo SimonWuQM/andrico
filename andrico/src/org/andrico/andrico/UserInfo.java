@@ -11,7 +11,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 class UserInfo implements Parcelable {
-    public static final Parcelable.Creator<UserInfo> CREATOR = new Parcelable.Creator<UserInfo>() {
+    public static final Parcelable.Creator<UserInfo> CREATOR = new Parcelable.Creator<UserInfo>() 
+    {
         public UserInfo createFromParcel(Parcel in) {
             return new UserInfo(in);
         }

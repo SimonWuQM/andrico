@@ -17,7 +17,7 @@
     <string name="synchronize">SYNCHRONIZE</string>
     <string name="exit">EXIT</string>
     <string name="new_profile">CREATE NEW PROFILE</string>
-    <string name="log_in">LOG IN</string>
+    <string name="log_in">AUTHORIZE</string>
 	
 	<string name="create_profile">CREATE NEW PROFILE</string>
 	<string name="choose_profile">CHOOSE PROFILE</string>

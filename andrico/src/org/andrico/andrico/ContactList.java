@@ -116,15 +116,6 @@ public class ContactList extends ListActivity
        		}
 		});
         
-        this.findViewById(R.id.Settings).setOnClickListener(new OnClickListener()
-        {
-			public void onClick(View v)
-			{
-				Intent i = new Intent(ContactList.this, SettingsActivity.class);
-				startActivity(i);
-				finish();
-       		}
-		});
         
         this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
         {

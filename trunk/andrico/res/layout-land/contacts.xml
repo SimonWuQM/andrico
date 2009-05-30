@@ -24,39 +24,24 @@
 			</ListView>
  			
  			<LinearLayout android:id="@android:id/empty" 
-									android:orientation="vertical"
-				android:layout_height="fill_parent" 
-				android:layout_width="fill_parent"
-				android:background="#30567D">
-					
-					
-					<LinearLayout android:id="@+id/LayoutForLogo" 
-									android:layout_height="wrap_content" 
-									android:orientation="horizontal" 
-									android:layout_gravity="center" 
-									android:layout_width="fill_parent" 
-									android:gravity="center">
-						<ImageView android:id="@+id/Logo" 
-							android:layout_height="wrap_content" 
-							android:src="@drawable/logo_land"
-							android:layout_gravity="center" 
-							android:layout_width="wrap_content" 
-							android:layout_margin="5px"/>
-					</LinearLayout>
+	android:orientation="vertical"
+        		android:layout_width="fill_parent" 
+        		android:layout_height="fill_parent" 
+        		android:minHeight="80px"
+        		android:background="#30567D" 
+        		android:cacheColorHint="#00000000"
+        		android:choiceMode="singleChoice">
 		
-					<LinearLayout 
-						android:orientation="vertical" 
-						android:id="@+id/LayoutForButtons" 
-						android:gravity="center" 
-						android:layout_height="wrap_content" 
-						android:layout_gravity="center_vertical|center_horizontal" 
-						android:layout_marginLeft="10px" 
-						android:layout_marginRight="10px" 
-						android:layout_width="fill_parent" 
-						android:background="@drawable/back_small_land" 
-						android:layout_marginTop="20px" android:minHeight="180px">
-			
-							<TextView android:layout_height="wrap_content" 
+		<LinearLayout android:id="@+id/LayoutForLogo" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="center" android:layout_width="fill_parent" android:gravity="center">
+			<ImageView android:id="@+id/Logo" 
+				android:layout_height="wrap_content" 
+				android:src="@drawable/logo_land" 
+				android:layout_gravity="center" 
+				android:layout_width="wrap_content" 
+				android:layout_margin="5px"></ImageView>
+		</LinearLayout>
+	<LinearLayout android:orientation="vertical" android:id="@+id/LayoutForButtons" android:layout_width="fill_parent" android:gravity="center" android:layout_marginRight="10px" android:background="@drawable/back_land" android:layout_marginLeft="10px" android:layout_height="fill_parent" android:minHeight="240px">
+			<TextView android:layout_height="wrap_content" 
 								android:textColor="#FFFFFF" 
 								android:text="NO CONTACTS AVALIABLE" 
 								android:textStyle="bold" 
@@ -64,17 +49,41 @@
 								android:gravity="center_vertical|center_horizontal" 
 								android:textSize="25px"/>
  			
- 							<Button android:id="@+id/list_empty" 
-								android:width="300px" 
-								android:layout_width="fill_parent" 
-								android:layout_height="wrap_content" 
-								android:text="please, synchronize your facebook account at first" 
-								android:layout_marginLeft="10px"
-								android:layout_marginRight="10px"
-								android:textSize="22px" 
-								android:textStyle="bold"  
-								android:height="80px" android:minHeight="100px"/>
-					
-						</LinearLayout>
-			</LinearLayout>
+			<Button android:id="@+id/Synchronize" 
+					android:layout_height="wrap_content" 
+					android:width="300px" 
+					android:layout_width="fill_parent" 
+					android:text="@string/synchronize" 
+					android:layout_marginLeft="7px" 
+					android:layout_marginRight="7px" 
+					android:height="55px" 
+					android:layout_marginTop="5px" 
+					android:textStyle="bold" 
+					android:textSize="20px" 
+					android:drawableLeft="@drawable/ic_synch"/>
+			
+			<Button android:id="@+id/Settings" 
+					android:layout_height="wrap_content" 
+					android:layout_width="fill_parent" 
+					android:width="300px" 
+					android:text="@string/settings" 
+					android:layout_marginLeft="7px" 
+					android:layout_marginRight="7px" 
+					android:height="55px" android:layout_marginTop="1px" 
+					android:textStyle="bold" 
+					android:textSize="20px" 
+					android:drawableLeft="@android:drawable/ic_menu_preferences"/>
+			
+			<Button android:id="@+id/BackToMenu" 
+				android:layout_height="wrap_content" 
+				android:text="@string/back" 
+				android:layout_width="fill_parent" 
+				android:textSize="20px" 
+				android:textStyle="bold" 
+				android:height="55px" 
+				android:drawableLeft="@android:drawable/ic_menu_revert" 
+				android:layout_marginLeft="7px" 
+				android:layout_marginRight="7px" android:layout_marginTop="1px"/>
+		</LinearLayout>
+</LinearLayout>
  </LinearLayout>

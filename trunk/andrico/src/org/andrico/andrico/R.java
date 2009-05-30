@@ -27,23 +27,23 @@ public final class R {
     }
     public static final class id {
         public static final int BackToMenu=0x7f05000c;
-        public static final int ConfigureLayout=0x7f05001a;
-        public static final int DeleteContacts=0x7f050018;
-        public static final int DownloadPic=0x7f050019;
+        public static final int ConfigureLayout=0x7f05001d;
+        public static final int DeleteContacts=0x7f05001b;
+        public static final int DownloadPic=0x7f05001c;
         public static final int Exit=0x7f050016;
         public static final int FBID=0x7f050013;
         public static final int LayoutForButtons=0x7f05000a;
         public static final int LayoutForLogo=0x7f050008;
-        public static final int LogIn=0x7f05001d;
+        public static final int LogIn=0x7f050020;
         public static final int Logo=0x7f050009;
         public static final int MainLayout=0x7f050011;
         public static final int NameOfGroup=0x7f050012;
-        public static final int Notification=0x7f050017;
+        public static final int Notification=0x7f05001a;
         public static final int Settings=0x7f050015;
-        public static final int StartSynch=0x7f05001b;
-        public static final int Synch=0x7f05001e;
+        public static final int StartSynch=0x7f05001e;
+        public static final int Synch=0x7f050021;
         public static final int Synchronize=0x7f05000b;
-        public static final int ToMenu=0x7f05001c;
+        public static final int ToMenu=0x7f05001f;
         public static final int ViewContacts=0x7f050014;
         public static final int adress=0x7f050005;
         public static final int auth_token=0x7f05000f;
@@ -52,20 +52,23 @@ public final class R {
         public static final int date=0x7f050004;
         public static final int goToAdress=0x7f050006;
         public static final int mainLayout=0x7f050000;
+        public static final int mainlayout=0x7f050017;
+        public static final int mapview=0x7f050018;
         public static final int name=0x7f050001;
         public static final int page=0x7f050007;
         public static final int photo=0x7f050003;
         public static final int url=0x7f050002;
         public static final int web_view=0x7f05000d;
+        public static final int zoomview=0x7f050019;
     }
     public static final class layout {
         public static final int contact_info=0x7f030000;
         public static final int contacts=0x7f030001;
-        public static final int d=0x7f030002;
-        public static final int facebook_auth_activity=0x7f030003;
-        public static final int facebook_auth_token_dialog=0x7f030004;
-        public static final int group_row=0x7f030005;
-        public static final int main=0x7f030006;
+        public static final int facebook_auth_activity=0x7f030002;
+        public static final int facebook_auth_token_dialog=0x7f030003;
+        public static final int group_row=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int maps_view=0x7f030006;
         public static final int notification=0x7f030007;
         public static final int settings=0x7f030008;
         public static final int start_synchronization=0x7f030009;
@@ -84,6 +87,7 @@ public final class R {
         public static final int loading_page=0x7f040016;
         public static final int log_in=0x7f040008;
         public static final int login_label=0x7f040010;
+        public static final int maps_key=0x7f040017;
         public static final int new_profile=0x7f040007;
         public static final int no_adress=0x7f040013;
         public static final int no_number=0x7f040012;

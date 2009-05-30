@@ -127,22 +127,26 @@ public class ContactInfo extends Activity
 	    {
 	    	((TextView) this.findViewById(R.id.name)).setText(contact.getName() + " " + contact.getSecondName());
 	    	((TextView) this.findViewById(R.id.url)).setText(contact.getPage());
+	    	
 	    	if (!contact.getDateOfBirth().equals(""))
 	    	{
-	    	((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
+	    		((TextView) this.findViewById(R.id.date)).setText(contact.getDateOfBirth());
 	    	}
 	    	else
 	    	{
-	    	((TextView) this.findViewById(R.id.date)).setText("date of birth isn't avaliable");
+	    		((TextView) this.findViewById(R.id.date)).setText("date of birth isn't avaliable");
 	    	}
 	    	if (!contact.getAdress().equals(""))
 	    	{
+	    		this.findViewById(R.id.goToAdress).setEnabled(true);
 	    		((TextView) this.findViewById(R.id.adress)).setText(contact.getAdress());
 	    	}
 	    	else
 	    	{
+	    		this.findViewById(R.id.goToAdress).setEnabled(false);
 	    		((TextView) this.findViewById(R.id.adress)).setText("no adress avaliable");
 	    	}
+	    	
 	    	((Button) this.findViewById(R.id.page)).setText("GO TO FACEBOOK PAGE");
 	    	((Button) this.findViewById(R.id.goToAdress)).setText("SHOW ADDRESS ON MAP");
 	    	
@@ -173,21 +177,28 @@ public class ContactInfo extends Activity
 			});
 	    
 	    this.findViewById(R.id.goToAdress).setOnClickListener(new OnClickListener()
-        {
-        	public void onClick(View v)
-			{  		
-        		String address = (String)((TextView) ContactInfo.this.findViewById(R.id.adress)).getText();
-        		Geocoder geo = new Geocoder(ContactInfo.this);
-        		final Integer MAX_RESULTS = 1;
+        	{
+        		public void onClick(View v)
+        		{  		
+        			String address = (String)((TextView) ContactInfo.this.findViewById(R.id.adress)).getText();
+        			String path = "http://maps.google.com/?q=" + address;
+        			
+        			Intent i = new Intent(ContactInfo.this, WebActivity.class);
+	        		i.putExtra("url", path);
+	        		Log.d(LOG, "loadUrl: " + path.toString());
+	        		startActivity(i);
         		
-        		try 
-        		{
-        			List<Address> results = geo.getFromLocationName(address, MAX_RESULTS);
-				} 
-        		catch (IOException e) 
-        		{
-					e.printStackTrace();
-					AlertDialog dialog = new AlertDialog.Builder(ContactInfo.this)
+	        		/*Geocoder geo = new Geocoder(ContactInfo.this);
+        			final Integer MAX_RESULTS = 1;
+        		
+        			try 
+        			{
+        				List<Address> results = geo.getFromLocationName(address, MAX_RESULTS);
+					} 
+        			catch (IOException e) 
+        			{
+						e.printStackTrace();
+						AlertDialog dialog = new AlertDialog.Builder(ContactInfo.this)
 										.setTitle("FAILED")
 										.setMessage("can't find the location")
 										.setPositiveButton("OK", 
@@ -198,9 +209,9 @@ public class ContactInfo extends Activity
 												dialog.dismiss();
 											}
 										}).create(); 
-					dialog.show(); 
-				}
-       		}
+						dialog.show(); 
+					}*/
+        		}
 		});
 	}
 		

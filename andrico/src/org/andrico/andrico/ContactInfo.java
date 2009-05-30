@@ -10,6 +10,7 @@ package org.andrico.andrico;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.andrico.andrico.content.Contact;
 import org.andrico.andrico.content.DBContact;
@@ -24,6 +25,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -167,9 +170,38 @@ public class ContactInfo extends Activity
 	        		Log.d(LOG, "loadUrl: " + path.toString());
 	        		startActivity(i); 
 	       		}
-			}); 
-	        
-	       
+			});
+	    
+	    this.findViewById(R.id.goToAdress).setOnClickListener(new OnClickListener()
+        {
+        	public void onClick(View v)
+			{  		
+        		String address = (String)((TextView) ContactInfo.this.findViewById(R.id.adress)).getText();
+        		Geocoder geo = new Geocoder(ContactInfo.this);
+        		final Integer MAX_RESULTS = 1;
+        		
+        		try 
+        		{
+        			List<Address> results = geo.getFromLocationName(address, MAX_RESULTS);
+				} 
+        		catch (IOException e) 
+        		{
+					e.printStackTrace();
+					AlertDialog dialog = new AlertDialog.Builder(ContactInfo.this)
+										.setTitle("FAILED")
+										.setMessage("can't find the location")
+										.setPositiveButton("OK", 
+												new DialogInterface.OnClickListener() 
+										{
+											public void onClick(DialogInterface dialog, int whichButton)
+											{
+												dialog.dismiss();
+											}
+										}).create(); 
+					dialog.show(); 
+				}
+       		}
+		});
 	}
 		
 	public boolean onKeyDown(int keyCode, KeyEvent event) 

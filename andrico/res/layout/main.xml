@@ -34,8 +34,39 @@
 				android:textStyle="bold" 
 				android:drawableLeft="@android:drawable/ic_menu_my_calendar"/>
 				
-		<Button android:id="@+id/Synchronize" android:layout_height="wrap_content" android:width="300px" android:layout_width="fill_parent" android:text="@string/synchronize" android:textSize="20px" android:layout_marginTop="5px" android:height="55px" android:textStyle="bold" android:drawableLeft="@drawable/ic_synch"></Button>
-		<Button android:id="@+id/Settings" android:layout_height="wrap_content" android:layout_width="fill_parent" android:width="300px" android:text="@string/settings" android:textSize="20px" android:layout_marginTop="5px" android:height="55px" android:textStyle="bold" android:drawableLeft="@android:drawable/ic_menu_preferences"></Button><Button android:id="@+id/Exit" android:layout_height="wrap_content" android:width="300px" android:layout_width="fill_parent" android:text="@string/exit" android:textSize="20px" android:layout_marginTop="5px" android:height="55px" android:textStyle="bold" android:drawableLeft="@drawable/ic_exit"></Button></LinearLayout>
+		<Button android:id="@+id/Synchronize" 
+				android:layout_height="wrap_content" 
+				android:width="300px" 
+				android:layout_width="fill_parent" 
+				android:text="@string/synchronize" 
+				android:textSize="20px" 
+				android:layout_marginTop="5px" 
+				android:height="55px" 
+				android:textStyle="bold" 
+				android:drawableLeft="@drawable/ic_synch"/>
+				
+		<Button android:id="@+id/Settings" 
+				android:layout_height="wrap_content" 
+				android:layout_width="fill_parent" 
+				android:width="300px" 
+				android:text="@string/settings" 
+				android:textSize="20px" 
+				android:layout_marginTop="5px" 
+				android:height="55px" 
+				android:textStyle="bold" 
+				android:drawableLeft="@android:drawable/ic_menu_preferences"/>
+		
+		<Button android:id="@+id/Exit" 
+				android:layout_height="wrap_content" 
+				android:width="300px" 
+				android:layout_width="fill_parent" 
+				android:text="@string/exit" 
+				android:textSize="20px" 
+				android:layout_marginTop="5px" 
+				android:height="55px" 
+				android:textStyle="bold" 
+				android:drawableLeft="@drawable/ic_exit"/>
+	</LinearLayout>
 	</LinearLayout>
 
 </ScrollView>

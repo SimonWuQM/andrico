@@ -53,26 +53,15 @@
 					android:layout_height="wrap_content" 
 					android:width="300px" 
 					android:layout_width="fill_parent" 
-					android:text="@string/synchronize" 
+					android:text="please, SYNCHRONIZE at first" 
 					android:layout_marginLeft="7px" 
 					android:layout_marginRight="7px" 
-					android:height="55px" 
+					android:height="100px" 
 					android:layout_marginTop="5px" 
 					android:textStyle="bold" 
-					android:textSize="20px" 
+					android:textSize="25px" 
 					android:drawableLeft="@drawable/ic_synch"/>
 			
-			<Button android:id="@+id/Settings" 
-					android:layout_height="wrap_content" 
-					android:layout_width="fill_parent" 
-					android:width="300px" 
-					android:text="@string/settings" 
-					android:layout_marginLeft="7px" 
-					android:layout_marginRight="7px" 
-					android:height="55px" android:layout_marginTop="1px" 
-					android:textStyle="bold" 
-					android:textSize="20px" 
-					android:drawableLeft="@android:drawable/ic_menu_preferences"/>
 			
 			<Button android:id="@+id/BackToMenu" 
 				android:layout_height="wrap_content" 
@@ -82,8 +71,9 @@
 				android:textStyle="bold" 
 				android:height="55px" 
 				android:drawableLeft="@android:drawable/ic_menu_revert" 
+				android:layout_marginTop="5px" 
 				android:layout_marginLeft="7px" 
-				android:layout_marginRight="7px" android:layout_marginTop="1px"/>
+				android:layout_marginRight="7px"/>
 		</LinearLayout>
 </LinearLayout>
  </LinearLayout>

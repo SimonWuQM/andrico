@@ -50,10 +50,11 @@
 			android:configChanges="keyboardHidden|orientation">
 		</activity>
 
-			
+				
     </application>
     
+    <uses-library android:name="com.google.android.maps"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-library android:name="com.google.android.maps"/>
+    
 </manifest> 

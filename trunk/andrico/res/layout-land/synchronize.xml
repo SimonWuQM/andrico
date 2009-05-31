@@ -23,12 +23,18 @@
 				android:layout_width="wrap_content" 
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
-		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/back_small_land" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:minHeight="207px" android:layout_marginTop="10px">
+		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" 
+					android:layout_width="fill_parent" android:background="@drawable/back_land" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:minHeight="240px">
 
 			<Button android:id="@+id/LogIn" 
 				android:layout_height="wrap_content" 
 				android:text="@string/log_in" 
-				android:layout_width="fill_parent"  android:layout_marginLeft="7px" android:layout_marginRight="7px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@android:drawable/ic_menu_myplaces" android:height="54px" android:layout_marginTop="20px">
+				android:layout_width="fill_parent"  
+				android:layout_marginLeft="7px" 
+				android:layout_marginRight="7px" 
+				android:textSize="20px" android:textStyle="bold" 
+				android:drawableLeft="@android:drawable/ic_menu_myplaces" 
+				android:height="55px" android:layout_marginTop="11px">
 			</Button>
 			
 			<Button android:id="@+id/Synch" 
@@ -41,13 +47,31 @@
 				android:textSize="20px" 
 				android:textStyle="bold" 
 				android:drawableLeft="@drawable/ic_synch" 
-				android:height="54px" android:layout_marginTop="5px">
+				android:height="55px" android:layout_marginTop="1px">
 			</Button>
 			
+			<Button android:id="@+id/Clear" 
+				android:layout_height="wrap_content" 
+				android:text="@string/clear" 
+				android:layout_width="fill_parent" 
+				android:textSize="20px" 
+				android:textStyle="bold" 
+				android:height="55px" 
+				android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel" 
+				android:layout_marginLeft="7px" 
+				android:layout_marginRight="7px" android:layout_marginTop="1px"/>
+			
+						
 			<Button android:id="@+id/BackToMenu" 
 				android:layout_height="wrap_content" 
 				android:text="@string/back" 
-				android:layout_width="fill_parent" android:layout_marginLeft="7px" android:layout_marginRight="7px" android:textSize="20px" android:textStyle="bold" android:drawableLeft="@android:drawable/ic_menu_revert" android:height="54px" android:layout_marginTop="5px">
+				android:layout_width="fill_parent" 
+				android:layout_marginLeft="7px" 
+				android:layout_marginRight="7px" 
+				android:textSize="20px" 
+				android:textStyle="bold" 
+				android:drawableLeft="@android:drawable/ic_menu_revert" 
+				android:height="55px" android:layout_marginTop="1px">
 			</Button>
 		</TableLayout>
 </LinearLayout>

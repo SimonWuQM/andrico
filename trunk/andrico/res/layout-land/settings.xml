@@ -23,14 +23,14 @@
 				android:layout_width="wrap_content" 
 				android:layout_margin="5px"></ImageView>
 		</LinearLayout>
-		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/back_small_land" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:layout_marginTop="10px" android:minHeight="227px">
+		<TableLayout android:id="@+id/ConfigureLayout" android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/back_small_land" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:minHeight="190px" android:layout_marginTop="20px">
 
 			<CheckBox android:id="@+id/DeleteContacts" 
 					  android:layout_height="wrap_content"
 					  android:layout_width="wrap_content"
 					  android:textSize="20px" 
 					  android:textStyle="bold"
-					  android:text="DON'T REMOVE CONTACT" android:checked="true" android:layout_marginLeft="10px" android:layout_marginTop="11px"/>
+					  android:text="DON'T REMOVE CONTACT" android:checked="true" android:layout_marginLeft="10px" android:layout_marginTop="15px"/>
 			
 			<TextView 
 				android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
 					  android:textSize="20px" 
 					  android:textStyle="bold"
 					  android:text=" SYNCHRONIZE PICTURES" 
-					  android:layout_marginLeft="10px" android:layout_marginTop="-8px"/>
+					  android:layout_marginLeft="10px" android:layout_marginTop="px"/>
 			
 			<TextView 
 				android:layout_height="wrap_content"
@@ -59,16 +59,6 @@
 				android:gravity="center_horizontal"  
 				android:textSize="15px" android:layout_marginLeft="2px" android:layout_marginTop="-15px"/>
 			
-			<Button android:id="@+id/Clear" 
-				android:layout_height="wrap_content" 
-				android:text="@string/clear" 
-				android:layout_width="fill_parent" 
-				android:textSize="20px" 
-				android:textStyle="bold" 
-				android:height="50px" 
-				android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel" 
-				android:layout_marginLeft="10px" 
-				android:layout_marginRight="10px" android:layout_marginTop="3px"/>
 			
 			<Button android:id="@+id/BackToMenu" 
 				android:layout_height="wrap_content" 
@@ -79,7 +69,7 @@
 				android:height="50px" 
 				android:drawableLeft="@android:drawable/ic_menu_revert" 
 				android:layout_marginLeft="10px" 
-				android:layout_marginRight="10px"/>
+				android:layout_marginRight="10px" android:layout_marginTop="10px"/>
 		</TableLayout>
 </LinearLayout>
 

@@ -1,11 +1,6 @@
+#labels Featured
 = How can I use the ANDRICO? =
 
- * [s Start]
- * [Settings]
- * [Synchronization]
- * Contacts
-
-#label s  
 == Start ==
 
 == Settings ==
@@ -13,6 +8,10 @@
 == Synchronization ==
 
 == Contacts ==
+
+
+
+----
 
 
 First, you have to choose our application in main menu

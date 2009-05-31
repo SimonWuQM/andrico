@@ -91,7 +91,7 @@
 						<LinearLayout  android:orientation="horizontal"
 							android:layout_width="wrap_content" 
 							android:layout_height="fill_parent"
-							android:background="#30567D" android:layout_marginTop="10px">
+							android:background="#30567D">
 						
 								<TextView android:text="address: "  
 						  			android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
 					android:layout_width="fill_parent"
 					layout_weight="0"  
 					android:layout_height="wrap_content" 
-					android:background="@drawable/back_small" android:minHeight="140px" android:layout_marginTop="5px">
+					android:background="@drawable/back_small" android:minHeight="140px">
 				
 						<Button android:id="@+id/goToAdress" 
 							android:width="300px" 

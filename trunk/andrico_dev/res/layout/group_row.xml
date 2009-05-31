@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+/****************************************
+ * 		                       			*
+ *     Copyright 2009 Andrico Team 		*
+ *   http://code.google.com/p/andrico/	*
+ *										*
+ ****************************************/
+	-->
+<TwoLineListItem xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/MainLayout" 
+	android:orientation="vertical"
+	android:layout_height="wrap_content" 
+	android:layout_width="fill_parent">
+		<TextView android:id="@+id/NameOfGroup" 
+				android:layout_height="wrap_content" 
+				android:textColor="#FFFFFF"
+				android:text="name of group" 
+				android:textStyle="bold" 
+				android:layout_width="fill_parent" 
+				android:gravity="center_vertical|center_horizontal" 
+				android:minHeight="57px" 
+				android:textSize="25px" 
+				android:singleLine="true"
+				style="android:attr/listItemFirstLineStyle">
+		</TextView>
+		
+		<TextView android:id="@+id/FBID" 
+				android:layout_height="wrap_content" 
+				android:textColor="#FFFFFF"
+				android:text="12345678" 
+				android:textStyle="bold" 
+				android:layout_width="fill_parent" 
+				android:gravity="center_vertical|center_horizontal" 
+				android:minHeight="1px" android:textSize="1px" 
+				android:visibility="invisible"
+				style="android:attr/listItemSecondLineStyle">
+		</TextView>		
+</TwoLineListItem>
+
+

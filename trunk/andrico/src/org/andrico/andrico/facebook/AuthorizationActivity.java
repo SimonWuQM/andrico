@@ -1,9 +1,21 @@
-/****************************************
- * 		                       			*
- *     Copyright 2009 Andrico Team 		*
- *   http://code.google.com/p/andrico/	*
- *										*
- ****************************************/
+ /*************************************************************************** 
+ *              Copyright (C) 2009 Andrico Team                             * 
+ *              http://code.google.com/p/andrico/                           *
+ *                             												*
+ * Licensed under the Apache License, Version 2.0 (the "License");			*
+ * you may not use this file except in compliance with the License.			*
+ * 																			*	
+ * You may obtain a copy of the License at 									*
+ * http://www.apache.org/licenses/LICENSE-2.0								*
+ *																			*
+ * Unless required by applicable law or agreed to in writing, software		*
+ * distributed under the License is distributed on an "AS IS" BASIS,		*
+ *																			*
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.	*
+ * See the License for the specific language governing permissions and		*
+ * limitations under the License.											*
+ ****************************************************************************/
+
 
 package org.andrico.andrico.facebook;
 
@@ -19,11 +31,6 @@ import android.view.Window;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 
-/**
- * An activity that will connect to facebook, have the user log in and return to
- * the caller a string representing session information. It expects to receive
- * an Intent with the extras "api_key" and "api_secret" as provided by facebook.
- */
 public abstract class AuthorizationActivity extends Activity {
     private class WebChromeClient extends android.webkit.WebChromeClient {
 

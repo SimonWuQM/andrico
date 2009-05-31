@@ -1,7 +1,11 @@
 = How can I use the ANDRICO? =
 
-#labels
-  
+ * [s Start]
+ * [Settings]
+ * [Synchronization]
+ * Contacts
+
+#label s  
 == Start ==
 
 == Settings ==

@@ -11,9 +11,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.andrico.andrico.content.Contact;
+import org.andrico.andrico.content.DBContact;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -86,6 +91,16 @@ public class SettingsActivity extends Activity
 	        	picBox.setChecked(false);
 	        }
 	        
+	        DBContact db = new DBContact();
+	        LinkedList <Contact> conts = db.getContactList(SettingsActivity.this);
+	        if (conts == null)
+	        {
+	        	this.findViewById(R.id.Clear).setEnabled(false);
+	        }
+	        else
+	        {
+	        	this.findViewById(R.id.Clear).setEnabled(true);
+	        }
 	        
 	        delBox.setOnCheckedChangeListener(new OnCheckedChangeListener()
 	        {	    
@@ -124,6 +139,37 @@ public class SettingsActivity extends Activity
 				}
 			});
 
+	        
+	        this.findViewById(R.id.Clear).setOnClickListener(new OnClickListener()
+	        {
+				public void onClick(View v)
+				{
+					AlertDialog dialog = new AlertDialog.Builder(SettingsActivity.this)
+					.setTitle("ARE YOU SURE")
+					.setMessage("DO YOU REALLY WANT TO CLEAR YOUR CONTACT LIST?")
+					.setPositiveButton("YES", 
+							new DialogInterface.OnClickListener() 
+							{
+								public void onClick(DialogInterface dialog, int whichButton)
+								{
+									DBContact db = new DBContact();
+									db.deleteContacts(SettingsActivity.this);
+									SettingsActivity.this.findViewById(R.id.Clear).setEnabled(false);
+									dialog.dismiss();
+								}
+							})
+					.setNegativeButton("NO", 
+							new DialogInterface.OnClickListener() 
+							{
+								public void onClick(DialogInterface dialog, int whichButton)
+								{
+									dialog.dismiss();
+								}
+							}).create(); 
+		        	dialog.show();
+	       		}
+			});
+	        
 	        this.findViewById(R.id.BackToMenu).setOnClickListener(new OnClickListener()
 	        {
 				public void onClick(View v)

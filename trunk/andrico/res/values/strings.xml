@@ -34,4 +34,5 @@
 <string name="contact_info">Contact Information</string>
 <string name="loading_page">Loading Page</string>
 <string name="maps_key">ABQIAAAAlHXaT1NKk8ZkTHcuuRsSnxSGEeQu9OnMy9FO47fV5cYicWiawhQURLidU7rKQP9jXZSu05jjb1LwNQ</string>
+<string name="clear">DELETE CONTACTS</string>
 </resources>

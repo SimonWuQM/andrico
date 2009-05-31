@@ -34,7 +34,7 @@
 		android:layout_marginRight="10px" 
 		android:layout_width="fill_parent" 
 		android:background="@drawable/back_small" 
-		android:minHeight="215px" android:layout_marginTop="20px">
+		android:layout_marginTop="20px" android:minHeight="255px">
 			
 			<CheckBox android:id="@+id/DeleteContacts" 
 					  android:layout_height="wrap_content"
@@ -58,8 +58,7 @@
 					  android:layout_width="wrap_content"
 					  android:textSize="20px" 
 					  android:textStyle="bold"
-					  android:text=" SYNCHRONIZE PICTURES" 
-					  android:layout_marginTop="10px"/>
+					  android:text=" SYNCHRONIZE PICTURES"/>
 			
 			<TextView 
 				android:layout_height="wrap_content"
@@ -70,16 +69,27 @@
 				android:gravity="center_horizontal"  
 				android:textSize="15px" android:layout_marginTop="-10px" android:layout_marginLeft="2px"/>
 			
+			<Button android:id="@+id/Clear" 
+				android:layout_height="wrap_content" 
+				android:text="@string/clear" 
+				android:layout_width="fill_parent" 
+				android:textSize="20px" 
+				android:textStyle="bold" 
+				android:height="50px" 
+				android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel" 
+				android:layout_marginLeft="10px" 
+				android:layout_marginRight="10px" android:layout_marginTop="5px"/>
+			
 			<Button android:id="@+id/BackToMenu" 
 				android:layout_height="wrap_content" 
 				android:text="@string/back" 
 				android:layout_width="fill_parent" 
 				android:textSize="20px" 
 				android:textStyle="bold" 
-				android:height="55px" 
+				android:height="50px" 
 				android:drawableLeft="@android:drawable/ic_menu_revert" 
 				android:layout_marginLeft="10px" 
-				android:layout_marginRight="10px" android:layout_marginTop="7px"/>
+				android:layout_marginRight="10px"/>
 		</LinearLayout>
 	</LinearLayout>
 

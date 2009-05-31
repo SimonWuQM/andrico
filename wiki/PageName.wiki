@@ -1,6 +1,6 @@
 = How can I use the ANDRICO? =
 
-  * [Articles HOWTO articles]
+  * [Articles HOWTO Start]
     * [ArticlesXSS Web security]
     * [ArticlesDom DOM manipulation]
     * [ArticlesStyle CSS and style]
@@ -93,4 +93,3 @@ Now, you can start a sinchronization:
 And wait a little, please:
 
 [http://lh5.ggpht.com/_y543Ell7bU4/SiBv4Y8T_aI/AAAAAAAAAEE/h7XnIko4B2c/screen__22_%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD.%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80.jpg]
-

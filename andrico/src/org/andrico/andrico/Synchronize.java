@@ -702,7 +702,7 @@ public class Synchronize extends Activity
                 editor.remove(Preferences.FACEBOOK_CRED_UID);
                 editor.commit();
             } 
-            else if (errorCode == 123)
+            else if (errorCode == 0)
             {
             	message = "NO FRIENDS FOUND";
             }

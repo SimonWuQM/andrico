@@ -39,49 +39,49 @@ To open the application choose “Andrico” in menu of your Android device.
 
 ==Main menu of Andrico==
 
-1.	Click “VIEW CONTACTS” to see you contact list and choose the contact you want.
-2.	To synchronize you contact with Facebook press “SYNCHRONISE”.
-3.	You can choose you own settings, if you press on “SETTINGS” button
-4.	Press “EXIT” to return to the menu of you device.
+# Click “VIEW CONTACTS” to see you contact list and choose the contact you want.
+# To synchronize you contact with Facebook press “SYNCHRONISE”.
+# You can choose you own settings, if you press on “SETTINGS” button
+# Press “EXIT” to return to the menu of you device.
 
 ==Synchronization==
 
-1.	If you use this application for the first time you will need to log in. To do it click “LOG IN” on the screen of your device.
-You can see the “Getting Authorization Token” in the title of the screen.
-Enter your e-mail and password in relevant field using keyboard to enter Facebook and then press “ENTER”
-Then you need to generate a one-time code (it’s called Token in the application) which you can give to Andrico. The token will allow Facebook to save you login info for Andrico.
+*If you use this application for the first time you will need to log in. To do it click “LOG IN” on the screen of your device.
+*You can see the “Getting Authorization Token” in the title of the screen.
+*Enter your e-mail and password in relevant field using keyboard to enter Facebook and then press “ENTER”
+*Then you need to generate a one-time code (it’s called Token in the application) which you can give to Andrico. The token will allow Facebook to save you login info for Andrico.
 You won’t have to log in to Facebook again to use Andrico. You can recall you permission for this application on your web-page of privacy adjustments at any time.
-Click “CREATE” to generate this code. Wait a minute. Then you’ll see the window with your token. Enter it in special field and press “OK” to continue. Wait a minute. Then you’ll see the message “ACQUIRED FACEBOOK SESSION” and after that you’ll be successfully logged in.
-After authorization press “SNART SYNCH” to start synchronization. Wait a few moments and you’ll see how many friends and photos have been added.
+*Click “CREATE” to generate this code. Wait a minute. Then you’ll see the window with your token. Enter it in special field and press “OK” to continue. Wait a minute. Then you’ll see the message “ACQUIRED FACEBOOK SESSION” and after that you’ll be successfully logged in.
+*After authorization press “SNART SYNCH” to start synchronization. Wait a few moments and you’ll see how many friends and photos have been added.
 If you enter a wrong token you can’t proceed to synchronization. In this case the button “START SYNCH” won’t be not available.
 
-2.	You can return to main menu of the application by pressing “BACK TO MENU”
+*You can return to main menu of the application by pressing “BACK TO MENU”
 
 
 ==Contacts==
 
-To look at your contact list click “VIEW CONTACTS”.
-You’ll see your contact list. Choose the contact you want and click on it to see the information about your friend.
-You can find your friend’s address on map. Press “SHOW ADDRESS ON MAP” to do that.
-To go to your friend’s facebook page you have to press “GO TO FACEBOOK PAGE”.
+*To look at your contact list click “VIEW CONTACTS”.
+*You’ll see your contact list. Choose the contact you want and click on it to see the information about your friend.
+*You can find your friend’s address on map. Press “SHOW ADDRESS ON MAP” to do that.
+*To go to your friend’s facebook page you have to press “GO TO FACEBOOK PAGE”.
 
-If your contact list is empty, you have to synchronize your facebook account at first. Press “LOG IN” to get authorization. Put your e-mail and passwords in appropriate fields and press “LOG IN”.
-If you have entered wrong e-mail or password the token won’t be created and you’ll see an error message.
-If your e-mail and password are right press “CREATE” to get your token. Then enter it in relevant field and press “OK”. If you enter token right, you’ll be logged in.
+*If your contact list is empty, you have to synchronize your facebook account at first. Press “LOG IN” to get authorization. Put your e-mail and passwords in appropriate fields and press “LOG IN”.
+*If you have entered wrong e-mail or password the token won’t be created and you’ll see an error message.
+*If your e-mail and password are right press “CREATE” to get your token. Then enter it in relevant field and press “OK”. If you enter token right, you’ll be logged in.
 
-After authorization press “START SYNCH” to start synchronization. You will need to log in only once, if no one except you uses the application.
-If you enter a wrong token you can’t proceed with synchronization. In this case the button “START SYNCH” won’t be available.
+*After authorization press “START SYNCH” to start synchronization. You will need to log in only once, if no one except you uses the application.
+*If you enter a wrong token you can’t proceed with synchronization. In this case the button “START SYNCH” won’t be available.
 
-You can return to menu by pressing “BACK TO MENU”
+*You can return to menu by pressing “BACK TO MENU”
 
 ==Settings==
 
-In “SETTINGS” you can choose your own settings
-To do that you have to put a mark in appropriate checkbox.
-Put a mark against “DON’T REMOVE CONTACT” if you don’t want your contacts to be removed if they’re no longer your facebook friends.
-If you want to synchronize pictures you will need to put a mark against “SYNCHRONIZE PICTURES”. But you should keep in mind that it will take more traffic if selected.
-When the settings are chosen press “BACK TO MENU” to return in the main menu of the application.
+*In “SETTINGS” you can choose your own settings
+*To do that you have to put a mark in appropriate checkbox.
+*Put a mark against “DON’T REMOVE CONTACT” if you don’t want your contacts to be removed if they’re no longer your facebook friends.
+*If you want to synchronize pictures you will need to put a mark against “SYNCHRONIZE PICTURES”. But you should keep in mind that it will take more traffic if selected.
+*When the settings are chosen press “BACK TO MENU” to return in the main menu of the application.
 
 ==Exit==
 
-To close the application press “EXIT” button and you will return to the main menu of your device.
+*To close the application press “EXIT” button and you will return to the main menu of your device.

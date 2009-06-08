@@ -107,21 +107,11 @@ public class MainActivity extends Activity
 	       		}
 			});
 	        
-	        this.findViewById(R.id.Exit).setOnClickListener(new OnClickListener(){
+	        this.findViewById(R.id.About).setOnClickListener(new OnClickListener(){
 				public void onClick(View v)
 				{   
-	                finish();
+	               
 	       		}
 			});
 	    }
-		
-	    public boolean onKeyDown(int keyCode, KeyEvent event) 
-	    { 
-	    	if(keyCode==KeyEvent.KEYCODE_BACK)
-	    	{
-	    	    return true;
-	    	}
-			return false; 
-		}
-
 }

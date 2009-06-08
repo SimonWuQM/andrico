@@ -26,12 +26,12 @@ public final class R {
         public static final int no_photo=0x7f02000c;
     }
     public static final class id {
+        public static final int About=0x7f050016;
         public static final int BackToMenu=0x7f05000c;
         public static final int Clear=0x7f05001d;
         public static final int ConfigureLayout=0x7f05001a;
         public static final int DeleteContacts=0x7f050018;
         public static final int DownloadPic=0x7f050019;
-        public static final int Exit=0x7f050016;
         public static final int FBID=0x7f050013;
         public static final int LayoutForButtons=0x7f05000a;
         public static final int LayoutForLogo=0x7f050008;

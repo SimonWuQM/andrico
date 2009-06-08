@@ -67,16 +67,16 @@
 				android:textStyle="bold" 
 				android:drawableLeft="@android:drawable/ic_menu_preferences"/>
 		
-		<Button android:id="@+id/Exit" 
+		<Button android:id="@+id/About" 
 				android:layout_height="wrap_content" 
 				android:width="300px" 
 				android:layout_width="fill_parent" 
-				android:text="@string/exit" 
+				android:text="ABOUT" 
 				android:textSize="20px" 
 				android:layout_marginTop="5px" 
 				android:height="55px" 
 				android:textStyle="bold" 
-				android:drawableLeft="@drawable/ic_exit"/>
+				android:drawableLeft="@android:drawable/ic_menu_help"/>
 	</LinearLayout>
 	</LinearLayout>
 

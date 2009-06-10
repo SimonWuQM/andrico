@@ -92,21 +92,11 @@ public class ContactList extends ListActivity
 	    
 	    db.insert(ContactList.this, contact);
 	    */
-	    contacts = db.getContactList(ContactList.this);
-
-	    LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
 	    
-	    if (contacts != null)
+	    LinkedList<Map<String, String>> conts = db.getAdapter(ContactList.this);
+	    
+	    if (conts != null)
 		{
-	    	for(int j = 0; j < contacts.size(); j++) 
-         	{
-        		TreeMap<String, String> cont = new TreeMap<String, String> ();
-                
-        		cont.put("contact", contacts.get(j).getName() + " " + contacts.get(j).getSecondName());
-                cont.put("fbid", contacts.get(j).getFBid());
-        		conts.add(cont);
-            }
-	    	
 	    	listAdapter = new SimpleAdapter(this, conts, R.layout.group_row, 
          					new String[] {"contact", "fbid"},
          					new int[] {R.id.NameOfGroup, R.id.FBID});

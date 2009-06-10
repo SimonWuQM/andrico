@@ -25,6 +25,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -103,6 +105,42 @@ public class DBContact
                 db.close();
                 return cont;
         }
+        
+        
+        public LinkedList<Map<String, String>> getAdapter(Context app) 
+        {
+                final String request = "SELECT name, second_name, fb_id from CONTACTS ORDER BY name";
+                LinkedList<Map<String, String>> conts = new LinkedList<Map<String, String>>();
+                Cursor cur = null;
+                if(isDatabaseReady(app)) 
+                {
+                	cur = db.rawQuery(request, null);
+                } 
+                else 
+                {
+                	//Log.e(TAG,"Database is not open when getting contacts");
+                    return null;
+                }
+                
+                if((cur != null) && (cur.getCount() > 0)) 
+                {
+                	cur.moveToFirst();
+                    for(int i = 0; i < cur.getCount(); i++) 
+                    {
+                    	TreeMap<String, String> cont = new TreeMap<String, String> ();
+                        
+                		cont.put("contact", cur.getString(0) + " " + cur.getString(1));
+                        cont.put("fbid", cur.getString(2));
+                		conts.add(cont);
+                    	
+                    	cur.moveToNext();
+                    }
+                    cur.close();
+                }
+                db.close();
+                return conts;
+        }
+        
         
         public LinkedList<Contact> getContactList(Context context) 
         {

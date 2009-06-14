@@ -1,3 +1,4 @@
+#labels Featured
 =How To Use=
 ==START==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]===
@@ -23,9 +24,18 @@
  * Click *GO TO FACEBOOK PAGE* to open facebook page of the contact
  * Click *SHOW ADDRESS ON MAP* to open Google Maps see the contact address
 
+==EVENTS==
+===[http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]===
 
 
----
+===[http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]===
+
+There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.png three buttons] under [http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]
+
+==SYNCRONIZATION==
+
+
+----
 
  * If your contact list is empty, you have to synchronize your facebook account at first. Press *“LOG IN”* to get authorization. Put your e-mail and passwords in appropriate fields and press *“LOG IN”*.
  * If you have entered wrong e-mail or password the token won’t be created and you’ll see an error message.
@@ -49,28 +59,10 @@
 
 
 
-===Synchronization===
+==Synchronization==
 
- * If you use this application for the first time you will need to log in. To do it click “LOG IN” on the screen of your device.
- * You can see the “Getting Authorization Token” in the title of the screen.
- * Enter your e-mail and password in relevant field using keyboard to enter Facebook and then press *“ENTER”*
- * Then you need to generate a one-time code (it’s called Token in the application) which you can give to Andrico. The token will allow Facebook to save you login info for Andrico.
- * You won’t have to log in to Facebook again to use Andrico. You can recall you permission for this application on your web-page of privacy adjustments at any time.
- * Click *“CREATE”* to generate this code. Wait a minute. Then you’ll see the window with your token. Enter it in special field and press *“OK”* to continue. Wait a minute. Then you’ll see the message *“ACQUIRED FACEBOOK SESSION”* and after that you’ll be successfully logged in.
- * After authorization press *“SNART SYNCH”* to start synchronization. Wait a few moments and you’ll see how many friends and photos have been added.
- * If you enter a wrong token you can’t proceed to synchronization. In this case the button *“START SYNCH”* won’t be not available.
-* You can return to main menu of the application by pressing *“BACK TO MENU”*
+===[http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]===
 
+===AUTHORIZATION===
 
-===Settings===
-
- * In “SETTINGS” you can choose your own settings
- * To do that you have to put a mark in appropriate checkbox.
- * Put a mark against *“DON’T REMOVE CONTACT”* if you don’t want your contacts to be removed if they’re no longer your facebook friends.
- * If you want to synchronize pictures you will need to put a mark against *“SYNCHRONIZE PICTURES”*. But you should keep in mind that it will take more traffic if selected.
- * When the settings are chosen press *“BACK TO MENU”* to return in the main menu of the application.
-
-
-===Exit===
-
- * To close the application press *“EXIT”* button and you will return to the main menu of your device.
+===[http://andrico.googlecode.com/svn/screenshots/for_help/settings.png SYNCHRONIZATION SETTINGS]===

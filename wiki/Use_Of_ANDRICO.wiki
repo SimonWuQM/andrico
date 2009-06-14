@@ -6,8 +6,8 @@
  * Click *VIEW EVENTS* to open your [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]
  * Click *VIEW CONTACTS* to open your [http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list.png CONTACT LIST]
  * Click *SYNCHRONISE* to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]
- * Click *ABOUT* to learn more about ANDRICO.
- * Click *BACK* harware button to exit.
+ * Click *ABOUT* to learn more about ANDRICO
+ * Click *BACK* harware button to exit
 
 ==CONTACTS==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list.png CONTACT LIST]===
@@ -20,9 +20,9 @@
  
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/contact.png CONTACT INFORMATION]===
  
- * Click *CONTACT EVENTS* to open contact's [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST] 
+ * Click *CONTACT EVENTS* to open contact's [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]. The button is disabled if contact haven't any event 
  * Click *GO TO FACEBOOK PAGE* to open facebook page of the contact
- * Click *SHOW ADDRESS ON MAP* to open Google Maps see the contact address
+ * Click *SHOW ADDRESS ON MAP* to open Google Maps see the contact address. The button is disabled if no addrees avaliable
 
 ==EVENTS==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]===
@@ -37,7 +37,7 @@
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]===
 
 There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.png three buttons] under [http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]
- * Click *CONTACT EVENTS* to open contact's [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST] 
+ * Click *VIEW LIST OF MEMBERS* to open [http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list.png LIST OF MEMBERS] from your contacts. The button is disabled if there is no memeber in your CONTACT LIST 
  * Click *GO TO FACEBOOK PAGE* to open facebook page of the event
  * Click *SHOW LOCATION ON MAP* to open Google Maps see the event location
 
@@ -45,9 +45,9 @@ There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]===
  
  * Click *AUTHORIZE* to start authorization
- * Click *START SYNCH* to start synchronization
+ * Click *START SYNCH* to start synchronization. The button is disabled if you aren't authorized
  * Click *SETTINGS* to open [http://andrico.googlecode.com/svn/screenshots/for_help/settings.png SYNCHRONIZATION SETTINGS]
- * Click *CLEAR DATA* to clear all local data (won't affect any data on Facebook server)
+ * Click *CLEAR DATA* to clear all local data (won't affect any data on Facebook server). The button is disablet if there is not local data
 
 ===AUTHORIZATION===
 

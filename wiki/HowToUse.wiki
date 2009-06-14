@@ -1,4 +1,3 @@
-#labels Featured
 = How can I use the ANDRICO? =
 
 == Start ==

@@ -15,7 +15,7 @@
    * Click big SYNCHRONIZE button to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.png SYNCHRONIZATION MENU]
    * Click BACK TO MENU button to go to [http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]
  * Click contact in the list to open [http://andrico.googlecode.com/svn/screenshots/for_help/contact.png CONTACT INFORMATION] window
- * Just start typing to [http://andrico.googlecode.com/svn/screenshots/for_help/contact_list_search.png search] contacts
+ * Just start typing to [http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list_search.png search] contacts
  
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/contact.png CONTACT INFORMATION]===
  

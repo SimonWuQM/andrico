@@ -1,7 +1,7 @@
 #labels Featured
 =How To Use=
 ----
- * START
+ * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#START START]
    * MAIN MENU
  * CONTACTS
    * CONTACT LIST

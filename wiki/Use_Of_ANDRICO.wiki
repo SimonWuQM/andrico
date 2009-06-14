@@ -4,7 +4,7 @@
 
  * Click *VIEW EVENTS* to open your [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]
  * Click *VIEW CONTACTS* to open your [http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list.png CONTACT LIST]
- * Click *SYNCHRONISE* to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.png SYNCHRONIZATION MENU]
+ * Click *SYNCHRONISE* to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]
  * Click *ABOUT* to learn more about ANDRICO.
  * Click *BACK* harware button to exit.
 

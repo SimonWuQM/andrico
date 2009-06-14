@@ -2,7 +2,7 @@
 =How To Use=
 ----
  * START
-   * MAIN MENU
+     MAIN MENU
  * CONTACTS
    # CONTACT LIST
    # CONTACT INFO

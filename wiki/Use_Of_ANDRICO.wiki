@@ -1,6 +1,7 @@
 #labels Featured
-=How To Use=
+=HOW TO USE=
 ----
+==NAVIGATION==
  * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#START START]
    * MAIN MENU
  * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#CONTACTS CONTACTS]
@@ -14,6 +15,8 @@
    * AUTHORIZATION
    * SYNCHRONIZATION SETTINGS
 ----
+click links to see pictures
+
 ==START==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]===
 

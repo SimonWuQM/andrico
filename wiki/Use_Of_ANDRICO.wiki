@@ -27,14 +27,31 @@
 ==EVENTS==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST]===
 
+ * If your CONTACT LIST is empty, you'll see the [http://andrico.googlecode.com/svn/screenshots/for_help/contact_list_emty.PNG NOTIFICATION WINDOW]
+   * Click big SYNCHRONIZE button to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]
+   * Click BACK TO MENU button to go to [http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]
+ * Click event in the list to open [http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION] window
+ * Just start typing to [http://andrico.googlecode.com/svn/screenshots/for_help/event_list_search.png search] events
+ * Click MENU hardware button to [http://andrico.googlecode.com/svn/screenshots/for_help/event_list_filter.png choose a filter]  
 
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]===
 
 There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.png three buttons] under [http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]
+ * Click *CONTACT EVENTS* to open contact's [http://andrico.googlecode.com/svn/screenshots/for_help/event_list.png EVENT LIST] 
+ * Click *GO TO FACEBOOK PAGE* to open facebook page of the event
+ * Click *SHOW LOCATION ON MAP* to open Google Maps see the event location
 
 ==SYNCRONIZATION==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]===
+ 
+ * Click *AUTHORIZE* to start authorization
+ * Click *START SYNCH* to start synchronization
+ * Click *SETTINGS* to open [http://andrico.googlecode.com/svn/screenshots/for_help/settings.png SYNCHRONIZATION SETTINGS]
+ * Click *CLEAR DATA* to clear all local data (won't affect any data on Facebook server)
 
 ===AUTHORIZATION===
 
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/settings.png SYNCHRONIZATION SETTINGS]===
+ * Check *DON'T REMOVE DATA* checkbox to retain contacts that are no longer your friends and events that no longer deal with your friends. It'll enable you to collect data from different facebook accounts, for example.
+ * Check *SYNCHRONIZE PICTURES* checkbox to synchronize pictures of events and friends.
+ * Check *REMOVE PAST EVENTS* checkbox to remove during the synchronization all events that are finished yet. 

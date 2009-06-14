@@ -12,7 +12,7 @@
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list.png CONTACT LIST]===
 
  * If your CONTACT LIST is empty, you'll see the [http://andrico.googlecode.com/svn/screenshots/for_help/contact_list_empty.PNG NOTIFICATION WINDOW]
-   * Click big SYNCHRONIZE button to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.png SYNCHRONIZATION MENU]
+   * Click big SYNCHRONIZE button to open [http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]
    * Click BACK TO MENU button to go to [http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]
  * Click contact in the list to open [http://andrico.googlecode.com/svn/screenshots/for_help/contact.png CONTACT INFORMATION] window
  * Just start typing to [http://andrico.googlecode.com/svn/screenshots/for_help/Contact_list_search.png search] contacts

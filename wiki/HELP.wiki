@@ -1,4 +1,4 @@
-#labels Featured
+#labels Deprecated
 =General description of Andrico=
 
 *ANDRICO* - is a program product, developed for devices based on Android OS, that enables users to synchronize with Facebook and download date from Facebook such as your friends’ contacts, address, birthday and so on. Besides you can see your friends’ places of domicile on the map and go to your Facebook page.

@@ -2,17 +2,17 @@
 =How To Use=
 ----
  * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#START START]
-   * MAIN MENU
- * CONTACTS
-   * CONTACT LIST
-   * CONTACT INFO
- * EVENTS
-   * EVENT LIST
-   * EVENT INFO
- * SYNCHRONIZATION
-   * SYNCHRONIZATION MENU
-   * AUTHORIZATION
-   * SYNCHRONIZATION SETTINGS
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#MAIN_MENU MAIN MENU]
+ * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#CONTACTS CONTACTS]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#1._CONTACT_LIST CONTACT LIST]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#2._CONTACT_INFO CONTACT INFO]
+ * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#EVENTS EVENTS]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#1._EVENT_LIST EVENT LIST]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#2._EVENT_INFO EVENT INFO]
+ * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#SYNCHRONIZATION SYNCHRONIZATION]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#1._SYNCHRONIZATION_MENU SYNCHRONIZATION MENU]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#2._AUTHORIZATION AUTHORIZATION]
+   * [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO#3._SYNCHRONIZATION_SETTINGS SYNCHRONIZATION SETTINGS]
 ----
 ==START==
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/main_menu.png MAIN MENU]===

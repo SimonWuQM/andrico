@@ -51,6 +51,12 @@ There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.
 
 ===AUTHORIZATION===
 
+ * At first [http://andrico.googlecode.com/svn/screenshots/for_help/facebook_login.PNG log in into facebook]
+ * Then click *CREATE* to create authorization token
+ * Enter authorization token in the the [http://andrico.googlecode.com/svn/screenshots/for_help/get_auth_token.PNG form]
+   * If the token is entered right way, you will see the [http://andrico.googlecode.com/svn/screenshots/for_help/acquired.PNG ACQUIRED SESSION] notification
+   * If the token is entered wrong way, you will see the [http://andrico.googlecode.com/svn/screenshots/for_help/couldnt_acquire.PNG COULDN'T ACQUIRE SESSION] notification
+
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/settings.png SYNCHRONIZATION SETTINGS]===
  * Check *DON'T REMOVE DATA* checkbox to retain contacts that are no longer your friends and events that no longer deal with your friends. It'll enable you to collect data from different facebook accounts, for example.
  * Check *SYNCHRONIZE PICTURES* checkbox to synchronize pictures of events and friends.

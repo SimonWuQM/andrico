@@ -33,34 +33,6 @@
 There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.png three buttons] under [http://andrico.googlecode.com/svn/screenshots/for_help/event.png EVENT INFORMATION]
 
 ==SYNCRONIZATION==
-
-
-----
-
- * If your contact list is empty, you have to synchronize your facebook account at first. Press *“LOG IN”* to get authorization. Put your e-mail and passwords in appropriate fields and press *“LOG IN”*.
- * If you have entered wrong e-mail or password the token won’t be created and you’ll see an error message.
- * If your e-mail and password are right press *“CREATE”* to get your token. Then enter it in relevant field and press *“OK”*. If you enter token right, you’ll be logged in.
- * After authorization press *“START SYNCH”* to start synchronization. You will need to log in only once, if no one except you uses the application.
- * If you enter a wrong token you can’t proceed with synchronization. In this case the button *“START SYNCH”* won’t be available.
- * You can return to menu by pressing *“BACK TO MENU”*
-
-===Event List===
-
- * Click event to open event "EVENT INFORMATION" window
- * You’ll see your contact list. Choose the contact you want and click on it to see the information about your friend.
- * You can find your friend’s address on map. Press *“SHOW ADDRESS ON MAP”* to do that.
- * To go to your friend’s facebook page you have to press *“GO TO FACEBOOK PAGE”*.
- * If your contact list is empty, you have to synchronize your facebook account at first. Press *“LOG IN”* to get authorization. Put your e-mail and passwords in appropriate fields and press *“LOG IN”*.
- * If you have entered wrong e-mail or password the token won’t be created and you’ll see an error message.
- * If your e-mail and password are right press *“CREATE”* to get your token. Then enter it in relevant field and press *“OK”*. If you enter token right, you’ll be logged in.
- * After authorization press *“START SYNCH”* to start synchronization. You will need to log in only once, if no one except you uses the application.
- * If you enter a wrong token you can’t proceed with synchronization. In this case the button *“START SYNCH”* won’t be available.
- * You can return to menu by pressing *“BACK TO MENU”*
-
-
-
-==Synchronization==
-
 ===[http://andrico.googlecode.com/svn/screenshots/for_help/synch_menu.PNG SYNCHRONIZATION MENU]===
 
 ===AUTHORIZATION===

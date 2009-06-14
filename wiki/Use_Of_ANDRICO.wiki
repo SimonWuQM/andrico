@@ -53,7 +53,7 @@ There are [http://andrico.googlecode.com/svn/screenshots/for_help/event_buttons.
 
  * At first [http://andrico.googlecode.com/svn/screenshots/for_help/facebook_login.PNG log in into facebook]
  * Then click *CREATE* to create authorization token
- * Enter authorization token in the the [http://andrico.googlecode.com/svn/screenshots/for_help/get_auth_token.PNG form]
+ * Enter authorization token in the the [http://andrico.googlecode.com/svn/screenshots/for_help/get_auth_token.PNG special form]
    * If the token is entered right way, you will see the [http://andrico.googlecode.com/svn/screenshots/for_help/acquired.PNG ACQUIRED SESSION] notification
    * If the token is entered wrong way, you will see the [http://andrico.googlecode.com/svn/screenshots/for_help/couldnt_acquire.PNG COULDN'T ACQUIRE SESSION] notification
 

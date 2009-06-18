@@ -1,7 +1,7 @@
 =Some Of Screenshots=
 
-[http://andrico.googlecode.com/svn/screenshots/main_menu.png http://andrico.googlecode.com/svn/screenshots/small/main_menu.png] [http://andrico.googlecode.com/svn/screenshots/Contact_list.png http://andrico.googlecode.com/svn/screenshots/small/Contact_list.png] [http://andrico.googlecode.com/svn/screenshots/contact.png http://andrico.googlecode.com/svn/screenshots/small/contact.png]
-[http://andrico.googlecode.com/svn/screenshots/event_list.png http://andrico.googlecode.com/svn/screenshots/small/event_list.png]
-[http://andrico.googlecode.com/svn/screenshots/event.png http://andrico.googlecode.com/svn/screenshots/small/event.png]
-[http://andrico.googlecode.com/svn/screenshots/event_buttons.png http://andrico.googlecode.com/svn/screenshots/small/event_buttons.png] 
-[http://andrico.googlecode.com/svn/screenshots/settings.png http://andrico.googlecode.com/svn/screenshots/small/settings.png]
+[http://andrico.googlecode.com/svn/screenshots/main_menu.png] [http://andrico.googlecode.com/svn/screenshots/Contact_list.png] [http://andrico.googlecode.com/svn/screenshots/contact.png]
+[http://andrico.googlecode.com/svn/screenshots/event_list.png]
+[http://andrico.googlecode.com/svn/screenshots/event.png]
+[http://andrico.googlecode.com/svn/screenshots/event_buttons.png] 
+[http://andrico.googlecode.com/svn/screenshots/settings.png]

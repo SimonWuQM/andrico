@@ -5,3 +5,5 @@
 [http://andrico.googlecode.com/svn/screenshots/event.png]
 [http://andrico.googlecode.com/svn/screenshots/event_buttons.png] 
 [http://andrico.googlecode.com/svn/screenshots/settings.png]
+
+[http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO learn more]

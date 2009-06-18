@@ -1,0 +1,19 @@
+#labels Featured
+=New Features=
+
+==ANDRICO 1.0==
+ * Enable to synchronize friends information
+ * Enable to search friends in friends list. Just start typing
+ * Settings enable you 
+   * synch or not photos 
+   * remove or not contacts if they are no longer your friends
+
+==ANDRICO 1.5==
+ * Enable to synch events
+ * Settings alse enable you synch or ignore past events
+
+==ANDRICO 1.6==
+ * You no longer synch past event. This option in settings changed for remove or not past events during synch;
+
+==ANDRICO 1.7==
+ * Filters in general Event list are avaliable. Just click View Events and then click  hardware menu button. You can view all or only your events.

@@ -19,3 +19,6 @@
 
 ==ANDRICO 1.7==
  * Filters in general Event list are avaliable. Just click View Events and then click  hardware menu button. You can view all or only your events.
+
+
+You can also view [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO use of ANDRICO]

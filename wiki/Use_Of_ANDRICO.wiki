@@ -3,3 +3,7 @@
 ----
 ==Choose Your Version==
  * [http://code.google.com/p/andrico/wiki/ANDRICO_1_7 ANDRICO 1.7]
+
+
+
+you can also view [http://code.google.com/p/andrico/wiki/New_Features new features]

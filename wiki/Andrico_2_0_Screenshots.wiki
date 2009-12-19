@@ -39,7 +39,7 @@ Also, now you have ability to add some lables for your events. This functionalit
 http://andrico.googlecode.com/svn/screenshots/2.0/16_add_lable.JPG http://andrico.googlecode.com/svn/screenshots/2.0/17_add_lable_2.JPG http://andrico.googlecode.com/svn/screenshots/2.0/18_use_filter.JPG
 
 
-After this procedure, you can filter your events by lables:
+After this procedure, via clicking on hardware *Menu* button you can filter your events by lables:
 
 http://andrico.googlecode.com/svn/screenshots/2.0/19_use_filter_lables.jpg http://andrico.googlecode.com/svn/screenshots/2.0/20_use_filter_lables_2.jpg
 

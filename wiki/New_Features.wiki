@@ -32,4 +32,4 @@
 Needs for removal of previous version
 
 You can also view [http://code.google.com/p/andrico/wiki/Use_Of_ANDRICO use of ANDRICO]
-and [http://code.google.com/p/andrico/wiki/Andrico_2_0_Screenshots]
+and [http://code.google.com/p/andrico/wiki/Andrico_2_0_Screenshots New Screenshots]

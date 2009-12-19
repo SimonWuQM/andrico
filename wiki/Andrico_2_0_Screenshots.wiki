@@ -16,12 +16,12 @@ Synchronization process remain the same, but it has become more elegant:
 http://andrico.googlecode.com/svn/screenshots/2.0/03_loading_friends_info.jpg http://andrico.googlecode.com/svn/screenshots/2.0/04_loading_events_info.jpg http://andrico.googlecode.com/svn/screenshots/2.0/06_synchronized_2.jpg
 
 
-After synchronization has completed, you can choose one of your contact and find out new button "Export" on its personal contact page. Clicking by "Export" you add this current friend to you phonebook:
+After synchronization has completed, you can choose one of your contact and find out new button *Export* on its personal contact page. Clicking by *Export* you add this current friend to you phonebook:
 
 http://andrico.googlecode.com/svn/screenshots/2.0/07_export.jpg http://andrico.googlecode.com/svn/screenshots/2.0/08_new_contact.jpg
 
 
-Also you can add all your Facebook contacts to the phonebook, or just export recently added contacts. This possibility is available in *ContactList* window. Clicking on the hardware button *Menu* follow you to choose "Export All" or "Export Updated" mode of export:
+Also you can add all your Facebook contacts to the phonebook, or just export recently added contacts. This possibility is available in *ContactList* window. Clicking on the hardware button *Menu* follow you to choose *Export All* or *Export Updated* mode of export:
 
 http://andrico.googlecode.com/svn/screenshots/2.0/10_export_all.jpg http://andrico.googlecode.com/svn/screenshots/2.0/11_exporting.jpg http://andrico.googlecode.com/svn/screenshots/2.0/12_exported.jpg 
 
@@ -31,4 +31,4 @@ All of exported contacts will be immediately available in your phonebook:
 http://andrico.googlecode.com/svn/screenshots/2.0/13_new_contacts.jpg http://andrico.googlecode.com/svn/screenshots/2.0/14_contact_standalone.jpg 
 
 
-Nice, isn't it?
+*Nice, isn't it?*

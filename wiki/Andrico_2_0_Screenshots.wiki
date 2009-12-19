@@ -32,3 +32,15 @@ http://andrico.googlecode.com/svn/screenshots/2.0/13_new_contacts.jpg http://and
 
 
 *Nice, isn't it?*
+
+
+Also, now you have ability to add some lables for your events. This functionality getted by longclicking on your event and typing this lable:
+
+http://andrico.googlecode.com/svn/screenshots/2.0/16_add_lable.JPG http://andrico.googlecode.com/svn/screenshots/2.0/17_add_lable_2.JPG http://andrico.googlecode.com/svn/screenshots/2.0/18_use_filter.JPG
+
+
+After this procedure, you can filter your events by lables:
+
+http://andrico.googlecode.com/svn/screenshots/2.0/19_use_filter_lables.JPG http://andrico.googlecode.com/svn/screenshots/2.0/19_use_filter_lables_2.JPG
+
+    

@@ -6,12 +6,7 @@
 Now, new version of Andrico is available.
 You can overview new features via extremly pretty screens:
 
-The main window was unchanged, and after success authorization you will see the *Synchronization* window with 3 buttons available (if you haven't synchronized before of course). There is new option in *Settins* window. Now you can choose new option - *Synchronize Pictures* weather you want to download all icons of your friens and events or not:
-
-http://andrico.googlecode.com/svn/screenshots/2.0/01_synchronize.jpg http://andrico.googlecode.com/svn/screenshots/2.0/02_settings.JPG
-
-
-Synchronization process remain the same, but it has become more elegant: 
+Synchronization process has become too much faster and elegant: 
 
 http://andrico.googlecode.com/svn/screenshots/2.0/03_loading_friends_info.jpg http://andrico.googlecode.com/svn/screenshots/2.0/04_loading_events_info.jpg http://andrico.googlecode.com/svn/screenshots/2.0/06_synchronized_2.jpg
 

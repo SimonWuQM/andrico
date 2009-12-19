@@ -1,0 +1,16 @@
+#summary One-sentence summary of this page.
+#labels Featured
+
+= Andrico 2.0 Screenshots =
+
+Now, new version of Andrico is available.
+
+You can see new features via extremly pretty screens:
+
+The main window was unchanged, and after success authorization you will see the *Synchronization* window with 3 buttons available (if you haven't synchronized before of course):
+http://andrico.googlecode.com/svn/screenshots/2.0/01_synchronize.jpg
+
+There is new option in *Settins* window. Now you can choose new option - *Synchronize Pictures* weather you want to download all icons of your friens and events or not:
+http://andrico.googlecode.com/svn/screenshots/2.0/02_settings.jpg
+
+
